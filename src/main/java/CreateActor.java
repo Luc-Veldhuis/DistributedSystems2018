@@ -21,11 +21,15 @@ public class CreateActor extends AbstractActor {
         log.info("Actor Application stopped");
     }
 
-    // No need to handle any messages
+    // basic necessity to create an Actor.
+    //return the Received message
+    //send a message to the Actor and print it out
     @Override
     public Receive createReceive() {
         return receiveBuilder()
-                .build();
+                    .match(String.class, msg -> {
+                        System.out.println(msg);
+                    }).build();
     }
 
 }
