@@ -14,6 +14,10 @@ Gradle
 * [Gradle](https://gradle.org/install/) 
 
 
+### Gradle Cheat Sheet
+* [Gradle Cheat Sheet](https://www.polyglotdeveloper.com/cheatsheet/2015-01-08-Gradle-cheatsheet/)
+
+
 ## Build & Start Project
 
 Go to the root folder of the project and run the following commands
