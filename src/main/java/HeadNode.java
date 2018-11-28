@@ -28,11 +28,35 @@ public class HeadNode extends AbstractActor {
 
     }
 
+    private void createWorkerNodes(Message message){
+            System.out.println("Creating device group actor for {}\", headNodeId");
+            for (int i = 0; i < numberOfWorkers; i++) {
+                getContext().actorOf(WorkerNode.props(workerId), "group-" + workerId);
+            }
+            //getContext().watch(headNode);
+            //headNode.forward(trackMsg, getContext());
+            //headNodeMap.put(headNodeId, headNode);
+
+/*    Actor tempHeadMap = headNodeMap.get(headNodeId);
+
+    if (tempheadMap != null) {
+      tempHeadMap.forward(trackMsg, getContext());*/
+
+        System.out.println("worker hoe" + headNodeId);
+    }
+
+    static public class Message{
+        public Message(){}
+    }
+
+
     public Receive createReceive() {
         return receiveBuilder()
                 .match(String.class, msg -> {
                     System.out.println(msg);
-                }).build();
+                })
+                .match(Message.class, this::createWorkerNodes)
+                .build();
     }
 
 }
