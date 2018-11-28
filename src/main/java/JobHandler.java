@@ -6,30 +6,31 @@ import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import java.util.HashMap;
 import java.util.Map;
+import akka.actor.Actor;
 
 
 public class JobHandler extends AbstractActor {
  // private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
+  public final Integer[] headNodeId;
+  public final Integer workerId;
+  public final Integer numberOfWorkers;
 
-  public static Props props() {
-    return Props.create(JobHandler.class, JobHandler::new);
+  public static Props props(Integer[] headNodeId, Integer workerId, Integer numberOfNodes, Integer numberOfWorkers) {
+
+    return Props.create(JobHandler.class, () -> new JobHandler(headNodeId, workerId, numberOfWorkers));
   }
 
-  public static final class RequestTrackDevice {
-    public final String groupId;
-    public final String deviceId;
-
-    public RequestTrackDevice(String groupId, String deviceId) {
-      this.groupId = groupId;
-      this.deviceId = deviceId;
-    }
+   public JobHandler(Integer[] headNodeId, Integer workerId,  Integer numberOfWorkers) {
+    this.headNodeId = headNodeId;
+    this.workerId = workerId;
+    this.numberOfWorkers = numberOfWorkers;
   }
 
   public static final class DeviceRegistered {
   }
 
-  final Map<String, ActorRef> headNodeMap = new HashMap<>();
-  final Map<ActorRef, String> workerMap = new HashMap<>();
+  final Map<Integer, ActorRef> headNodeMap = new HashMap<>();
+  final Map<Integer, ActorRef> workerMap = new HashMap<>();
 
   @Override
   public void preStart() {
@@ -42,35 +43,62 @@ public class JobHandler extends AbstractActor {
     //log.info("JobHandler stopped");
   }
 
-  private void onTrackDevice(RequestTrackDevice trackMsg) {
-    String groupId = trackMsg.groupId;
-    ActorRef ref = headNodeMap.get(groupId);
+  private void createHeadNodes(Message message){
+    if(headNodeMap.containsKey(this.headNodeId) && workerMap.containsKey(this.workerId)){
+      System.out.println("i am not empty bitches");
+    }
+    else{
+      System.out.println("Creating device group actor for {}\", headNodeId");
+      for (int i = 0; i < headNodeId.length; i++) {
+        getContext().actorOf(HeadNode.props(headNodeId[i], workerId, this.numberOfWorkers), "group-" + headNodeId[i]);
+      }
+      //getContext().watch(headNode);
+      //headNode.forward(trackMsg, getContext());
+      //headNodeMap.put(headNodeId, headNode);
+    }
+/*    Actor tempHeadMap = headNodeMap.get(headNodeId);
+
+    if (tempheadMap != null) {
+      tempHeadMap.forward(trackMsg, getContext());*/
+
+    System.out.println("head hoe" + headNodeId);
+  }
+
+/*  private void onTrackDevice(RequestTrackDevice trackMsg) {
+    String headNodeId = trackMsg.headNodeId;
+    ActorRef ref = headNodeMap.get(headNodeId);
     if (ref != null) {
       ref.forward(trackMsg, getContext());
     } else {
-      System.out.println("Creating device group actor for {}\", groupId");
-      //log.info("Creating device group actor for {}", groupId);
-      //ActorRef groupActor = getContext().actorOf(DeviceGroup.props(groupId), "group-" + groupId);
+      System.out.println("Creating device group actor for {}\", headNodeId");
+      //log.info("Creating device group actor for {}", headNodeId);
+      //ActorRef groupActor = getContext().actorOf(DeviceGroup.props(headNodeId), "group-" + headNodeId);
       //getContext().watch(groupActor);
       //groupActor.forward(trackMsg, getContext());
-      //headNodeMap.put(groupId, groupActor);
-      //workerMap.put(groupActor, groupId);
+      //headNodeMap.put(headNodeId, groupActor);
+      //workerMap.put(groupActor, headNodeId);
     }
-  }
+  }*/
 
   //private void onTerminated(Terminated t) {
     // ActorRef groupActor = t.getActor();
-    // String groupId = workerMap.get(groupActor);
-    // log.info("Device group actor for {} has been terminated", groupId);
+    // String headNodeId = workerMap.get(groupActor);
+    // log.info("Device group actor for {} has been terminated", headNodeId);
     // workerMap.remove(groupActor);
-    // headNodeMap.remove(groupId);
+    // headNodeMap.remove(headNodeId);
   //}
+
+  static public class Message{
+    public Message(){}
+  }
 
   public Receive createReceive() {
     return receiveBuilder()
             .match(String.class, msg -> {
               System.out.println(msg);
-            }).build();
+            })
+            .match(Message.class, this::createHeadNodes)
+            .build();
   }
 
 }
