@@ -13,10 +13,11 @@ public class MainApplication {
         //create the Actor
         ActorSystem system = ActorSystem.create("head-node");
         Integer[] headNodeId = {1,2,3};
+        Integer[] workerId = {1,2,3,4,5};
 
         try {
             // Create reference for top level actor (head node)
-            ActorRef headNode = system.actorOf(Props.create(JobHandler.class, headNodeId, 0, 5) );
+            ActorRef headNode = system.actorOf(Props.create(JobHandler.class, headNodeId, workerId, 5) );
             headNode.tell("Hi, I am the head node", Actor.noSender());
             headNode.tell(new JobHandler.Message(), Actor.noSender());
             System.out.println("Press ENTER to exit the system");

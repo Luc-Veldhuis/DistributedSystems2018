@@ -10,16 +10,16 @@ import java.util.Map;
 public class HeadNode extends AbstractActor {
 
     public final Integer headNodeId;
-    public final Integer workerId;
+    public final Integer[] workerId;
     public final Integer numberOfWorkers;
 
-    public static Props props(Integer headNodeId, Integer workerId, Integer numberOfWorkers) {
+    public static Props props(Integer headNodeId, Integer[] workerId, Integer numberOfWorkers) {
 
         System.out.println("Head node created");
         return Props.create(HeadNode.class, () -> new HeadNode(headNodeId, workerId, numberOfWorkers));
     }
 
-    public HeadNode(Integer headNodeId, Integer workerId, Integer numberOfWorkers) {
+    public HeadNode(Integer headNodeId, Integer[] workerId, Integer numberOfWorkers) {
         this.headNodeId = headNodeId;
         this.workerId = workerId;
         this.numberOfWorkers = numberOfWorkers;
@@ -29,9 +29,8 @@ public class HeadNode extends AbstractActor {
     }
 
     private void createWorkerNodes(Message message){
-            System.out.println("Creating device group actor for {}\", headNodeId");
             for (int i = 0; i < numberOfWorkers; i++) {
-                getContext().actorOf(WorkerNode.props(workerId), "group-" + workerId);
+                getContext().actorOf(WorkerNode.props(workerId[i]), "group-" + workerId[i]);
             }
             //getContext().watch(headNode);
             //headNode.forward(trackMsg, getContext());
@@ -42,7 +41,6 @@ public class HeadNode extends AbstractActor {
     if (tempheadMap != null) {
       tempHeadMap.forward(trackMsg, getContext());*/
 
-        System.out.println("worker hoe" + headNodeId);
     }
 
     static public class Message{
