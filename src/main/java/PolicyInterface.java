@@ -4,7 +4,7 @@ public interface PolicyInterface {
     //We have to think about what functions a policy really needs
 
     //update when job comes in
-    public void update(JobHandler jobHandler, Client client);
+    public void update(JobHandler jobHandler, ClientActor clientActor);
 
     //update when job finishes
     public void update(JobHandler jobHandler, WorkerNode worker);

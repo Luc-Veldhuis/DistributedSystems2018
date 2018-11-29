@@ -22,11 +22,11 @@ public class Messages {
 
     public class GetJobFromClient {
         public JobHandler jobHandler;
-        public Client client;
+        public ClientActor clientActor;
 
-        public GetJobFromClient(JobHandler jobHandler, Client  client) {
+        public GetJobFromClient(JobHandler jobHandler, ClientActor clientActor) {
             this.jobHandler = jobHandler;
-            this.client = client;
+            this.clientActor = clientActor;
         }
     }
 
@@ -61,6 +61,13 @@ public class Messages {
         }
     }
 
+    public class GetJobFromHead {
+        public JobHandler job;
+        GetJobFromHead(JobHandler job) {
+            this.job = job;
+        }
+    }
+
     public RegisterWorkerToHead registerWorkerToHead(WorkerNode worker) {
         return new RegisterWorkerToHead(worker);
     }
@@ -69,8 +76,8 @@ public class Messages {
         return new RemoveWorkerFromHead(worker);
     }
 
-    public GetJobFromClient getJobFromClient(JobHandler job, Client client) {
-        return new GetJobFromClient(job, client);
+    public GetJobFromClient getJobFromClient(JobHandler job, ClientActor clientActor) {
+        return new GetJobFromClient(job, clientActor);
     }
 
     public GetJobFromWorker getJobFromWorker(JobHandler job, WorkerNode worker) {
@@ -87,6 +94,10 @@ public class Messages {
 
     public SendJobToWorker sendJobToWorker(JobHandler job) {
         return new SendJobToWorker(job);
+    }
+
+    public GetJobFromHead getJobFromHead(JobHandler job) {
+        return new GetJobFromHead(job);
     }
 
 }

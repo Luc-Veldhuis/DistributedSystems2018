@@ -1,9 +1,8 @@
 import akka.actor.AbstractActor;
 import akka.actor.Props;
 import akka.actor.ActorRef;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
 
 public class HeadNode extends AbstractActor {
 
@@ -37,7 +36,7 @@ public class HeadNode extends AbstractActor {
     }
 
     public void scheduleJob(Messages.GetJobFromClient message) {
-        this.scheduler.update(message.jobHandler, message.client);
+        this.scheduler.update(message.jobHandler, message.clientActor);
     }
 
     public void removeWorker(Messages.RemoveWorkerFromHead message) {
@@ -45,7 +44,7 @@ public class HeadNode extends AbstractActor {
     }
 
     public void checkJob(Messages.GetJobFromWorker message) {
-        //TODO return to client but check for byzantian errors first
+        //TODO return to clientActor but check for byzantian errors first
         if (!this.failCheck.check(message.jobHandler)) {
             //TODO restart job
         }

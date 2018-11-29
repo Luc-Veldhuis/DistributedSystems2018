@@ -4,7 +4,7 @@ public class Policy implements PolicyInterface {
 
 
     @Override
-    public void update(JobHandler jobHandler, Client client) {
+    public void update(JobHandler jobHandler, ClientActor clientActor) {
 
     }
 
