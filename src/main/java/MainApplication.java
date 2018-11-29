@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import akka.actor.ActorSystem;
 import akka.actor.ActorRef;
@@ -11,21 +13,32 @@ public class MainApplication {
     public static void main(String[] args) throws IOException {
 
         //create the Actor
-        ActorSystem system = ActorSystem.create("head-node");
-        Integer[] headNodeId = {1,2,3};
-        Integer[] workerId = {1,2,3,4,5};
+        ActorSystem root = ActorSystem.create("root-node");
+        List<Integer> headNodeIds = Utils.getListOfLength(Configuration.NUMBER_OF_HEADNODES);
+        List<Integer> workerIds = Utils.getListOfLength(Configuration.NUMBER_OF_WORKERS_IN_POOL);
+
+        List<ActorRef> headNodes = new ArrayList<ActorRef>();
 
         try {
-            // Create reference for top level actor (head node)
-            ActorRef headNode = system.actorOf(Props.create(JobHandler.class, headNodeId, workerId, 5) );
-            //headNode.tell("Hi, I am the head node", Actor.noSender());
-            headNode.tell(new JobHandler.Message(), Actor.noSender());
+            // Create reference for top level actors (head nodes)
+            for (int i = 0; i < headNodeIds.size(); i++) {
+                ActorRef headRef = root.actorOf(HeadNode.props(headNodeIds.get(i)), "headNodeId-" + headNodeIds.get(i));
+                headNodes.add(headRef);
+            }
+            createInitalWorkers(root, workerIds, headNodes);
             System.out.println("Press ENTER to exit the system");
             System.in.read();
         } finally {
-            system.terminate();
+            root.terminate();//also terminates all other nodes
         }
 
+    }
+
+    public static void createInitalWorkers(ActorSystem root, List<Integer> workerIds, List<ActorRef> headNodes) {
+        //create inital pool of workers, other processes can create these as well
+        for(int i = 0; i < workerIds.size(); i++) {
+            ActorRef workerRef = root.actorOf(WorkerNode.props(workerIds.get(i), headNodes), "workerId-" + workerIds.get(i));
+        }
     }
 
 }
