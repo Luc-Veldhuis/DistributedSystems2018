@@ -4,8 +4,6 @@ import java.util.List;
 
 import akka.actor.ActorSystem;
 import akka.actor.ActorRef;
-import akka.actor.Props;
-import akka.actor.Actor;
 //import JobHandler.Message;
 
 public class MainApplication {
@@ -15,7 +13,7 @@ public class MainApplication {
         //create the Actor
         ActorSystem root = ActorSystem.create("root-node");
         List<Integer> headNodeIds = Utils.getListOfLength(Configuration.NUMBER_OF_HEADNODES);
-        List<Integer> workerIds = Utils.getListOfLength(Configuration.NUMBER_OF_WORKERS_IN_POOL);
+        List<Integer> workerIds = Utils.getListOfLength(Configuration.NUMBER_OF_BYZANTIAN_ERRORS);
 
         List<ActorRef> headNodes = new ArrayList<ActorRef>();
 

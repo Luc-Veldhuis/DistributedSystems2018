@@ -1,9 +1,10 @@
+import akka.actor.ActorRef;
+
 public class Scheduler extends Policy {
 
-    public HeadNodeState state;
-
-    public Scheduler(HeadNodeState state) {
+    public Scheduler(HeadNodeState state, ActorRef headNode) {
         this.state = state;
+        this.headNode = headNode;
     }
 
 }

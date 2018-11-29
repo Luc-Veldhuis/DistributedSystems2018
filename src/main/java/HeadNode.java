@@ -12,6 +12,8 @@ public class HeadNode extends AbstractActor {
     HeadNodeState state;
     Scheduler scheduler;
     ByzantianChecker failCheck;
+    int failingNodes = 0;
+    boolean isBoss = false;
 
     public static Props props(Integer headNodeId) {
         System.out.println("Head node created");
@@ -21,54 +23,76 @@ public class HeadNode extends AbstractActor {
     public HeadNode(Integer headNodeId) {
         this.headNodeId = headNodeId;
         System.out.println("headNodeId: " + headNodeId);
-        if(headNodeId == 1){
-            System.out.println("I am the boss");
+        if(headNodeId == 0){
+            System.out.println("Head node "+headNodeId+" is the boss");
+            this.isBoss = true;
         }
         this.state = new HeadNodeState();
         this.messages = new Messages();
-        this.scheduler = new Scheduler(this.state);
+        this.scheduler = new Scheduler(this.state, this.self());
         this.failCheck = new ByzantianChecker(this.state);
     }
 
     public void registerWorker(Messages.RegisterWorkerToHead message) {
-        state.workerIdToWorkerNode.put(message.workerNode.workerId, message.workerNode.self());
-        System.out.println("Registered worker "+message.workerNode.workerId);
+        if(this.isBoss) {
+            int workerId = message.workerNode.workerId;
+            state.workerIdToWorkerNode.put(workerId, message.workerNode.self());
+            state.passiveWorkers.add(workerId);
+            System.out.println("Registered worker " + message.workerNode.workerId);
+        }
     }
 
     public void scheduleJob(Messages.GetJobFromClient message) {
-        this.scheduler.update(message.jobHandler, message.clientActor);
+        if(this.isBoss) {
+            try {
+                this.scheduler.update(message.jobHandler, message.clientActor);
+            } catch (Exception e) {
+                //not initialized
+                System.out.println("System was not correctly initialized!!!");
+            }
+        }
     }
 
     public void removeWorker(Messages.RemoveWorkerFromHead message) {
-        state.workerIdToWorkerNode.remove(message.workerNode.workerId);
+        if(this.isBoss) {
+            state.workerIdToWorkerNode.remove(message.workerNode.workerId);
+            System.out.println("Removed worker " + message.workerNode.workerId);
+        }
     }
 
     public void checkJob(Messages.GetJobFromWorker message) {
-        //TODO return to clientActor but check for byzantian errors first
-        if (!this.failCheck.check(message.jobHandler)) {
-            //TODO restart job
+        if(this.isBoss) {//only do this on 1 actor
+            //TODO return to clientActor but check for byzantian errors first
+            if (!this.failCheck.check(message.jobHandler)) {
+                //TODO restart job
+            }
         }
     }
 
     public void switchToBackupHeadNode(Messages.CrashingHeadNode message) {
+        //another headnode went down, take over the state
         this.state = message.headNode.state;
-        //TODO not done yet
+        failingNodes++;
+        if(failingNodes == this.headNodeId) {//because we use incremental ids, this works, might be more cleverly done
+            System.out.println("Head node "+headNodeId+" is the boss");
+            this.isBoss = true;
+        }
     }
 
     public void updateHeadNodes(Messages.PropagateHeadNodes message) {
+        //add more headnodes if they are added incrementally
         this.headNodes = message.headNodes;
     }
 
     @Override
     public void postStop() {
-        //TODO handle graceful failure, alert other headnodes
+        //graceful failure, alert other headnodes
         if(headNodes == null) {
             return;
         }
-        for(int i = 0; i < headNodes.size();i++) {
-            ActorRef headNode = headNodes.get(i);
-            if(!this.self().equals(headNode)) {
-                headNode.tell(this.messages.crashingHeadNode(this), this.self());
+        for(ActorRef node : headNodes) {
+            if(!this.self().equals(node)) {
+                node.tell(this.messages.crashingHeadNode(this), this.self());
             }
         }
     }

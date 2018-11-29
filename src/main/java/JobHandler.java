@@ -12,6 +12,9 @@ public class JobHandler<E> {
     public Supplier job;
     private E result;
     private Exception e;
+    private String id;
+    public int checked = 0;
+    private boolean done = false;
 
     public JobHandler(Supplier job) {
         this.job = job;
@@ -19,6 +22,15 @@ public class JobHandler<E> {
 
     public void setResult(E result) {
         this.result = result;
+        this.done = true;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return this.id;
     }
 
     public E getResult() throws Exception {
@@ -31,5 +43,7 @@ public class JobHandler<E> {
 
     public void setException(Exception e) {
         this.e = e;
+        this.done = true;
     }
+
 }
