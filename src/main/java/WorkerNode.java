@@ -32,11 +32,7 @@ public class WorkerNode extends AbstractActor {
         }
     }
 
-    public void sendError(JobHandler job) {
-        //TODO send error
-    }
-
-    public void sendResult(JobHandler job, Object result) {
+    public void sendResult(JobHandler job) {
         //TODO send result
     }
 
@@ -44,12 +40,13 @@ public class WorkerNode extends AbstractActor {
         //TODO run this
         try {
             Object result = message.job.job.invoke(this);
-            sendResult(message.job, result);
+            message.job.setResult(result);
         }  catch (IllegalAccessException e) {
-            sendError(message.job);
+            message.job.setException(e);
         } catch (InvocationTargetException e) {
-            sendError(message.job);
+            message.job.setException(e);
         }
+        sendResult(message.job);
     }
 
     public void registerWorker(int position) {
