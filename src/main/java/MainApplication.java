@@ -18,7 +18,7 @@ public class MainApplication {
         try {
             // Create reference for top level actor (head node)
             ActorRef headNode = system.actorOf(Props.create(JobHandler.class, headNodeId, workerId, 5) );
-            headNode.tell("Hi, I am the head node", Actor.noSender());
+            //headNode.tell("Hi, I am the head node", Actor.noSender());
             headNode.tell(new JobHandler.Message(), Actor.noSender());
             System.out.println("Press ENTER to exit the system");
             System.in.read();

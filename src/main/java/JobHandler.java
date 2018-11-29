@@ -15,7 +15,7 @@ public class JobHandler extends AbstractActor {
   public final Integer[] workerId;
   public final Integer numberOfWorkers;
 
-  public static Props props(Integer[] headNodeId, Integer[] workerId, Integer numberOfNodes, Integer numberOfWorkers) {
+  public static Props props(Integer[] headNodeId, Integer[] workerId, Integer numberOfWorkers) {
 
     return Props.create(JobHandler.class, () -> new JobHandler(headNodeId, workerId, numberOfWorkers));
   }
@@ -29,8 +29,9 @@ public class JobHandler extends AbstractActor {
   public static final class DeviceRegistered {
   }
 
-  final Map<Integer, ActorRef> headNodeMap = new HashMap<>();
-  final Map<Integer, ActorRef> workerMap = new HashMap<>();
+  final Map<Integer, ActorRef> headIdToHeadNode = new HashMap<>(); // look up head node actors by their node IDs
+  final Map<ActorRef, Integer> headNodeToHeadId = new HashMap<>(); //remove head node id from the map of existing
+                                                                   // head nodes to head node mappings.
 
   @Override
   public void preStart() {
@@ -43,46 +44,30 @@ public class JobHandler extends AbstractActor {
     //log.info("JobHandler stopped");
   }
 
+  /*** CreateHeadNode ****/
+  /* ---- Creates three head nodes and their corresponding ID ---- */
   private void createHeadNodes(Message message){
-    if(headNodeMap.containsKey(this.headNodeId) && workerMap.containsKey(this.workerId)){
-      System.out.println("i am not empty bitches");
+    if(headIdToHeadNode.containsKey(this.headNodeId)){
+      System.out.println("i am not empty");
     }
     else{
       for (int i = 0; i < headNodeId.length; i++) {
-          ActorRef aRef = getContext().actorOf(HeadNode.props(headNodeId[i], workerId, this.numberOfWorkers), "group-" + headNodeId[i]);
+          ActorRef aRef = getContext().actorOf(HeadNode.props(headNodeId[i], workerId, this.numberOfWorkers), "headNodeId-" + headNodeId[i]);
           if(i == 0){
               System.out.println("HeadId: " + headNodeId[i] + " has workerNodes");
               aRef.tell(new HeadNode.Message(), Actor.noSender());
+              getContext().watch(aRef);//watch the node in case it dies
+              //fill the maps
+              headIdToHeadNode.put(headNodeId[i], aRef);
+              headNodeToHeadId.put(aRef, headNodeId[i]);
           }
           else{
               System.out.println("HeadId: " + headNodeId[i] + " does not have worker nodes");
           }
       }
-      //getContext().watch(headNode);
-      //headNode.forward(trackMsg, getContext());
-      //headNodeMap.put(headNodeId, headNode);
     }
-/*    Actor tempHeadMap = headNodeMap.get(headNodeId);
-
-    if (tempheadMap != null) {
-      tempHeadMap.forward(trackMsg, getContext());*/
   }
 
-/*  private void onTrackDevice(RequestTrackDevice trackMsg) {
-    String headNodeId = trackMsg.headNodeId;
-    ActorRef ref = headNodeMap.get(headNodeId);
-    if (ref != null) {
-      ref.forward(trackMsg, getContext());
-    } else {
-      System.out.println("Creating device group actor for {}\", headNodeId");
-      //log.info("Creating device group actor for {}", headNodeId);
-      //ActorRef groupActor = getContext().actorOf(DeviceGroup.props(headNodeId), "group-" + headNodeId);
-      //getContext().watch(groupActor);
-      //groupActor.forward(trackMsg, getContext());
-      //headNodeMap.put(headNodeId, groupActor);
-      //workerMap.put(groupActor, headNodeId);
-    }
-  }*/
 
   //private void onTerminated(Terminated t) {
     // ActorRef groupActor = t.getActor();

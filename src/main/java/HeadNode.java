@@ -28,19 +28,23 @@ public class HeadNode extends AbstractActor {
 
     }
 
+    final Map<Integer, ActorRef> workerIdToWorkerNode = new HashMap<>(); // look up worker node actors by their worker IDs
+    final Map<ActorRef, Integer> workerNodeToWorkerId = new HashMap<>(); //remove worker node id from the map of existing
+                                                                         // worker nodes to worker node mappings.
+
     private void createWorkerNodes(Message message){
+        if(workerIdToWorkerNode.containsKey(this.workerId)){
+            System.out.println("i am not empty");
+        }
+        else{
             for (int i = 0; i < numberOfWorkers; i++) {
-                getContext().actorOf(WorkerNode.props(workerId[i]), "group-" + workerId[i]);
+                ActorRef aRef = getContext().actorOf(WorkerNode.props(workerId[i]), "workerId-" + workerId[i]);
+                getContext().watch(aRef);
+                //fill the maps
+                workerIdToWorkerNode.put(workerId[i], aRef);
+                workerNodeToWorkerId.put(aRef, workerId[i]);
             }
-            //getContext().watch(headNode);
-            //headNode.forward(trackMsg, getContext());
-            //headNodeMap.put(headNodeId, headNode);
-
-/*    Actor tempHeadMap = headNodeMap.get(headNodeId);
-
-    if (tempheadMap != null) {
-      tempHeadMap.forward(trackMsg, getContext());*/
-
+        }
     }
 
     static public class Message{
