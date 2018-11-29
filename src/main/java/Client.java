@@ -1,4 +1,5 @@
 import akka.actor.ActorRef;
+import akka.actor.ActorSelection;
 
 import java.lang.reflect.Method;
 import java.util.function.Consumer;
@@ -7,10 +8,10 @@ import java.util.function.Supplier;
 
 public class Client {
 
-    public ActorRef headNode;
+    public String headNodeUri;
 
-    public Client(ActorRef headNode) {
-        this.headNode = headNode;
+    public Client(String headNodeUri) {
+        this.headNodeUri = headNodeUri;
     }
 
     public int sleep() {
@@ -27,14 +28,13 @@ public class Client {
     }
 
     public void execute() {
-        Job job = new Job(this.headNode);
+        Job job = new Job(this.headNodeUri);
         job.setJob((Supplier<Integer>) this::sleep);
         job.setHandler((Consumer<Integer>) this::done);
     }
 
     public static void main(String[] args) {
-        ActorRef headNode = null;//TODO create actorRef from url
-        Client client = new Client(headNode);
+        Client client = new Client(args[0]);
         client.execute();
     }
 }
