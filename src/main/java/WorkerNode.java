@@ -55,6 +55,18 @@ public class WorkerNode extends AbstractActor {
         headnode.tell(messages.registerWorkerToHead(this), this.self());
     }
 
+    public void sendRemove() {
+        //TODO how to find the current headnode?
+        //headNode.tell(this.messages.removeWorkerToHead(this), this.self());
+    }
+
+    @Override
+    public void postStop() {
+        //TODO handle graceful failure, alert headnode
+        sendRemove();
+    }
+
+
     public Receive createReceive() {
         return receiveBuilder()
                 .match(String.class, msg -> {
