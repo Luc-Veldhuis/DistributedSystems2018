@@ -54,6 +54,13 @@ public class Messages {
         }
     }
 
+    public class SendJobToWorker {
+        public JobHandler job;
+        public SendJobToWorker(JobHandler job) {
+            this.job = job;
+        }
+    }
+
     public RegisterWorkerToHead registerWorkerToHead(WorkerNode worker) {
         return new RegisterWorkerToHead(worker);
     }
@@ -76,6 +83,10 @@ public class Messages {
 
     public PropagateHeadNodes propagateHeadNodes(List<ActorRef> headNodes) {
         return new PropagateHeadNodes(headNodes);
+    }
+
+    public SendJobToWorker sendJobToWorker(JobHandler job) {
+        return new SendJobToWorker(job);
     }
 
 }

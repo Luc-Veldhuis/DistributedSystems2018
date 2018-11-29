@@ -12,6 +12,7 @@ public class HeadNode extends AbstractActor {
     public Messages messages;
     HeadNodeState state;
     Scheduler scheduler;
+    ByzantianChecker failCheck;
 
     public static Props props(Integer headNodeId) {
         System.out.println("Head node created");
@@ -27,6 +28,7 @@ public class HeadNode extends AbstractActor {
         this.state = new HeadNodeState();
         this.messages = new Messages();
         this.scheduler = new Scheduler(this.state);
+        this.failCheck = new ByzantianChecker(this.state);
     }
 
     public void registerWorker(Messages.RegisterWorkerToHead message) {
@@ -44,6 +46,9 @@ public class HeadNode extends AbstractActor {
 
     public void checkJob(Messages.GetJobFromWorker message) {
         //TODO return to client but check for byzantian errors first
+        if (!this.failCheck.check(message.jobHandler)) {
+            //TODO restart job
+        }
     }
 
     public void switchToBackupHeadNode(Messages.CrashingHeadNode message) {
