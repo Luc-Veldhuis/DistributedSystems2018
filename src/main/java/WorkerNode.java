@@ -39,8 +39,8 @@ public class WorkerNode extends AbstractActor {
     public void executeJob(Messages.SendJobToWorker message) {
         //TODO run this
         try {
-            message.job.setResult(message.job.job.invoke(null));
-        }  catch (IllegalAccessException | InvocationTargetException e) {
+            message.job.setResult(message.job.job.get());
+        }  catch (Exception e) {
             message.job.setException(e);
         }
         sendResult(message.job);

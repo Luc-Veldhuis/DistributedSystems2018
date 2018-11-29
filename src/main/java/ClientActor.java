@@ -3,19 +3,21 @@ import akka.actor.ActorRef;
 import akka.actor.Props;
 
 import java.lang.reflect.Method;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class ClientActor<E> extends AbstractActor {
 
     ActorRef headNodeRef;
     Messages messages;
-    Method doneHander;
+    Consumer doneHander;
 
-    public static Props props(ActorRef headNodeRef, JobHandler job, Method doneHander) {
+    public static Props props(ActorRef headNodeRef, JobHandler job, Consumer doneHander) {
         System.out.println("Client job created");
         return Props.create(ClientActor.class, () -> new ClientActor(headNodeRef, job, doneHander));
     }
 
-    public ClientActor(ActorRef headNodeRef, JobHandler job, Method doneHander) {
+    public ClientActor(ActorRef headNodeRef, JobHandler job, Consumer doneHander) {
         this.headNodeRef = headNodeRef;
         this.doneHander = doneHander;
         this.messages = new Messages();
@@ -23,7 +25,7 @@ public class ClientActor<E> extends AbstractActor {
     }
 
     public void receivedJob(Messages.GetJobFromHead message) throws Exception {
-        this.doneHander.invoke(message.job.getResult());
+        //this.doneHander.run(message.job.getResult());
     }
 
     @Override

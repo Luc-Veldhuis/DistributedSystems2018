@@ -1,16 +1,19 @@
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
 import akka.actor.Actor;
 
 
 public class JobHandler<E> {
 
-    public Method job;
+    public Supplier job;
     private E result;
     private Exception e;
 
-    public JobHandler(Method job) {
+    public JobHandler(Supplier job) {
         this.job = job;
     }
 
