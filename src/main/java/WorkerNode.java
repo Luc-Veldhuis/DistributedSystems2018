@@ -1,14 +1,7 @@
 import akka.actor.AbstractActor;
-//import akka.actor.ActorLogging;
 import akka.actor.Props;
 import akka.actor.ActorRef;
-import akka.event.Logging;
-import akka.event.LoggingAdapter;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class WorkerNode extends AbstractActor {
     public final Integer workerId;
@@ -28,38 +21,40 @@ public class WorkerNode extends AbstractActor {
 
         System.out.println("workerNodeId: " + workerId);
         if(headnodes.size() > 1) {
-            registerWorker(1);
+            registerWorker();
         }
     }
 
     public void sendResult(JobHandler job) {
-        //TODO send result
+        for(ActorRef node:headnodes) {
+            node.tell(messages.getJobFromWorker(job, this), this.self());
+        }
     }
 
     public void executeJob(Messages.SendJobToWorker message) {
-        //TODO run this
         try {
-            message.job.setResult(message.job.job.invoke(null));
-        }  catch (IllegalAccessException | InvocationTargetException e) {
+            message.job.setResult(message.job.job.get());
+        }  catch (Exception e) {
             message.job.setException(e);
         }
         sendResult(message.job);
     }
 
-    public void registerWorker(int position) {
-        //TODO I think there should be a catch around this
-        ActorRef headnode = this.headnodes.get(position);
-        headnode.tell(messages.registerWorkerToHead(this), this.self());
+    public void registerWorker() {
+        for(ActorRef node:headnodes) {
+            node.tell(messages.registerWorkerToHead(this), this.self());
+        }
     }
 
     public void sendRemove() {
-        //TODO how to find the current headnode?
-        //headNode.tell(this.messages.removeWorkerToHead(this), this.self());
+        //TODO maybe overkill to send it to each headnode
+        for(ActorRef node:headnodes){
+            node.tell(this.messages.removeWorkerToHead(this), this.self());
+        }
     }
 
     @Override
     public void postStop() {
-        //TODO handle graceful failure, alert headnode
         sendRemove();
     }
 
