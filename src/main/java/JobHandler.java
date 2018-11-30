@@ -10,11 +10,11 @@ import akka.actor.Actor;
 public class JobHandler<E> {
 
     public Supplier job;
-    private E result;
-    private Exception e;
+    public E result;
+    public Exception e;
     private String id;
-    public int checked = 0;
-    private boolean done = false;
+    public String parentId;
+    public boolean done = false;
 
     public JobHandler(Supplier job) {
         this.job = job;
@@ -31,6 +31,14 @@ public class JobHandler<E> {
 
     public String getId() {
         return this.id;
+    }
+
+    public void setParentId(String id) {
+        this.parentId = id;
+    }
+
+    public String getParentId() {
+        return this.parentId;
     }
 
     public E getResult() throws Exception {

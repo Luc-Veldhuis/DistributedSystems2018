@@ -16,32 +16,35 @@ public class Policy implements PolicyInterface {
             throw new Exception();
         }
         jobHandler.setId(idCounter+"");
-        state.jobIdToJobHandler.put(jobHandler.getId(), jobHandler);
-        if(state.passiveWorkers.size() >= Configuration.NUMBER_OF_BYZANTIAN_ERRORS){
-            dispatchJob(jobHandler);
-        } else {
-            state.jobsWaiting.add(jobHandler.getId());
-        }
+        JobWaiting jobWaiting = new JobWaiting(jobHandler);
+        state.jobsWaiting.put(jobWaiting.jobHander.getId(),jobWaiting);
+        dispatchJob(jobWaiting);
         idCounter++;
 
     }
 
-    public void dispatchJob(JobHandler jobHandler) {
+    public void dispatchJob(JobWaiting jobWaiting) {
+        if(!(state.passiveWorkers.size() >= Configuration.NUMBER_OF_BYZANTIAN_ERRORS)) {
+            return;
+        }
         //Spawn x jobsWaiting
-        state.jobsWaiting.remove(jobHandler.getId());
-        state.jobsReadyForChecking.add(jobHandler.getId());
-        for(int i = 0; i < Configuration.NUMBER_OF_BYZANTIAN_ERRORS; i++) {
-            JobHandler newJob = new JobHandler(jobHandler.job);
-            newJob.setId(jobHandler.getId()+"-"+i);
+        state.jobsWaiting.remove(jobWaiting.jobHander.getId());
+        state.jobsReadyForChecking.put(jobWaiting.jobHander.getId(), jobWaiting);
+        for (int i = 0; i < Configuration.NUMBER_OF_BYZANTIAN_ERRORS; i++) {
+            JobHandler newJob = new JobHandler(jobWaiting.jobHander.job);
+            newJob.setId(jobWaiting.jobHander.getId() + "-" + i);
+            newJob.setParentId(jobWaiting.jobHander.getId());
 
-            int node =  state.passiveWorkers.remove(0);
+            int node = state.passiveWorkers.get(0);
+            state.passiveWorkers.remove(node);//remove first node
+            state.activeWorkers.add(node); // add it to active
+
             ActorRef workerNodeRef = state.workerIdToWorkerNode.get(node);
-            state.activeWorkers.add(node);
-
-            workerNodeRef.tell(messages.sendJobToWorker(newJob),headNode);
+            workerNodeRef.tell(messages.sendJobToWorker(newJob), headNode);
 
             state.jobsRunning.add(newJob.getId());
         }
+
     }
 
     @Override
@@ -50,10 +53,17 @@ public class Policy implements PolicyInterface {
         if(state == null) {
             throw new Exception();
         }
-        state.jobsRunning.remove(jobHandler.getId());
-        state.activeWorkers.remove(workerNode.workerId);
-        state.passiveWorkers.add(workerNode.workerId);
-        //TODO use the state.jobIdToJobHandler to update the status, maybe failchecker should be here?
-        //TODO call dispatch Job with some job from the queue if enough free workers are available
+        state.jobsRunning.remove(jobHandler.getId());//Job is done
+        state.activeWorkers.remove(workerNode.workerId);//worker is done
+        state.passiveWorkers.add(workerNode.workerId);//worker is passive
+        JobWaiting jobWaiting = state.jobsReadyForChecking.get(jobHandler.getParentId());
+        jobWaiting.newResult(jobHandler);
+        //TODO use failchecker here
+        if(!state.jobsWaiting.isEmpty()) {
+            dispatchJob(state.jobsWaiting.get(state.jobsWaiting.keySet().toArray()[0]));
+        }
+        if(jobWaiting.isDone()) {
+            headNode.tell(messages.getJobFromWorker(jobWaiting.jobHander, workerNode), workerNode.self());
+        }
     }
 }
