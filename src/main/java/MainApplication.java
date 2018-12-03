@@ -5,7 +5,6 @@ import java.util.List;
 import akka.actor.ActorSystem;
 import akka.actor.ActorRef;
 import java.util.Timer;
-//import JobHandler.Message;
 
 public class MainApplication {
 
@@ -25,7 +24,7 @@ public class MainApplication {
                 headNodes.add(headRef);
             }
             createInitalWorkers(root, workerIds, headNodes);
-            runScheduledTask();
+            runScheduledTask(headNodes);
             //System.out.println("Press ENTER to exit the system");
             //System.in.read();
         } finally {
@@ -41,9 +40,9 @@ public class MainApplication {
         }
     }
 
-    public static void runScheduledTask() throws InterruptedException{
+    public static void runScheduledTask(List<ActorRef> headNodes) throws InterruptedException{
         Timer time = new Timer(); //timer object
-        TaskScheduler task = new TaskScheduler(); // taskScheduler object
+        TaskScheduler task = new TaskScheduler(headNodes); // taskScheduler object
         time.schedule(task, 0, 3000); // create task every 3 sec
 
         for (int i = 0; i <= 5; i++) {
