@@ -10,10 +10,10 @@ public class Policy implements PolicyInterface {
     ActorRef headNode;
 
     @Override
-    public void update(JobHandler jobHandler, ClientActor clientActor) throws Exception{
+    public void update(JobHandler jobHandler, ClientActor clientActor) {
         //added
         if(state == null) {
-            throw new Exception();
+            throw new InstantiationError();
         }
         jobHandler.setId(idCounter+"");
         JobWaiting jobWaiting = new JobWaiting(jobHandler);

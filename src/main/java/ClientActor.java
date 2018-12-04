@@ -9,16 +9,16 @@ import java.util.function.Function;
 
 public class ClientActor<E> extends AbstractActor {
 
-    ActorSelection headNodeRef;
+    ActorRef headNodeRef;
     Messages messages;
     Consumer doneHander;
 
-    public static Props props(ActorSelection headNodeRef, JobHandler job, Consumer doneHander) {
+    public static Props props(ActorRef headNodeRef, JobHandler job, Consumer doneHander) {
         System.out.println("Client job created");
         return Props.create(ClientActor.class, () -> new ClientActor(headNodeRef, job, doneHander));
     }
 
-    public ClientActor(ActorSelection headNodeRef, JobHandler job, Consumer doneHander) {
+    public ClientActor(ActorRef headNodeRef, JobHandler job, Consumer doneHander) {
         this.headNodeRef = headNodeRef;
         this.doneHander = doneHander;
         this.messages = new Messages();

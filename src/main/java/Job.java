@@ -14,19 +14,19 @@ public class Job<E> implements JobInterface<E> {
     private JobHandler<E> jobHandler;
     private Consumer doneHandler;
     ActorSystem root = ActorSystem.create("root-node");
-    private ActorSelection headNodeRef;
+    private ActorRef headNodeRef;
 
-    public Job(String headNodeUri) {
-        this.headNodeRef = this.root.actorSelection(headNodeUri);//TODO create actorRef from url
+    public Job(ActorRef headNode) {
+        this.headNodeRef = headNode;
     }
 
-    public Job(String headNodeUri, Supplier job) {
-        this.headNodeRef = this.root.actorSelection(headNodeUri);
+    public Job(ActorRef headNode, Supplier job) {
+        this.headNodeRef = headNode;
         this.jobHandler = new JobHandler<E>(job);
     }
 
-    public Job(String headNodeUri, Supplier job, Consumer hander) {
-        this.headNodeRef = this.root.actorSelection(headNodeUri);
+    public Job(ActorRef headNode, Supplier job, Consumer hander) {
+        this.headNodeRef = headNode;
         this.jobHandler = new JobHandler<E>(job);
         this.doneHandler = hander;
     }
