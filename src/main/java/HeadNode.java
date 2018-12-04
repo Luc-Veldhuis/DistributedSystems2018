@@ -43,9 +43,11 @@ public class HeadNode extends AbstractActor {
     }
 
     public void scheduleJob(Messages.GetJobFromClient message) {
+        System.out.println("Schedule job");
         if(this.isBoss) {
             try {
                 this.scheduler.update(message.jobHandler, message.clientActor);
+                System.out.println("Schedule job");
             } catch (Exception e) {
                 //not initialized
                 System.out.println("System was not correctly initialized!!!");
