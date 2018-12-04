@@ -7,9 +7,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/ClientActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ClientActor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/HeadNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/HeadNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Job.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Job.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Policy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Policy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/TaskScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TaskScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/WorkerNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/WorkerNode.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -28,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainApplication.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainApplication.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/MainApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="61" column="8" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="8" />
+            <state relative-caret-position="330">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#611#621#0" expanded="true" />
@@ -54,8 +53,8 @@
       <file leaf-file-name="HeadNode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/HeadNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="638">
-              <caret line="133" column="25" selection-start-line="133" selection-start-column="25" selection-end-line="133" selection-end-column="25" />
+            <state relative-caret-position="212">
+              <caret line="92" column="25" lean-forward="true" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3804#3805#0" expanded="true" />
@@ -71,9 +70,11 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Client.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#302#303#0" expanded="true" />
+                <element signature="e#348#349#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,8 +83,8 @@
       <file leaf-file-name="WorkerNode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/WorkerNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="78" column="19" lean-forward="true" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
+            <state relative-caret-position="300">
+              <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
               <folding>
                 <element signature="e#2002#2003#0" expanded="true" />
                 <element signature="e#2027#2028#0" expanded="true" />
@@ -95,7 +96,7 @@
       <file leaf-file-name="TaskScheduler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/TaskScheduler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7">
+            <state relative-caret-position="150">
               <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -107,8 +108,8 @@
       <file leaf-file-name="ClientActor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ClientActor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="47" />
+            <state relative-caret-position="180">
+              <caret line="21" column="58" lean-forward="true" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
               <folding>
                 <element signature="e#784#785#0" expanded="true" />
                 <element signature="e#823#824#0" expanded="true" />
@@ -119,11 +120,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Job.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Job.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Job.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="17" column="57" lean-forward="true" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
+            <state relative-caret-position="285">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -157,11 +158,11 @@
       <find>device</find>
       <find>requesttrackde</find>
       <find>messages</find>
-      <find>doneHander</find>
-      <find>doneHandler</find>
-      <find>actorselection</find>
       <find>sendRe</find>
+      <find>actorselection</find>
+      <find>doneHandler</find>
       <find>testingMessage</find>
+      <find>doneHander</find>
     </findStrings>
     <replaceStrings>
       <replace>JobHandler</replace>
@@ -508,13 +509,13 @@
         <option value="$PROJECT_DIR$/src/main/java/DeviceManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/JobHandler.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/Client.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ClientActor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/TaskScheduler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Job.java" />
         <option value="$PROJECT_DIR$/src/main/java/WorkerNode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/HeadNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/MainApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/java/HeadNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Client.java" />
+        <option value="$PROJECT_DIR$/src/main/java/TaskScheduler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ClientActor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Job.java" />
       </list>
     </option>
   </component>
@@ -676,12 +677,12 @@
       <workItem from="1543692946307" duration="1631000" />
       <workItem from="1543748790692" duration="1520000" />
       <workItem from="1543759544190" duration="3844000" />
-      <workItem from="1543918385115" duration="24171000" />
+      <workItem from="1543918385115" duration="25923000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53326000" />
+    <option name="totallyTimeSpent" value="55078000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="713" extended-state="6" />
@@ -1029,53 +1030,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/TaskScheduler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7">
-          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ClientActor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="47" />
-          <folding>
-            <element signature="e#784#785#0" expanded="true" />
-            <element signature="e#823#824#0" expanded="true" />
-            <element signature="e#1156#1157#0" expanded="true" />
-            <element signature="e#1198#1199#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Messages.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Job.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="17" column="57" lean-forward="true" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1098,8 +1056,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/WorkerNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="78" column="19" lean-forward="true" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
+        <state relative-caret-position="300">
+          <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
           <folding>
             <element signature="e#2002#2003#0" expanded="true" />
             <element signature="e#2027#2028#0" expanded="true" />
@@ -1107,10 +1065,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/MainApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#611#621#0" expanded="true" />
+            <element signature="e#773#783#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/TaskScheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#302#303#0" expanded="true" />
+            <element signature="e#348#349#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/HeadNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="133" column="25" selection-start-line="133" selection-start-column="25" selection-end-line="133" selection-end-column="25" />
+        <state relative-caret-position="212">
+          <caret line="92" column="25" lean-forward="true" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3804#3805#0" expanded="true" />
@@ -1121,14 +1113,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MainApplication.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ClientActor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="61" column="8" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="8" />
+        <state relative-caret-position="180">
+          <caret line="21" column="58" lean-forward="true" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
+          <folding>
+            <element signature="e#784#785#0" expanded="true" />
+            <element signature="e#823#824#0" expanded="true" />
+            <element signature="e#1156#1157#0" expanded="true" />
+            <element signature="e#1198#1199#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Job.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#611#621#0" expanded="true" />
-            <element signature="e#773#783#0" expanded="true" />
           </folding>
         </state>
       </provider>
