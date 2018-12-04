@@ -8,9 +8,9 @@ import java.util.function.Supplier;
 
 public class Client {
 
-    public String headNodeUri;
+    public String[] headNodeUri;
 
-    public Client(String headNodeUri) {
+    public Client(String[] headNodeUri) {
         this.headNodeUri = headNodeUri;
     }
 
@@ -28,13 +28,18 @@ public class Client {
     }
 
     public void execute() {
-        Job job = new Job(this.headNodeUri);
+        Job job = new Job(this.headNodeUri[0]);
         job.setJob((Supplier<Integer>) this::sleep);
         job.setHandler((Consumer<Integer>) this::done);
+        try {
+            job.run();
+        } catch (Exception e) {
+            System.out.println("Incomplete setup");
+        }
     }
 
     public static void main(String[] args) {
-        Client client = new Client(args[0]);
+        Client client = new Client(args);
         client.execute();
     }
 }
