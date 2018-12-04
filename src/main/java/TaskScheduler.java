@@ -22,9 +22,10 @@ public class TaskScheduler extends TimerTask {
         for(int i = 0; i < headNodes.size(); i++) {
             ActorRef headNode = headNodes.get(i);
             headNodePaths[i] = headNode.path().toSerializationFormatWithAddress(headNode.path().address());
+            //System.out.println(headNodePaths[i]);
         }
         Client client = new Client(headNodePaths);
-        client.execute();
-
+        //ActorRef client = root.actorOf(Client.props(workerIds.get(i), headNodes), "workerId-" + workerIds.get(i));
+       // client.execute();
     }
 }

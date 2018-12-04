@@ -14,32 +14,8 @@ public class Client {
         this.headNodeUri = headNodeUri;
     }
 
-    public int sleep() {
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            System.out.println("Sleep interrupted");
-        }
-        return 10;
-    }
-
-    public void done(int result) {
-        System.out.println(result);
-    }
-
-    public void execute() {
-        Job job = new Job(this.headNodeUri[0]);
-        job.setJob((Supplier<Integer>) this::sleep);
-        job.setHandler((Consumer<Integer>) this::done);
-        try {
-            job.run();
-        } catch (Exception e) {
-            System.out.println("Incomplete setup");
-        }
-    }
-
     public static void main(String[] args) {
         Client client = new Client(args);
-        client.execute();
+        //client.execute();
     }
 }

@@ -20,6 +20,7 @@ public class WorkerNode extends AbstractActor {
         this.messages = new Messages();
 
         System.out.println("workerNodeId: " + workerId);
+
         if(headnodes.size() > 1) {
             registerWorker();
         }
@@ -53,9 +54,18 @@ public class WorkerNode extends AbstractActor {
         }
     }
 
+    public void receiveJob(HeadNode.MessageFromHeadNodeToWorker headActor) {
+        System.out.println("Job Received in workerNode");
+        this.executeJob(headActor.job);
+    }
+
+    public void executeJob(Job job){
+        job.run();
+    }
+
     @Override
     public void postStop() {
-        sendRemove();
+        //sendRemove();
     }
 
 
@@ -64,8 +74,11 @@ public class WorkerNode extends AbstractActor {
                 .match(String.class, msg -> {
                     System.out.println(msg);
                 })
-                .match(
+               /* .match(
                         Messages.SendJobToWorker.class, this::executeJob
+                )*/
+                .match(
+                        HeadNode.MessageFromHeadNodeToWorker.class, this::receiveJob
                 )
                 .build();
     }

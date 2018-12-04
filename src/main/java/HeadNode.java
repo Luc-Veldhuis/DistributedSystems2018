@@ -4,11 +4,14 @@ import akka.actor.ActorRef;
 
 import java.util.List;
 
+
 public class HeadNode extends AbstractActor {
 
     public final Integer headNodeId;
     public List<ActorRef> headNodes;
     public Messages messages;
+    public static List<ActorRef> workerNodes;
+    //public ClientActor clientActor;
     HeadNodeState state;
     Scheduler scheduler;
     ByzantianChecker failCheck;
@@ -29,6 +32,7 @@ public class HeadNode extends AbstractActor {
         }
         this.state = new HeadNodeState();
         this.messages = new Messages();
+        //this.clientActor = new ClientActor();
         this.scheduler = new Scheduler(this.state, this.self());
         this.failCheck = new ByzantianChecker(this.state);
     }
@@ -85,6 +89,29 @@ public class HeadNode extends AbstractActor {
         //add more headnodes if they are added incrementally
         this.headNodes = message.headNodes;
     }
+    public void receivedJob(ClientActor.MessageFromClientToHead clientActor) {
+        //testing message
+        System.out.println("Message tested success");
+        System.out.println("Job Received in headNode");
+        //this.executeJob(clientActor.job);
+        //send job to the
+        this.assignJobToWorker(clientActor.job, workerNodes.get(0));
+    }
+
+    public void assignJobToWorker(Job job, ActorRef workerNode){
+        MessageFromHeadNodeToWorker m = new MessageFromHeadNodeToWorker(job);
+        workerNode.tell( m, ActorRef.noSender());
+    }
+
+
+    public static void acceptWorker(List<ActorRef> workerNode){
+        System.out.println("acceptWorker()");
+        workerNodes = workerNode;
+    }
+
+    public void executeJob(Job job){
+        job.run();
+    }
 
     @Override
     public void postStop() {
@@ -99,6 +126,14 @@ public class HeadNode extends AbstractActor {
         }
     }
 
+
+
+    public class MessageFromHeadNodeToWorker{
+        Job job;
+        MessageFromHeadNodeToWorker(Job job){
+            this.job  = job;
+        }
+    }
 
     public Receive createReceive() {
         return receiveBuilder()
@@ -122,6 +157,9 @@ public class HeadNode extends AbstractActor {
                 )
                 .match(
                         Messages.PropagateHeadNodes.class, this::updateHeadNodes
+                )
+                .match(
+                        ClientActor.MessageFromClientToHead.class, this::receivedJob
                 )
                 .build();
     }

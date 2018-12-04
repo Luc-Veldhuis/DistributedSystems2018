@@ -4,29 +4,53 @@ import akka.actor.ActorSelection;
 import akka.actor.Props;
 
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class ClientActor<E> extends AbstractActor {
 
-    ActorSelection headNodeRef;
+    ActorRef headNode;
     Messages messages;
     Consumer doneHander;
+    Job job;
+    public String[] headNodeUri;
 
-    public static Props props(ActorSelection headNodeRef, JobHandler job, Consumer doneHander) {
+    public static Props props(ActorRef headNode, String[] headNodeUri) {
         System.out.println("Client job created");
-        return Props.create(ClientActor.class, () -> new ClientActor(headNodeRef, job, doneHander));
+        return Props.create(ClientActor.class, () -> new ClientActor(headNode, headNodeUri));
     }
 
-    public ClientActor(ActorSelection headNodeRef, JobHandler job, Consumer doneHander) {
-        this.headNodeRef = headNodeRef;
-        this.doneHander = doneHander;
-        this.messages = new Messages();
-        headNodeRef.tell(this.messages.getJobFromClient(job, this), this.self());
+    public class MessageFromClientToHead{
+            Job job;
+        MessageFromClientToHead(Job job){
+            this.job  = job;
+        }
     }
 
-    public void receivedJob(Messages.GetJobFromHead message) throws Exception {
-        //this.doneHander.run(message.job.getResult());
+    public ClientActor(ActorRef headNode, String[] headNodeUri) {
+
+        this.headNode = headNode;
+        this.headNodeUri = headNodeUri;
+        jobCreation();
+        submitJob();
+    }
+
+
+    public void jobCreation(){
+        job = new Job();
+        //job.setJob((Supplier<Integer>) this::sleep);
+    }
+
+
+    public void done(int result) {
+        System.out.println(result);
+    }
+
+    public void submitJob(){
+        MessageFromClientToHead m = new MessageFromClientToHead(this.job);
+        headNode.tell( m, ActorRef.noSender());
     }
 
     @Override
@@ -35,8 +59,8 @@ public class ClientActor<E> extends AbstractActor {
                 .match(String.class, msg -> {
                     System.out.println(msg);
                 })
-                .match(
+                /*.match(
                     Messages.GetJobFromHead.class, this::receivedJob
-                ).build();
+                )*/.build();
     }
 }
