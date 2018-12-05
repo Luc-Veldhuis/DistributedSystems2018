@@ -93,6 +93,9 @@ public class HeadNode extends AbstractActor {
         //testing message
         System.out.println("Message tested success");
         System.out.println("Job Received in headNode");
+
+        state.push(clientActor.job);
+        //scheduler.getSchedule(state, headNodes);
         //this.executeJob(clientActor.job);
         //send job to the
         this.assignJobToWorker(clientActor.job, workerNodes.get(0));
