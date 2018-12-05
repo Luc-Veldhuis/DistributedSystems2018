@@ -14,9 +14,16 @@ public class Scheduler extends Policy {
     public Map <ActorRef, Job> getSchedule(HeadNodeState state, List<ActorRef> headNodes){
 
         Job job  =  state.pop();
-        System.out.println("map: ");
+        //System.out.println("map: ");
+        System.out.println("in scheduler: headNode.get(0) = " + headNodes.get(0));
         Map <ActorRef, Job> map = new HashMap<>();
         map.put(headNodes.get(0), job);
+        String prompt = new String("MAP CONTAINS: ");
+        for(Map.Entry<ActorRef, Job> entry : map.entrySet()){
+            //prompt.concat(entry.getKey() + " " + entry.getValue()+ ";");
+            System.out.println(entry.getKey() + "/" + entry.getValue());
+        }
+       System.out.println(prompt);
 
         return map;
     }

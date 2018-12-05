@@ -1,15 +1,17 @@
 import akka.actor.AbstractActor;
 import akka.actor.Props;
 import akka.actor.ActorRef;
-
+import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 
 
 public class HeadNode extends AbstractActor {
 
     public final Integer headNodeId;
-    public List<ActorRef> headNodes;
+    public static List<ActorRef> headNodes;
     public Messages messages;
+    public static Map<ActorRef, Boolean> workerAvailability;
     public static List<ActorRef> workerNodes;
     //public ClientActor clientActor;
     HeadNodeState state;
@@ -35,6 +37,7 @@ public class HeadNode extends AbstractActor {
         //this.clientActor = new ClientActor();
         this.scheduler = new Scheduler(this.state, this.self());
         this.failCheck = new ByzantianChecker(this.state);
+        workerAvailability = new HashMap<>();
     }
 
     public void registerWorker(Messages.RegisterWorkerToHead message) {
@@ -90,18 +93,23 @@ public class HeadNode extends AbstractActor {
         this.headNodes = message.headNodes;
     }
     public void receivedJob(ClientActor.MessageFromClientToHead clientActor) {
+        //List headNodes
+        List<ActorRef> heads;
         //testing message
         System.out.println("Message tested success");
         System.out.println("Job Received in headNode");
 
         state.push(clientActor.job);
-        //scheduler.getSchedule(state, headNodes);
+        System.out.println("headnodes.get(0) = "+ headNodes.get(0));
+
+        scheduler.getSchedule(state, headNodes);
         //this.executeJob(clientActor.job);
         //send job to the
         this.assignJobToWorker(clientActor.job, workerNodes.get(0));
     }
 
     public void assignJobToWorker(Job job, ActorRef workerNode){
+        this.workerAvailability.replace(workerNode, Boolean.FALSE);
         MessageFromHeadNodeToWorker m = new MessageFromHeadNodeToWorker(job);
         workerNode.tell( m, ActorRef.noSender());
     }
@@ -110,6 +118,23 @@ public class HeadNode extends AbstractActor {
     public static void acceptWorker(List<ActorRef> workerNode){
         System.out.println("acceptWorker()");
         workerNodes = workerNode;
+        for(ActorRef node: workerNodes){
+            workerAvailability.put(node, Boolean.TRUE);
+        }
+    }
+
+    public static void getListofHeads(List<ActorRef> headN){
+        System.out.println("getListofHeads()");
+        headNodes = headN;
+
+        //System.out.println("headNodes.get(0): " + headNodes.get(0));
+        //return headNodes;
+
+    }
+
+    public void receiveWorkerResult(WorkerNode.JobExecutionResult result){
+        this.workerAvailability.replace(result.getRef(), Boolean.FALSE);
+        System.out.println("RESULT: " + result.getResult());
     }
 
     public void executeJob(Job job){
@@ -119,14 +144,14 @@ public class HeadNode extends AbstractActor {
     @Override
     public void postStop() {
         //graceful failure, alert other headnodes
-        if(headNodes == null) {
+      /*  if(headNodes == null) {
             return;
         }
         for(ActorRef node : headNodes) {
             if(!this.self().equals(node)) {
                 node.tell(this.messages.crashingHeadNode(this), this.self());
             }
-        }
+        }*/
     }
 
 
@@ -163,6 +188,9 @@ public class HeadNode extends AbstractActor {
                 )
                 .match(
                         ClientActor.MessageFromClientToHead.class, this::receivedJob
+                )
+                .match(
+                        WorkerNode.JobExecutionResult.class, this::receiveWorkerResult
                 )
                 .build();
     }

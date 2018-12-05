@@ -7,6 +7,7 @@ public class WorkerNode extends AbstractActor {
     public final Integer workerId;
     public List<ActorRef> headnodes;
     public Messages messages;
+    public JobExecutionResult result;
 
     public static Props props(Integer workerId, List<ActorRef> headnodes) {
 
@@ -18,6 +19,7 @@ public class WorkerNode extends AbstractActor {
         this.workerId = workerId;
         this.headnodes = headnodes;
         this.messages = new Messages();
+        this.result = new JobExecutionResult();
 
         System.out.println("workerNodeId: " + workerId);
 
@@ -26,9 +28,9 @@ public class WorkerNode extends AbstractActor {
         }
     }
 
-    public void sendResult(JobHandler job) {
+    public void sendResult(JobExecutionResult result) {
         for(ActorRef node:headnodes) {
-            node.tell(messages.getJobFromWorker(job, this), this.self());
+            node.tell( this.result, getSelf());
         }
     }
 
@@ -38,7 +40,7 @@ public class WorkerNode extends AbstractActor {
         }  catch (Exception e) {
             message.job.setException(e);
         }
-        sendResult(message.job);
+        sendResult(this.result);
     }
 
     public void registerWorker() {
@@ -60,12 +62,33 @@ public class WorkerNode extends AbstractActor {
     }
 
     public void executeJob(Job job){
-        job.run();
+        this.result.setResult( job.run(), getSelf());
+
     }
 
     @Override
     public void postStop() {
         //sendRemove();
+    }
+
+    public class JobExecutionResult{
+        Object obj;
+        ActorRef ref;
+        JobExecutionResult(){
+        }
+
+        public void setResult(Object obj, ActorRef ref){
+            this.obj  = obj;
+            this.ref = ref;
+        }
+
+        public Object getResult(){
+            return this.obj;
+        }
+
+        public ActorRef getRef(){
+            return this.ref;
+        }
     }
 
 
