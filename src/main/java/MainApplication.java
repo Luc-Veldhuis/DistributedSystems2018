@@ -61,7 +61,7 @@ public class MainApplication {
             ActorRef workerRef = root.actorOf(WorkerNode.props(workerIds.get(i), headNodes), "workerId-" + workerIds.get(i));
             workerNodes.add(workerRef);
         }
-        HeadNode.acceptWorker(workerNodes);
+        HeadNode.getListofWorkers(workerNodes);
     }
 
 /*    public static void runScheduledTask(List<ActorRef> headNodes) throws InterruptedException{

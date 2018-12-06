@@ -42,7 +42,7 @@ public class HeadNodeState {
     public void push(Job job){
         jobQueue.add(job);
 
-        System.out.println("jobQueue: " + jobQueue);
+        System.out.println("push: " + jobQueue);
     }
 
     }

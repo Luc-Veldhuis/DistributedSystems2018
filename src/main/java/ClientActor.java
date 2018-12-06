@@ -48,7 +48,7 @@ public class ClientActor<E> extends AbstractActor {
         job2 = new Job();
 
         jobList.add(job);
-        jobList.add(job2);
+        //jobList.add(job2);
 
         System.out.println("job list: " + jobList);
         //job.setJob((Supplier<Integer>) this::sleep);

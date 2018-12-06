@@ -102,25 +102,25 @@ public class HeadNode extends AbstractActor {
         state.push(clientActor.job);
         System.out.println("headnodes.get(0) = "+ headNodes.get(0));
 
-        scheduler.getSchedule(state, headNodes);
+        //scheduler.getSchedule(state, headNodes);
         //this.executeJob(clientActor.job);
         //send job to the
         this.assignJobToWorker(clientActor.job, workerNodes.get(0));
     }
 
     public void assignJobToWorker(Job job, ActorRef workerNode){
-        this.workerAvailability.replace(workerNode, Boolean.FALSE);
+        //this.workerAvailability.replace(workerNode, Boolean.FALSE);
         MessageFromHeadNodeToWorker m = new MessageFromHeadNodeToWorker(job);
         workerNode.tell( m, ActorRef.noSender());
     }
 
 
-    public static void acceptWorker(List<ActorRef> workerNode){
+    public static void getListofWorkers(List<ActorRef> workerNode){
         System.out.println("acceptWorker()");
         workerNodes = workerNode;
-        for(ActorRef node: workerNodes){
+      /*  for(ActorRef node: workerNodes){
             workerAvailability.put(node, Boolean.TRUE);
-        }
+        }*/
     }
 
     public static void getListofHeads(List<ActorRef> headN){
@@ -133,8 +133,11 @@ public class HeadNode extends AbstractActor {
     }
 
     public void receiveWorkerResult(WorkerNode.JobExecutionResult result){
-        this.workerAvailability.replace(result.getRef(), Boolean.FALSE);
-        System.out.println("RESULT: " + result.getResult());
+        //this.workerAvailability.replace(result.getRef(), Boolean.FALSE);
+        //System.out.println("RESULT: " + result.getResult());
+        //if(this.isBoss) {
+        System.out.println("RESULT:  arrived + " + result.getResult());
+       // }
     }
 
     public void executeJob(Job job){
@@ -145,7 +148,7 @@ public class HeadNode extends AbstractActor {
     public void postStop() {
         //graceful failure, alert other headnodes
       /*  if(headNodes == null) {
-            return;
+            return;p[loi
         }
         for(ActorRef node : headNodes) {
             if(!this.self().equals(node)) {
