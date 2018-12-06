@@ -4,6 +4,7 @@ import akka.actor.ActorSelection;
 import akka.actor.Props;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -15,6 +16,8 @@ public class ClientActor<E> extends AbstractActor {
     Messages messages;
     Consumer doneHander;
     Job job;
+    Job job2;
+    ArrayList<Job> jobList;
     public String[] headNodeUri;
 
     public static Props props(ActorRef headNode, String[] headNodeUri) {
@@ -31,6 +34,8 @@ public class ClientActor<E> extends AbstractActor {
 
     public ClientActor(ActorRef headNode, String[] headNodeUri) {
 
+        jobList = new ArrayList<>();
+
         this.headNode = headNode;
         this.headNodeUri = headNodeUri;
         jobCreation();
@@ -40,6 +45,12 @@ public class ClientActor<E> extends AbstractActor {
 
     public void jobCreation(){
         job = new Job();
+        job2 = new Job();
+
+        jobList.add(job);
+        jobList.add(job2);
+
+        System.out.println("job list: " + jobList);
         //job.setJob((Supplier<Integer>) this::sleep);
     }
 
@@ -49,8 +60,10 @@ public class ClientActor<E> extends AbstractActor {
     }
 
     public void submitJob(){
-        MessageFromClientToHead m = new MessageFromClientToHead(this.job);
-        headNode.tell( m, ActorRef.noSender());
+        for(Job job : jobList){
+            MessageFromClientToHead m = new MessageFromClientToHead(job);
+            headNode.tell( m, ActorRef.noSender());
+        }
     }
 
     @Override

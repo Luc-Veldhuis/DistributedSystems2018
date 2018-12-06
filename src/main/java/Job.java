@@ -22,7 +22,7 @@ public class Job{
 
     }
 
-    public int run() {
+    public Integer run() {
         try {
             Thread.sleep(10000);
             System.out.println("Job executed");

@@ -27,6 +27,7 @@ public class MainApplication {
                 ActorRef headRef = root.actorOf(HeadNode.props(headNodeIds.get(i)), "headNodeId-" + headNodeIds.get(i));
                 headNodes.add(headRef);
             }
+            HeadNode.getListofHeads(headNodes);
             createInitalWorkers(root, workerIds, headNodes, workerNodes);
 
             String headNodePaths[] = new String[headNodes.size()];
@@ -37,6 +38,7 @@ public class MainApplication {
             }
             //ActorRef headRef = root.actorSelection(headNodePaths[0]);
             // create client actor
+            //System.out.println("headnodes.get(0) = "+ headNodes.get(0));
             ActorRef clientActor = root.actorOf(ClientActor.props(headNodes.get(0), headNodePaths), "list");
 
 
