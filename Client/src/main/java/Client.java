@@ -1,22 +1,16 @@
-import akka.actor.ActorRef;
-
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class Client {
 
-    public ActorRef headNode;
+    public String headNode;
 
-    public Client(ActorRef headNodeUri) {
+    public Client(String headNodeUri) {
         this.headNode = headNodeUri;
     }
 
-    public int sleep() {
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            System.out.println("Sleep interrupted");
-        }
+    public Integer sleep() {
+        //System.out.println("test");
         return 10;
     }
 
@@ -33,6 +27,15 @@ public class Client {
         } catch (Exception e) {
             System.out.println("Incomplete setup");
         }
+    }
+
+    public static void main(String[] args) {
+        if(args.length == 0) {
+            throw new Error("Missing argument: head node url");
+        }
+        System.out.println(args[0]);
+        Client client = new Client(args[0]);
+        client.execute();
     }
 
 }

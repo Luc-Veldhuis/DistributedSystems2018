@@ -8,8 +8,7 @@ public class HeadNode extends AbstractActor {
 
     public final Integer headNodeId;
     public List<ActorRef> headNodes;
-    public Messages messages;
-    HeadNodeState state;
+    public HeadNodeState state;
     Scheduler scheduler;
     ByzantianChecker failCheck;
     int failingNodes = 0;
@@ -28,43 +27,42 @@ public class HeadNode extends AbstractActor {
             this.isBoss = true;
         }
         this.state = new HeadNodeState();
-        this.messages = new Messages();
         this.scheduler = new Scheduler(this.state, this.self());
         this.failCheck = new ByzantianChecker(this.state);
     }
 
-    public void registerWorker(Messages.RegisterWorkerToHead message) {
+    public void registerWorker(WorkerNode.RegisterWorkerToHead message) {
         if(this.isBoss) {
             int workerId = message.workerNode.workerId;
-            state.workerIdToWorkerNode.put(workerId, message.workerNode.self());
+            state.workerIdToWorkerNode.put(workerId, message.workerNode.self);
             state.passiveWorkers.add(workerId);
             System.out.println("Registered worker " + message.workerNode.workerId);
         }
     }
 
-    public void scheduleJob(Messages.GetJobFromClient message) {
+    public void scheduleJob(JobActor.GetJobFromClient message) {
         if(this.isBoss) {
-            this.scheduler.update(message.jobHandler, message.clientActor);
+            this.scheduler.update(message.jobHandler, message.jobActor);
         }
     }
 
-    public void removeWorker(Messages.RemoveWorkerFromHead message) {
+    public void removeWorker(WorkerNode.RemoveWorkerFromHead message) {
         if(this.isBoss) {
             state.workerIdToWorkerNode.remove(message.workerNode.workerId);
             System.out.println("Removed worker " + message.workerNode.workerId);
         }
     }
 
-    public void checkJob(Messages.GetJobFromWorker message) {
+    public void checkJob(WorkerNode.SendJobDone message) {
         if(this.isBoss) {//only do this on 1 actor
-            //TODO return to clientActor but check for byzantian errors first
+            //TODO return to jobActor but check for byzantian errors first
             if (!this.failCheck.check(message.jobHandler)) {
                 //TODO restart job
             }
         }
     }
 
-    public void switchToBackupHeadNode(Messages.CrashingHeadNode message) {
+    public void switchToBackupHeadNode(HeadNode.CrashingHeadNode message) {
         //another headnode went down, take over the state
         this.state = message.headNode.state;
         failingNodes++;
@@ -74,7 +72,7 @@ public class HeadNode extends AbstractActor {
         }
     }
 
-    public void updateHeadNodes(Messages.PropagateHeadNodes message) {
+    public void updateHeadNodes(HeadNode.PropagateHeadNodes message) {
         //add more headnodes if they are added incrementally
         this.headNodes = message.headNodes;
     }
@@ -87,7 +85,7 @@ public class HeadNode extends AbstractActor {
         }
         for(ActorRef node : headNodes) {
             if(!this.self().equals(node)) {
-                node.tell(this.messages.crashingHeadNode(this), this.self());
+                node.tell(new HeadNode.CrashingHeadNode(this), this.self());
             }
         }
     }
@@ -99,24 +97,38 @@ public class HeadNode extends AbstractActor {
                     System.out.println(msg);
                 })
                 .match(
-                        Messages.RegisterWorkerToHead.class, this::registerWorker
+                        WorkerNode.RegisterWorkerToHead.class, this::registerWorker
                 )
                 .match(
-                        Messages.RemoveWorkerFromHead.class, this::removeWorker
+                        WorkerNode.RemoveWorkerFromHead.class, this::removeWorker
                 )
                 .match(
-                        Messages.GetJobFromClient.class, this::scheduleJob
+                        JobActor.GetJobFromClient.class, this::scheduleJob
                 )
                 .match(
-                        Messages.GetJobFromWorker.class, this::checkJob
+                        WorkerNode.SendJobDone.class, this::checkJob
                 )
                 .match(
-                        Messages.CrashingHeadNode.class, this::switchToBackupHeadNode
+                        HeadNode.CrashingHeadNode.class, this::switchToBackupHeadNode
                 )
                 .match(
-                        Messages.PropagateHeadNodes.class, this::updateHeadNodes
+                        HeadNode.PropagateHeadNodes.class, this::updateHeadNodes
                 )
                 .build();
+    }
+
+    public class PropagateHeadNodes {
+        public List<ActorRef> headNodes;
+        public PropagateHeadNodes(List<ActorRef> headNodes) {
+            this.headNodes = headNodes;
+        }
+    }
+
+    public class CrashingHeadNode {
+        public HeadNode headNode;
+        public CrashingHeadNode(HeadNode headNode) {
+            this.headNode = headNode;
+        }
     }
 
 }

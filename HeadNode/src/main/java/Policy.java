@@ -6,11 +6,10 @@ public class Policy implements PolicyInterface {
     HeadNodeState state;
 
     int idCounter = 0;
-    Messages messages = new Messages();
     ActorRef headNode;
 
     @Override
-    public void update(JobHandler jobHandler, ClientActor clientActor) {
+    public void update(JobHandler jobHandler, JobActor jobActor) {
         //added
         if(state == null) {
             throw new InstantiationError();
@@ -40,7 +39,7 @@ public class Policy implements PolicyInterface {
             state.activeWorkers.add(node); // add it to active
 
             ActorRef workerNodeRef = state.workerIdToWorkerNode.get(node);
-            workerNodeRef.tell(messages.sendJobToWorker(newJob), headNode);
+            workerNodeRef.tell(new WorkerNode.GetJobFromHead(newJob), headNode);
 
             state.jobsRunning.add(newJob.getId());
         }
@@ -63,7 +62,7 @@ public class Policy implements PolicyInterface {
             dispatchJob(state.jobsWaiting.get(state.jobsWaiting.keySet().toArray()[0]));
         }
         if(jobWaiting.isDone()) {
-            headNode.tell(messages.getJobFromWorker(jobWaiting.jobHander, workerNode), workerNode.self());
+            //headNode.tell(WorkerNode.GetJobFromWorker(jobWaiting.jobHander, workerNode.createMessageData()), workerNode.self());
         }
     }
 }

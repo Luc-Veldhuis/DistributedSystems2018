@@ -4,7 +4,7 @@ public interface PolicyInterface {
     //We have to think about what functions a policy really needs
 
     //update when job comes in
-    public void update(JobHandler jobHandler, ClientActor clientActor) throws Exception;
+    public void update(JobHandler jobHandler, JobActor jobActor) throws Exception;
 
     //update when job finishes
     public void update(JobHandler jobHandler, WorkerNode worker) throws Exception;

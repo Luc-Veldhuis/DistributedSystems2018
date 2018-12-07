@@ -23,8 +23,8 @@ public class TaskScheduler extends TimerTask {
             ActorRef headNode = headNodes.get(i);
             headNodePaths[i] = headNode.path().toSerializationFormatWithAddress(headNode.path().address());
         }
-        Client client = new Client(headNodes.get(0));
-        client.execute();
+        //Client client = new Client(headNodes.get(0));
+        //client.execute();
 
     }
 }

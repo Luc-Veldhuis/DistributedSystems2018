@@ -16,9 +16,11 @@ dependencies {
     testCompile 'com.typesafe.akka:akka-testkit_2.12:2.5.18'
     testCompile 'junit:junit:4.12'
     compile group: 'com.typesafe.akka', name: 'akka-actor_2.12', version: '2.5.18'
+    compile group: 'com.typesafe.akka', name: 'akka-remote_2.12', version: '2.5.18'
+    compile project(':Shared')
 }
 
-mainClassName = "MainApplication"
+mainClassName = "Client"
 
 run {
     standardInput = System.in

@@ -6,7 +6,7 @@ import akka.actor.ActorSystem;
 import akka.actor.ActorRef;
 import java.util.Timer;
 
-public class MainApplication {
+public class SpawnHeadNodes {
 
     public static void main(String[] args) throws IOException, InterruptedException{
 
@@ -23,22 +23,25 @@ public class MainApplication {
                 ActorRef headRef = root.actorOf(HeadNode.props(headNodeIds.get(i)), "headNodeId-" + headNodeIds.get(i));
                 headNodes.add(headRef);
             }
-            createInitalWorkers(root, workerIds, headNodes);
-            runScheduledTask(headNodes);
+            for(ActorRef node : headNodes) {
+                System.out.println(node.path().toSerializationFormatWithAddress(node.path().address()));
+            }
+            //createInitalWorkers(root, workerIds, headNodes);
+            //runScheduledTask(headNodes);
             //System.out.println("Press ENTER to exit the system");
-            //System.in.read();
+            System.in.read();
         } finally {
             root.terminate();//also terminates all other nodes
         }
 
     }
 
-    public static void createInitalWorkers(ActorSystem root, List<Integer> workerIds, List<ActorRef> headNodes) {
+    /*public static void createInitalWorkers(ActorSystem root, List<Integer> workerIds, List<ActorRef> headNodes) {
         //create inital pool of workers, other processes can create these as well
         for(int i = 0; i < workerIds.size(); i++) {
             ActorRef workerRef = root.actorOf(WorkerNode.props(workerIds.get(i), headNodes), "workerId-" + workerIds.get(i));
         }
-    }
+    }*/
 
     public static void runScheduledTask(List<ActorRef> headNodes) throws InterruptedException{
         Timer time = new Timer(); //timer object

@@ -2,8 +2,6 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSelection;
 import akka.actor.ActorSystem;
 
-import java.lang.reflect.Method;
-import java.time.Duration;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -14,18 +12,18 @@ public class Job<E> implements JobInterface<E> {
     private JobHandler<E> jobHandler;
     private Consumer doneHandler;
     ActorSystem root = ActorSystem.create("root-node");
-    private ActorRef headNodeRef;
+    private ActorSelection headNodeRef;
 
-    public Job(ActorRef headNode) {
-        this.headNodeRef = headNode;
+    public Job(String headNode) {
+        this.headNodeRef = root.actorSelection(headNode);
     }
 
-    public Job(ActorRef headNode, Supplier job) {
+    public Job(ActorSelection headNode, Supplier job) {
         this.headNodeRef = headNode;
         this.jobHandler = new JobHandler<E>(job);
     }
 
-    public Job(ActorRef headNode, Supplier job, Consumer hander) {
+    public Job(ActorSelection headNode, Supplier job, Consumer hander) {
         this.headNodeRef = headNode;
         this.jobHandler = new JobHandler<E>(job);
         this.doneHandler = hander;
@@ -44,6 +42,6 @@ public class Job<E> implements JobInterface<E> {
         if(this.doneHandler == null || this.jobHandler == null) {
             throw new Exception("Not all handers set");
         }
-        ActorRef clientActor = this.root.actorOf(ClientActor.props(headNodeRef, this.jobHandler, this.doneHandler), "client-job-" + (counter++));
+        ActorRef clientActor = this.root.actorOf(JobActor.props(headNodeRef, this.jobHandler, this.doneHandler), "client-job-" + (counter++));
     }
 }
