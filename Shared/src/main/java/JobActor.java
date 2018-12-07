@@ -10,6 +10,13 @@ public class JobActor<E> extends AbstractActor {
     ActorSelection headNodeRef;
     Consumer doneHander;
 
+    /**
+     * Actor used to communicate with head node, spawed by the Job class
+     * @param headNodeRef
+     * @param job
+     * @param doneHander
+     * @return
+     */
     public static Props props(ActorSelection headNodeRef, JobHandler job, Consumer doneHander) {
         System.out.println("Client job created");
         return Props.create(JobActor.class, () -> new JobActor(headNodeRef, job, doneHander));
@@ -21,6 +28,11 @@ public class JobActor<E> extends AbstractActor {
         headNodeRef.tell(new GetJobFromClient(job), this.self());
     }
 
+    /**
+     * Function which is called once the job is done
+     * @param message
+     * @throws Exception
+     */
     public void receivedJob(GetJobFromHead message) throws Exception {
         //this.doneHander.run(message.job.getResult());
     }
@@ -36,6 +48,9 @@ public class JobActor<E> extends AbstractActor {
                 ).build();
     }
 
+    /**
+     * Message to communicate job to HeadNode
+     */
     public static class GetJobFromClient implements Serializable {
         public JobHandler jobHandler;
 
@@ -44,6 +59,9 @@ public class JobActor<E> extends AbstractActor {
         }
     }
 
+    /**
+     * Message to communicate response from HeadNode
+     */
     public static class GetJobFromHead implements Serializable {
         public JobHandler jobHandler;
 

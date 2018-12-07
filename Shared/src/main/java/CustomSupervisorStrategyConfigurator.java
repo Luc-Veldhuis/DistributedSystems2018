@@ -4,7 +4,11 @@ import akka.actor.SupervisorStrategyConfigurator;
 import akka.japi.pf.DeciderBuilder;
 import scala.concurrent.duration.Duration;
 
-//TODO remoting with heartbeats, make sure the application.conf is loaded
+//TODO remoting with heartbeats
+
+/**
+ * Implemented by Akka to have several different policies for actions
+ */
 
 public class CustomSupervisorStrategyConfigurator implements SupervisorStrategyConfigurator {
     private static SupervisorStrategy strategy =

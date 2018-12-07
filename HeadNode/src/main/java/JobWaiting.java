@@ -7,7 +7,12 @@ public class JobWaiting {
     List<JobHandler> jobList;
     int counter = 0;
 
+    /**
+     * Once a Job has been copied in x separate Jobs, this class stores the state of all of the jobs
+     * @param jobHandler
+     */
     JobWaiting(JobHandler jobHandler) {
+        //TODO Update on failing node, restart job, otherwise it waits forever on a job which is not restarted
         this.jobHander = jobHandler;
         jobList = new ArrayList<>();
     }

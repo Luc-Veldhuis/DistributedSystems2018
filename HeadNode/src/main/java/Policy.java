@@ -8,6 +8,11 @@ public class Policy implements PolicyInterface {
     int idCounter = 0;
     ActorRef headNode;
 
+    /**
+     * Used to update the schedule when a client job comes in
+     * @param jobHandler
+     * @param jobActor
+     */
     @Override
     public void update(JobHandler jobHandler, JobActor jobActor) {
         //added
@@ -22,6 +27,10 @@ public class Policy implements PolicyInterface {
 
     }
 
+    /**
+     * Used to send a job to a WorkerNode
+     * @param jobWaiting
+     */
     public void dispatchJob(JobWaiting jobWaiting) {
         if(!(state.passiveWorkers.size() >= Configuration.NUMBER_OF_BYZANTIAN_ERRORS)) {
             return;
@@ -46,6 +55,12 @@ public class Policy implements PolicyInterface {
 
     }
 
+    /**
+     * Called when a WorkerNode is finished
+     * @param jobHandler
+     * @param workerNode
+     * @throws Exception
+     */
     @Override
     public void update(JobHandler jobHandler, WorkerNode workerNode) throws Exception {
         //done

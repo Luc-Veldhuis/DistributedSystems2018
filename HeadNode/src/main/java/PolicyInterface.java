@@ -1,6 +1,11 @@
 public interface PolicyInterface {
 
-    //TODO use this to implement a policy
+    /**
+     * Make sure that we can use different  Policys and reference this interface as Type
+     * @param jobHandler
+     * @param jobActor
+     * @throws Exception
+     */
     //We have to think about what functions a policy really needs
 
     //update when job comes in

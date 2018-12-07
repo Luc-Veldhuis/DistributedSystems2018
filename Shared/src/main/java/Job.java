@@ -7,6 +7,10 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class Job<E> implements JobInterface<E> {
+    /**
+     * Class with which you can interact to create a new Job
+     *
+     */
 
     private static int counter = 0;
 
@@ -30,14 +34,26 @@ public class Job<E> implements JobInterface<E> {
         this.doneHandler = hander;
     }
 
+    /**
+     * Called to set the function to run on the worker
+     * @param job
+     */
     public void setJob(SerializableSupplier job) {
         this.jobHandler = new JobHandler<E>(job);
     }
 
+    /**
+     * Called once the function is done
+     * @param handler
+     */
     public void setHandler(SerializableConsumer handler) {
         this.doneHandler = handler;
     }
 
+    /**
+     * Execute the function
+     * @throws Exception
+     */
     @Override
     public void run() throws Exception {
         if(this.doneHandler == null || this.jobHandler == null) {

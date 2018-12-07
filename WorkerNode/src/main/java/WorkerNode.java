@@ -17,6 +17,11 @@ public class WorkerNode extends AbstractActor {
         return Props.create(WorkerNode.class, () -> new WorkerNode(workerId, headnodes));
     }
 
+    /**
+     * A WorkerNode recieves a JobHandler and runs the corresponding function, then returns the JobHandler again with updated results.
+     * @param workerId
+     * @param headnodes
+     */
     public WorkerNode(Integer workerId, String[] headnodes) {
         this.workerId = workerId;
         this.headnodes = new ArrayList<>();
@@ -30,16 +35,29 @@ public class WorkerNode extends AbstractActor {
         }
     }
 
+    /**
+     * It was hard to do the referencing right, so I had to create the separte class to prevent double inclusions (Head requires Worker, Worker requires Head)
+     * This function quickly creates this Class which carries data.
+     * @return
+     */
     WorkerData createMessageData() {
         return new WorkerData(this.getSelf(), this.workerId);
     }
 
+    /**
+     * Send the result back to the HeadNodes
+     * @param job
+     */
     public void sendResult(JobHandler job) {
         for(ActorSelection node:headnodes) {
             node.tell(new SendJobDone(job,createMessageData()), this.self());
         }
     }
 
+    /**
+     * Run the JobHandler
+     * @param message
+     */
     public void executeJob(GetJobFromHead message) {
         try {
             message.job.setResult(message.job.job.get());
@@ -49,12 +67,18 @@ public class WorkerNode extends AbstractActor {
         sendResult(message.job);
     }
 
+    /**
+     * Used to register the worker when it comes online
+     */
     public void registerWorker() {
         for(ActorSelection node:headnodes) {
             node.tell(new RegisterWorkerToHead(createMessageData()), this.self());
         }
     }
 
+    /**
+     * When it goes down, send a message to the HeadNodes
+     */
     public void sendRemove() {
         //TODO maybe overkill to send it to each headnode
         for(ActorSelection node:headnodes){
@@ -62,6 +86,9 @@ public class WorkerNode extends AbstractActor {
         }
     }
 
+    /**
+     * Called when the Actor goes woen
+     */
     @Override
     public void postStop() {
         sendRemove();
@@ -79,6 +106,9 @@ public class WorkerNode extends AbstractActor {
                 .build();
     }
 
+    /**
+     * Message send to the HeadNode when the Actor is created
+     */
     public static class RegisterWorkerToHead implements Serializable {
         public WorkerData workerNode;
 
@@ -87,6 +117,9 @@ public class WorkerNode extends AbstractActor {
         }
     }
 
+    /**
+     * Message send to the HeadNode when the Actor is destroyed
+     */
     public static class RemoveWorkerFromHead implements Serializable {
         public WorkerData workerNode;
 
@@ -95,6 +128,9 @@ public class WorkerNode extends AbstractActor {
         }
     }
 
+    /**
+     * Message send from the HeadNode to the WorkerNode to send a JobHandler
+     */
     public static class GetJobFromHead implements Serializable {
         public JobHandler job;
         GetJobFromHead(JobHandler job) {
@@ -102,6 +138,9 @@ public class WorkerNode extends AbstractActor {
         }
     }
 
+    /**
+     * Message send from the WorkerNode to the HeadNode with results
+     */
     public static class SendJobDone implements Serializable {
         public JobHandler jobHandler;
         public WorkerData workerNode;

@@ -8,6 +8,13 @@ import java.util.Timer;
 
 public class SpawnHeadNodes {
 
+    /**
+     * Used to spawn 3 head nodes
+     * @param args
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    //TODO maybe all on separate system?
     public static void main(String[] args) throws IOException, InterruptedException{
 
         //create the Actor

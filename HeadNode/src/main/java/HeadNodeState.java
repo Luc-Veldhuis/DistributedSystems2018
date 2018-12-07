@@ -16,6 +16,9 @@ public class HeadNodeState {
 
     List<String> jobsRunning;//Job is actually copied BYZANTIAN times, so these are COPIES from the jobs with ids: "{original-id}-{child-id}", NOT in hashmap (can be changed)
 
+    /**
+     * Used to store any possible variables of the HeadNode concerning the state
+     */
     public HeadNodeState() {
         workerIdToWorkerNode = new HashMap<>();
         jobsWaiting = new HashMap<>();
