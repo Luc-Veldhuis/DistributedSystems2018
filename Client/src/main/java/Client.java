@@ -9,19 +9,19 @@ public class Client {
         this.headNode = headNodeUri;
     }
 
-    public Integer sleep() {
-        //System.out.println("test");
+    public static Integer sleep() {
+        System.out.println("Sleep interupted");
         return 10;
     }
 
-    public void done(int result) {
+    public static void done(int result) {
         System.out.println(result);
     }
 
     public void execute() {
         Job job = new Job(this.headNode);
-        job.setJob((Supplier<Integer>) this::sleep);
-        job.setHandler((Consumer<Integer>) this::done);
+        job.setJob((SerializableSupplier<Integer>) Client::sleep);
+        job.setHandler((SerializableConsumer<Integer>) Client::done);
         try {
             job.run();
         } catch (Exception e) {

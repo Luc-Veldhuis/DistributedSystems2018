@@ -1,6 +1,8 @@
 import akka.actor.ActorRef;
 
-public class WorkerData {
+import java.io.Serializable;
+
+public class WorkerData implements Serializable {
 
     ActorRef self;
     int workerId;

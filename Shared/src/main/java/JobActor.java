@@ -18,7 +18,7 @@ public class JobActor<E> extends AbstractActor {
     public JobActor(ActorSelection headNodeRef, JobHandler job, Consumer doneHander) {
         this.headNodeRef = headNodeRef;
         this.doneHander = doneHander;
-        headNodeRef.tell(new GetJobFromClient(job, this), this.self());
+        headNodeRef.tell(new GetJobFromClient(job), this.self());
     }
 
     public void receivedJob(GetJobFromHead message) throws Exception {
@@ -36,17 +36,15 @@ public class JobActor<E> extends AbstractActor {
                 ).build();
     }
 
-    public class GetJobFromClient implements Serializable {
+    public static class GetJobFromClient implements Serializable {
         public JobHandler jobHandler;
-        public JobActor jobActor;
 
-        public GetJobFromClient(JobHandler jobHandler, JobActor jobActor) {
+        public GetJobFromClient(JobHandler jobHandler) {
             this.jobHandler = jobHandler;
-            this.jobActor = jobActor;
         }
     }
 
-    public class GetJobFromHead implements Serializable {
+    public static class GetJobFromHead implements Serializable {
         public JobHandler jobHandler;
 
         public GetJobFromHead(JobHandler jobHandler) {

@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,16 +8,16 @@ import java.util.function.Supplier;
 import akka.actor.Actor;
 
 
-public class JobHandler<E> {
+public class JobHandler<E> implements Serializable {
 
-    public Supplier job;
+    public SerializableSupplier job;
     public E result;
     public Exception e;
     private String id;
     public String parentId;
     public boolean done = false;
 
-    public JobHandler(Supplier job) {
+    public JobHandler(SerializableSupplier job) {
         this.job = job;
     }
 

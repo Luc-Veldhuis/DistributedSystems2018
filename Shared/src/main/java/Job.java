@@ -2,6 +2,7 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSelection;
 import akka.actor.ActorSystem;
 
+import java.io.Serializable;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -18,22 +19,22 @@ public class Job<E> implements JobInterface<E> {
         this.headNodeRef = root.actorSelection(headNode);
     }
 
-    public Job(ActorSelection headNode, Supplier job) {
+    public Job(ActorSelection headNode, SerializableSupplier job) {
         this.headNodeRef = headNode;
         this.jobHandler = new JobHandler<E>(job);
     }
 
-    public Job(ActorSelection headNode, Supplier job, Consumer hander) {
+    public Job(ActorSelection headNode, SerializableSupplier job, Consumer hander) {
         this.headNodeRef = headNode;
         this.jobHandler = new JobHandler<E>(job);
         this.doneHandler = hander;
     }
 
-    public void setJob(Supplier job) {
+    public void setJob(SerializableSupplier job) {
         this.jobHandler = new JobHandler<E>(job);
     }
 
-    public void setHandler(Consumer handler) {
+    public void setHandler(SerializableConsumer handler) {
         this.doneHandler = handler;
     }
 
@@ -42,6 +43,6 @@ public class Job<E> implements JobInterface<E> {
         if(this.doneHandler == null || this.jobHandler == null) {
             throw new Exception("Not all handers set");
         }
-        ActorRef clientActor = this.root.actorOf(JobActor.props(headNodeRef, this.jobHandler, this.doneHandler), "client-job-" + (counter++));
+        ActorRef jobActor = this.root.actorOf(JobActor.props(headNodeRef, this.jobHandler, this.doneHandler), "client-job-" + (counter++));
     }
 }

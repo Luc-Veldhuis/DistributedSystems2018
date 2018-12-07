@@ -42,7 +42,7 @@ public class HeadNode extends AbstractActor {
 
     public void scheduleJob(JobActor.GetJobFromClient message) {
         if(this.isBoss) {
-            this.scheduler.update(message.jobHandler, message.jobActor);
+            //this.scheduler.update(message.jobHandler, actor);
         }
     }
 
