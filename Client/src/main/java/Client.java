@@ -5,19 +5,35 @@ public class Client {
 
     public String headNode;
 
+    /**
+     * Used to  spawn an example client to test the system
+     * @param headNodeUri a URI of the location of the head node it should connect to
+     */
     public Client(String headNodeUri) {
         this.headNode = headNodeUri;
     }
 
+    /**
+     * Function which is executed on the remote system, MUST BE STATIC
+     * @return
+     */
     public static Integer sleep() {
         System.out.println("Sleep interupted");
         return 10;
     }
 
+    /**
+     * Function which is executed as handler once the function is done
+     *
+     * @param result
+     */
     public static void done(int result) {
         System.out.println(result);
     }
 
+    /**
+     * Function which executes the client, it creates a new Job to run
+     */
     public void execute() {
         Job job = new Job(this.headNode);
         job.setJob((SerializableSupplier<Integer>) Client::sleep);
