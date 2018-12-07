@@ -20,25 +20,6 @@ public class Messages {
         }
     }
 
-    public class GetJobFromClient {
-        public JobHandler jobHandler;
-        public ClientActor clientActor;
-
-        public GetJobFromClient(JobHandler jobHandler, ClientActor clientActor) {
-            this.jobHandler = jobHandler;
-            this.clientActor = clientActor;
-        }
-    }
-
-    public class GetJobFromWorker {
-        public JobHandler jobHandler;
-        public WorkerNode workerNode;
-
-        public GetJobFromWorker(JobHandler worker, WorkerNode workerNode) {
-            this.jobHandler = worker;
-            this.workerNode = workerNode;
-        }
-    }
 
     public class CrashingHeadNode {
         public HeadNode headNode;
@@ -54,19 +35,7 @@ public class Messages {
         }
     }
 
-    public class SendJobToWorker {
-        public JobHandler job;
-        public SendJobToWorker(JobHandler job) {
-            this.job = job;
-        }
-    }
 
-    public class GetJobFromHead {
-        public JobHandler job;
-        GetJobFromHead(JobHandler job) {
-            this.job = job;
-        }
-    }
 
     public RegisterWorkerToHead registerWorkerToHead(WorkerNode worker) {
         return new RegisterWorkerToHead(worker);
@@ -76,13 +45,9 @@ public class Messages {
         return new RemoveWorkerFromHead(worker);
     }
 
-    public GetJobFromClient getJobFromClient(JobHandler job, ClientActor clientActor) {
-        return new GetJobFromClient(job, clientActor);
-    }
 
-    public GetJobFromWorker getJobFromWorker(JobHandler job, WorkerNode worker) {
-        return new GetJobFromWorker(job, worker);
-    }
+
+
 
     public CrashingHeadNode crashingHeadNode(HeadNode headNode) {
         return new CrashingHeadNode(headNode);
@@ -92,12 +57,6 @@ public class Messages {
         return new PropagateHeadNodes(headNodes);
     }
 
-    public SendJobToWorker sendJobToWorker(JobHandler job) {
-        return new SendJobToWorker(job);
-    }
 
-    public GetJobFromHead getJobFromHead(JobHandler job) {
-        return new GetJobFromHead(job);
-    }
 
 }

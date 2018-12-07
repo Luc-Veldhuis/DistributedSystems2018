@@ -1,6 +1,6 @@
 import akka.actor.ActorRef;
 
-public class Policy implements PolicyInterface {
+public class Policy {
 
     //TODO we can use this to quicky implement different policies
     HeadNodeState state;
@@ -9,7 +9,7 @@ public class Policy implements PolicyInterface {
     Messages messages = new Messages();
     ActorRef headNode;
 
-    @Override
+   /* @Override
     public void update(JobHandler jobHandler, ClientActor clientActor) {
         //added
         if(state == null) {
@@ -65,5 +65,5 @@ public class Policy implements PolicyInterface {
         if(jobWaiting.isDone()) {
             headNode.tell(messages.getJobFromWorker(jobWaiting.jobHander, workerNode), workerNode.self());
         }
-    }
+    }*/
 }

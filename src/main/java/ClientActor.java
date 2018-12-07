@@ -17,6 +17,7 @@ public class ClientActor<E> extends AbstractActor {
     Consumer doneHander;
     Job job;
     Job job2;
+    Job job3;
     ArrayList<Job> jobList;
     public String[] headNodeUri;
 
@@ -46,10 +47,13 @@ public class ClientActor<E> extends AbstractActor {
     public void jobCreation(){
         job = new Job();
         job2 = new Job();
+        job3 = new Job();
 
         jobList.add(job);
-        //jobList.add(job2);
-
+        System.out.println("job list: " + jobList);
+        jobList.add(job2);
+        System.out.println("job list: " + jobList);
+        jobList.add(job3);
         System.out.println("job list: " + jobList);
         //job.setJob((Supplier<Integer>) this::sleep);
     }

@@ -6,26 +6,26 @@ import java.util.HashMap;
 
 public class Scheduler extends Policy {
 
-    public Scheduler(HeadNodeState state, ActorRef headNode) {
-        this.state = state;
-        this.headNode = headNode;
+    public Scheduler() {
+        //this.state = state;
+        //this.headNode = headNode;
     }
 
-    public Map <ActorRef, Job> getSchedule(HeadNodeState state, List<ActorRef> headNodes){
-
-        Job job  =  state.pop();
-        //System.out.println("map: ");
-        System.out.println("in scheduler: headNode.get(0) = " + headNodes.get(0));
-        Map <ActorRef, Job> map = new HashMap<>();
-        map.put(headNodes.get(0), job);
-        String prompt = new String("MAP CONTAINS: ");
-        for(Map.Entry<ActorRef, Job> entry : map.entrySet()){
-            //prompt.concat(entry.getKey() + " " + entry.getValue()+ ";");
-            System.out.println(entry.getKey() + "/" + entry.getValue());
+    public Map <ActorRef, Job> getSchedule(HeadNodeState state, Map<ActorRef, Boolean> availability, List<ActorRef> workerNodes){
+        //System.out.println("getSchedule: " + workerNodes.get(0));
+       // for(Job  queueState :state.jobQueue){
+            System.out.println("State of queue: " + state.jobQueue);
+        //}
+        Map <ActorRef, Job> schedule = new HashMap<>();
+        if(state.jobQueue.isEmpty()){
+            return schedule;
         }
-       System.out.println(prompt);
 
-        return map;
+        if(availability.get(workerNodes.get(0))){
+            schedule.put(workerNodes.get(0), state.pop());
+            return schedule;
+        }
+
+        return schedule;
     }
-
 }

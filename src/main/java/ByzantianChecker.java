@@ -6,8 +6,8 @@ public class ByzantianChecker {
         this.state = state;
     }
 
-    public boolean check(JobHandler job) {
+    /*public boolean check(JobHandler job) {
         //TODO check for byzantian errors here, otherwise restart the job
         return true;
-    }
+    }*/
 }

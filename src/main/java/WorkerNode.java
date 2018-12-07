@@ -19,35 +19,21 @@ public class WorkerNode extends AbstractActor {
         this.workerId = workerId;
         this.headnodes = headnodes;
         this.messages = new Messages();
-        //this.result = new JobExecutionResult();
-
+        this.result = new JobExecutionResult();
 
         System.out.println("workerNodeId: " + workerId);
-
         if(headnodes.size() > 1) {
             registerWorker();
         }
-        //sendHello();
-        //sendResult(result);
     }
 
     public void sendResult(JobExecutionResult result) {
 
         for(ActorRef node:headnodes) {
             System.out.println("sendResult headNodes: " + node);
-           // node.tell(result, ActorRef.noSender());
+            node.tell(result, ActorRef.noSender());
         }
         System.out.println("sendResult: result " + result.getResult());
-        headnodes.get(0).tell(result, ActorRef.noSender());
-    }
-
-    public void executeJob(Messages.SendJobToWorker message) {
-        try {
-            message.job.setResult(message.job.job.get());
-        }  catch (Exception e) {
-            message.job.setException(e);
-        }
-
     }
 
     public void registerWorker() {
@@ -65,16 +51,10 @@ public class WorkerNode extends AbstractActor {
 
     public void receiveJob(HeadNode.MessageFromHeadNodeToWorker headActor) {
         System.out.println("Job Received in workerNode");
-        //sendHello();
-        //sendResult(result);
-        //this.result.setResult(this.executeJob(headActor.job));
-        //this.executeJob(headActor.job);
-        JobExecutionResult result = new JobExecutionResult();
-        System.out.println("result: " + result);
-        result.setResult(this.executeJob(headActor.job));
-        sendResult(result);
-        //sendHello();s
-        //result.setResult(2)
+        //JobExecutionResult result = new JobExecutionResult();
+        //System.out.println("result: " + result);
+        this.result.setResult(this.executeJob(headActor.job), getSelf());
+        sendResult(this.result);
     }
 
     public Object executeJob(Job job){
@@ -88,22 +68,22 @@ public class WorkerNode extends AbstractActor {
 
     public class JobExecutionResult{
         Object obj;
-        //ActorRef ref;
+        ActorRef ref;
         JobExecutionResult(){
         }
 
-        public void setResult(Object obj ){//ActorRef ref){
+        public void setResult(Object obj, ActorRef ref){
             this.obj  = obj;
-            //this.ref = ref;
+            this.ref = ref;
         }
 
         public Object getResult(){
             return this.obj;
         }
-/*
+
         public ActorRef getRef(){
             return this.ref;
-        }*/
+        }
     }
 
     public Receive createReceive() {
@@ -111,9 +91,6 @@ public class WorkerNode extends AbstractActor {
                 .match(String.class, msg -> {
                     System.out.println(msg);
                 })
-               /* .match(
-                        Messages.SendJobToWorker.class, this::executeJob
-                )*/
                 .match(
                         HeadNode.MessageFromHeadNodeToWorker.class, this::receiveJob
                 )

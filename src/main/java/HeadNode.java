@@ -34,8 +34,7 @@ public class HeadNode extends AbstractActor {
         }
         this.state = new HeadNodeState();
         this.messages = new Messages();
-        //this.clientActor = new ClientActor();
-        this.scheduler = new Scheduler(this.state, this.self());
+        this.scheduler = new Scheduler();
         this.failCheck = new ByzantianChecker(this.state);
         workerAvailability = new HashMap<>();
     }
@@ -49,18 +48,6 @@ public class HeadNode extends AbstractActor {
         }
     }
 
-    public void scheduleJob(Messages.GetJobFromClient message) {
-        System.out.println("Schedule job");
-        if(this.isBoss) {
-            try {
-                this.scheduler.update(message.jobHandler, message.clientActor);
-                System.out.println("Schedule job");
-            } catch (Exception e) {
-                //not initialized
-                System.out.println("System was not correctly initialized!!!");
-            }
-        }
-    }
 
     public void removeWorker(Messages.RemoveWorkerFromHead message) {
         if(this.isBoss) {
@@ -69,29 +56,6 @@ public class HeadNode extends AbstractActor {
         }
     }
 
-    public void checkJob(Messages.GetJobFromWorker message) {
-        if(this.isBoss) {//only do this on 1 actor
-            //TODO return to clientActor but check for byzantian errors first
-            if (!this.failCheck.check(message.jobHandler)) {
-                //TODO restart job
-            }
-        }
-    }
-
-    public void switchToBackupHeadNode(Messages.CrashingHeadNode message) {
-        //another headnode went down, take over the state
-        this.state = message.headNode.state;
-        failingNodes++;
-        if(failingNodes == this.headNodeId) {//because we use incremental ids, this works, might be more cleverly done
-            System.out.println("Head node "+headNodeId+" is the boss");
-            this.isBoss = true;
-        }
-    }
-
-    public void updateHeadNodes(Messages.PropagateHeadNodes message) {
-        //add more headnodes if they are added incrementally
-        this.headNodes = message.headNodes;
-    }
     public void receivedJob(ClientActor.MessageFromClientToHead clientActor) {
         //List headNodes
         List<ActorRef> heads;
@@ -102,25 +66,35 @@ public class HeadNode extends AbstractActor {
         state.push(clientActor.job);
         System.out.println("headnodes.get(0) = "+ headNodes.get(0));
 
-        //scheduler.getSchedule(state, headNodes);
+        //scheduler.getSchedule(state, workerAvailability, headNodes);
+        //if(scheduler.getSchedule(state, workerAvailability, headNodes) == null) System.out.println("schedule is null");
+
+        Map <ActorRef, Job> schedule = new HashMap<>();
+        schedule = scheduler.getSchedule(state, workerAvailability, workerNodes);
+        if( schedule.isEmpty() == false){
+            for( Map.Entry<ActorRef, Job> entry : schedule.entrySet()){
+                System.out.println("SCHEDULE: " + entry.getValue() +" " + entry.getKey());
+                this.assignJobToWorker(entry.getValue(), entry.getKey());
+            }
+        }
+
         //this.executeJob(clientActor.job);
         //send job to the
-        this.assignJobToWorker(clientActor.job, workerNodes.get(0));
+        //this.assignJobToWorker(clientActor.job, workerNodes.get(0));
     }
 
     public void assignJobToWorker(Job job, ActorRef workerNode){
-        //this.workerAvailability.replace(workerNode, Boolean.FALSE);
+        this.workerAvailability.replace(workerNode, Boolean.FALSE);
         MessageFromHeadNodeToWorker m = new MessageFromHeadNodeToWorker(job);
         workerNode.tell( m, ActorRef.noSender());
     }
 
-
     public static void getListofWorkers(List<ActorRef> workerNode){
         System.out.println("acceptWorker()");
         workerNodes = workerNode;
-      /*  for(ActorRef node: workerNodes){
+        for(ActorRef node: workerNodes){
             workerAvailability.put(node, Boolean.TRUE);
-        }*/
+        }
     }
 
     public static void getListofHeads(List<ActorRef> headN){
@@ -133,11 +107,29 @@ public class HeadNode extends AbstractActor {
     }
 
     public void receiveWorkerResult(WorkerNode.JobExecutionResult result){
-        //this.workerAvailability.replace(result.getRef(), Boolean.FALSE);
-        //System.out.println("RESULT: " + result.getResult());
-        //if(this.isBoss) {
-        System.out.println("RESULT:  arrived + " + result.getResult());
-       // }
+        this.workerAvailability.replace(result.getRef(), Boolean.TRUE);
+        //printavailability();
+
+        if(this.isBoss) {
+
+            Map <ActorRef, Job> schedule = new HashMap<>();
+            schedule = scheduler.getSchedule(state, workerAvailability, workerNodes);
+            if( schedule.isEmpty() == false){
+                for( Map.Entry<ActorRef, Job> entry : schedule.entrySet()){
+                    System.out.println("SCHEDULE: " + entry.getValue() +" " + entry.getKey());
+                    this.assignJobToWorker(entry.getValue(), entry.getKey());
+                }
+            }
+
+            System.out.println("RESULT:  arrived + " + result.getResult());
+        }
+    }
+
+    private void printavailability(){
+        /*for(Map.Entry<ActorRef, Boolean> entry : workerAvailability.entrySet()){
+            //prompt.concat(entry.getKey() + " " + entry.getValue()+ ";");
+            System.out.println(entry.getKey() + "/" + entry.getValue());
+        }*/System.out.println( "AVAILABILITY: " + workerAvailability);
     }
 
     public void executeJob(Job job){
@@ -157,8 +149,6 @@ public class HeadNode extends AbstractActor {
         }*/
     }
 
-
-
     public class MessageFromHeadNodeToWorker{
         Job job;
         MessageFromHeadNodeToWorker(Job job){
@@ -173,21 +163,6 @@ public class HeadNode extends AbstractActor {
                 })
                 .match(
                         Messages.RegisterWorkerToHead.class, this::registerWorker
-                )
-                .match(
-                        Messages.RemoveWorkerFromHead.class, this::removeWorker
-                )
-                .match(
-                        Messages.GetJobFromClient.class, this::scheduleJob
-                )
-                .match(
-                        Messages.GetJobFromWorker.class, this::checkJob
-                )
-                .match(
-                        Messages.CrashingHeadNode.class, this::switchToBackupHeadNode
-                )
-                .match(
-                        Messages.PropagateHeadNodes.class, this::updateHeadNodes
                 )
                 .match(
                         ClientActor.MessageFromClientToHead.class, this::receivedJob
