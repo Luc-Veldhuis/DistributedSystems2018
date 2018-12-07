@@ -58,7 +58,7 @@ public class MainApplication {
     public static void createInitalWorkers(ActorSystem root, List<Integer> workerIds, List<ActorRef> headNodes,  List<ActorRef> workerNodes) {
         //create inital pool of workers, other processes can create these as well
         for(int i = 0; i < workerIds.size(); i++) {
-            ActorRef workerRef = root.actorOf(WorkerNode.props(workerIds.get(i), headNodes), "workerId-" + workerIds.get(i));
+            ActorRef workerRef = root.actorOf(WorkerNode.props(workerIds.get(i), headNodes), "worker-node-"+workerIds.get(i));
             workerNodes.add(workerRef);
         }
         HeadNode.getListofWorkers(workerNodes);
