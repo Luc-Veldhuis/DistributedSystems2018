@@ -58,7 +58,7 @@ public class HeadNode extends AbstractActor {
      */
     public void scheduleJob(JobActor.GetJobFromClient message) {
         if(this.isBoss) {
-            //this.scheduler.update(message.jobHandler, actor);
+            this.scheduler.update(message.jobHandler, message.jobActor);
         }
     }
 
@@ -79,9 +79,13 @@ public class HeadNode extends AbstractActor {
      */
     public void checkJob(WorkerNode.SendJobDone message) {
         if(this.isBoss) {//only do this on 1 actor
-            //TODO return to jobActor but check for byzantian errors first
-            if (!this.failCheck.check(message.jobHandler)) {
-                //TODO restart job
+            if(this.scheduler.update(message.jobHandler, message.workerNode)) {
+                //TODO byzantian errors first
+                if (!this.failCheck.check(message.jobHandler)) {
+                    //TODO restart job
+                } else {
+                    //TODO tell client
+                }
             }
         }
     }

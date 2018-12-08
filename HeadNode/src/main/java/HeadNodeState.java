@@ -11,8 +11,8 @@ public class HeadNodeState {
     List<Integer> activeWorkers; //Lists workers who are executing something
     List<Integer> passiveWorkers; //Lists workers whe are not executing something
 
-    Map<String, JobWaiting> jobsWaiting; //The job queue!!!!
-    Map<String, JobWaiting> jobsReadyForChecking; //Job has been dispatched to workers, waiting for results
+    Map<String, JobWaiting> jobsWaitingForExecution; //The job queue!!!!
+    Map<String, JobWaiting> jobsWaitingForExecutionResults; //Job has been dispatched to workers, waiting for results
 
     List<String> jobsRunning;//Job is actually copied BYZANTIAN times, so these are COPIES from the jobs with ids: "{original-id}-{child-id}", NOT in hashmap (can be changed)
 
@@ -21,8 +21,8 @@ public class HeadNodeState {
      */
     public HeadNodeState() {
         workerIdToWorkerNode = new HashMap<>();
-        jobsWaiting = new HashMap<>();
-        jobsReadyForChecking = new HashMap<>();
+        jobsWaitingForExecution = new HashMap<>();
+        jobsWaitingForExecutionResults = new HashMap<>();
         jobsRunning = new ArrayList<>();
         activeWorkers = new ArrayList<>();
         passiveWorkers = new ArrayList<>();

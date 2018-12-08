@@ -86,4 +86,14 @@ public class JobHandler<E> implements Serializable {
         this.done = true;
     }
 
+    @Override
+    public JobHandler<E> clone() {
+        JobHandler<E> result = new JobHandler<E>(this.job);
+        result.setId(this.getId());
+        result.setException(this.e);
+        result.setResult(this.result);
+        result.setParentId(this.getParentId());
+        return result;
+    }
+
 }

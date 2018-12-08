@@ -25,7 +25,7 @@ public class JobActor<E> extends AbstractActor {
     public JobActor(ActorSelection headNodeRef, JobHandler job, Consumer doneHander) {
         this.headNodeRef = headNodeRef;
         this.doneHander = doneHander;
-        headNodeRef.tell(new GetJobFromClient(job), this.self());
+        headNodeRef.tell(new GetJobFromClient(job, this), this.self());
     }
 
     /**
@@ -53,9 +53,11 @@ public class JobActor<E> extends AbstractActor {
      */
     public static class GetJobFromClient implements Serializable {
         public JobHandler jobHandler;
+        public JobActor jobActor;
 
-        public GetJobFromClient(JobHandler jobHandler) {
+        public GetJobFromClient(JobHandler jobHandler, JobActor jobActor) {
             this.jobHandler = jobHandler;
+            this.jobActor = jobActor;
         }
     }
 
