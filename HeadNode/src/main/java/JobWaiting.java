@@ -6,7 +6,7 @@ import java.util.List;
 public class JobWaiting {
 
     public JobHandler jobHander;//main job
-    List<Pair<JobHandler, ActorRef>> jobList; //Store the job and the node on which it is run worker
+    List<Pair<JobHandler, Integer>> jobList; //Store the job and the node on which it is run worker
     int counter = 0;
 
     /**
@@ -25,7 +25,7 @@ public class JobWaiting {
      */
     public boolean isDone() {
         boolean done = true;
-        for(Pair<JobHandler, ActorRef> job: jobList) {
+        for(Pair<JobHandler, Integer> job: jobList) {
             done = done && job.first.done;
         }
         return done;
@@ -36,7 +36,7 @@ public class JobWaiting {
      * @param job
      */
     public void newResult(JobHandler job) {
-        for(Pair<JobHandler, ActorRef> storedJob: jobList) {
+        for(Pair<JobHandler, Integer> storedJob: jobList) {
             if(job.getId().equals(storedJob.first.getId())) {
                 storedJob.first.setResult(job.result);
                 storedJob.first.setException(job.e);

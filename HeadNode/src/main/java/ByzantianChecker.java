@@ -19,10 +19,10 @@ public class ByzantianChecker {
      */
     public JobHandler check(JobWaiting job) {
         JobHandler result = job.jobHander;
-        for( Pair<JobHandler, ActorRef> pair: job.jobList) {
+        for( Pair<JobHandler, Integer> pair: job.jobList) {
             int counter = 0;
             JobHandler jobHandler = pair.first;
-            for( Pair<JobHandler, ActorRef> pair2: job.jobList) {
+            for( Pair<JobHandler, Integer> pair2: job.jobList) {
                 JobHandler jobHandler2 = pair2.first;
                 if(jobHandler.equals(jobHandler2)) {
                     counter++;

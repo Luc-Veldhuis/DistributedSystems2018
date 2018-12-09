@@ -8,28 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WorkerNode extends AbstractActor {
-    public final Integer workerId;
+    public Integer workerId;
     public List<ActorSelection> headnodes;
 
-    public static Props props(Integer workerId, String[] headnodes) {
+    public static Props props(String[] headnodes) {
 
         System.out.println("Worker node created");
-        return Props.create(WorkerNode.class, () -> new WorkerNode(workerId, headnodes));
+        return Props.create(WorkerNode.class, () -> new WorkerNode(headnodes));
     }
 
     /**
      * A WorkerNode recieves a JobHandler and runs the corresponding function, then returns the JobHandler again with updated results.
-     * @param workerId the id of the worker
      * @param headnodes list of headnode urls
      */
-    public WorkerNode(Integer workerId, String[] headnodes) {
-        this.workerId = workerId;
+    public WorkerNode(String[] headnodes) {
         this.headnodes = new ArrayList<>();
         for(String node : headnodes) {
             this.headnodes.add(getContext().actorSelection(node));
         }
-
-        System.out.println("workerNodeId: " + workerId);
         if(this.headnodes.size() >= 1) {
             registerWorker();
         }
@@ -77,6 +73,15 @@ public class WorkerNode extends AbstractActor {
     }
 
     /**
+     * Receives message from the head with id to use
+     * @param message Message containing the ID
+     */
+    public void getAssignedId(GetRegistrationResult message) {
+        this.workerId = message.workerId;
+        System.out.println("workerNodeId: " + workerId);
+    }
+
+    /**
      * When it goes down, send a message to the HeadNodes
      */
     public void sendRemove() {
@@ -102,6 +107,9 @@ public class WorkerNode extends AbstractActor {
                 .match(
                         GetJobFromHead.class, this::executeJob
                 )
+                .match(
+                        GetRegistrationResult.class, this::getAssignedId
+                )
                 .build();
     }
 
@@ -113,6 +121,17 @@ public class WorkerNode extends AbstractActor {
 
         public RegisterWorkerToHead(WorkerData worker) {
             this.workerNode = worker;
+        }
+    }
+
+    /**
+     * Message send from the HeadNode to assign a unique ID
+     */
+    public static class GetRegistrationResult implements Serializable {
+        Integer workerId;
+
+        public GetRegistrationResult(Integer id) {
+            this.workerId = id;
         }
     }
 

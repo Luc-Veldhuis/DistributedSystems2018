@@ -8,9 +8,9 @@ import java.io.Serializable;
 public class WorkerData implements Serializable {
 
     ActorRef self;
-    int workerId;
+    Integer workerId;
 
-    WorkerData(ActorRef self, int id) {
+    WorkerData(ActorRef self, Integer id) {
         this.self = self;
         this.workerId = id;
     }

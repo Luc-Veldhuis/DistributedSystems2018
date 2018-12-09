@@ -45,10 +45,12 @@ public class HeadNode extends AbstractActor {
      */
     public void registerWorker(WorkerNode.RegisterWorkerToHead message) {
         if(this.isBoss) {
-            int workerId = message.workerNode.workerId;
+            int workerId = state.workerIdCounter;
             state.workerIdToWorkerNode.put(workerId, message.workerNode.self);
             state.passiveWorkers.add(workerId);
-            System.out.println("Registered worker " + message.workerNode.workerId);
+            System.out.println("Registered worker " + workerId);
+            getSender().tell(new WorkerNode.GetRegistrationResult(workerId), this.self());
+            state.workerIdCounter++;
         }
     }
 

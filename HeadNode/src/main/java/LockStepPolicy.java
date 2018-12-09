@@ -57,7 +57,7 @@ public class LockStepPolicy implements PolicyInterface {
             state.activeWorkers.add(node); // add it to active
 
             ActorRef workerNodeRef = state.workerIdToWorkerNode.get(node);//Get actor reference
-            jobWaiting.jobList.add(new Pair<JobHandler, ActorRef>(newJob, workerNodeRef));//Add to waiting job
+            jobWaiting.jobList.add(new Pair<JobHandler, Integer>(newJob, node));//Add to waiting job
             state.jobsRunning.add(newJob.getId());
             workerNodeRef.tell(new WorkerNode.GetJobFromHead(newJob), headNode);//Run job
         }
@@ -73,10 +73,16 @@ public class LockStepPolicy implements PolicyInterface {
     public JobWaiting update(JobHandler jobHandler, WorkerData workerNode){
         //done
         state.jobsRunning.remove(jobHandler.getId());//Job is done
-        state.activeWorkers.remove((Integer)workerNode.workerId);//worker is done
-        state.passiveWorkers.add(workerNode.workerId);//worker is passive
         JobWaiting jobWaiting = state.jobsWaitingForExecutionResults.get(jobHandler.getParentId());//Get waiting job
         jobWaiting.newResult(jobHandler);
+        if(jobWaiting.isDone()) {
+            //Lock step, only release the nodes when all jobs are done!
+            for(Pair<JobHandler, Integer> pair : jobWaiting.jobList) {
+                state.activeWorkers.remove(pair.second);//worker is done
+                state.passiveWorkers.add(pair.second);//worker is passive
+            }
+        }
+        //Only when added workers to active, call dispatcher
         if(!state.jobsWaitingForExecution.isEmpty()) {
             dispatchJob(state.jobsWaitingForExecution.get(state.jobsWaitingForExecution.keySet().toArray()[0]));//Get first job waiting in FIFO manner
         }

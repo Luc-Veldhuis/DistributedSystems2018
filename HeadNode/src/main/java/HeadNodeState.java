@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class HeadNodeState {
 
+    public int workerIdCounter = 0;
     Map<Integer, ActorRef> workerIdToWorkerNode; // look up worker node actors by their worker IDs
     List<Integer> activeWorkers; //Lists workers who are executing something
     //WARNING!!! the remove() function works on both integers and Integers, but behaviour is different!!!
