@@ -1,3 +1,5 @@
+//From the jdk.javadoc.internal.doclets.toolkit.util.Utils package, but the javadoc generator crashed because of it, so I copy pasted it here.
+
 /**
  * A simple pair container.
  * @param <K> first a value
