@@ -1,9 +1,6 @@
 import akka.actor.ActorRef;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class HeadNodeState {
 
@@ -15,21 +12,28 @@ public class HeadNodeState {
     List<Integer> passiveWorkers; //Lists workers whe are not executing something
 
     Map<String, ActorRef> jobClientMapping;
-    Map<String, JobWaiting> jobsWaitingForExecution; //The job queue!!!!
+    //For Maximize policy
+    Queue<String> jobWaitingQueue;
     Map<String, JobWaiting> jobsWaitingForExecutionResults; //Job has been dispatched to workers, waiting for results
 
-    List<String> jobsRunning;//Job is actually copied BYZANTIAN times, so these are COPIES from the jobs with ids: "{original-id}-{child-id}", NOT in hashmap (can be changed)
+    //For Lockstep policy
+    Queue<String> jobHanderQueue;
+    Map<String, JobHandler> jobHandlerForExecution; //The job queue, used for the MaximizePolicy, because jobs are run 1 at the time
 
     /**
      * Used to store any possible variables of the HeadNode concerning the state
      */
     public HeadNodeState() {
-        jobClientMapping = new HashMap<>();
         workerIdToWorkerNode = new HashMap<>();
-        jobsWaitingForExecution = new HashMap<>();
-        jobsWaitingForExecutionResults = new HashMap<>();
-        jobsRunning = new ArrayList<>();
         activeWorkers = new ArrayList<>();
         passiveWorkers = new ArrayList<>();
+
+        jobClientMapping = new HashMap<>();
+
+        jobWaitingQueue = new PriorityQueue<>();
+        jobsWaitingForExecutionResults = new HashMap<>();
+
+        jobHandlerForExecution = new HashMap<>();
+        jobHanderQueue = new PriorityQueue<>();
     }
 }

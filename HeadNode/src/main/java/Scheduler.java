@@ -10,10 +10,11 @@ public class Scheduler implements PolicyInterface {
         //Choose which policy to used based on configuration
         if(Configuration.policy == Configuration.Policies.LOCK_STEP) {
             this.policy = new LockStepPolicy(state, headNode);
+            System.out.println("Using lock step policy");
         }
         else if(Configuration.policy == Configuration.Policies.MAXIMIZE) {
-            //TODO make maximize policy
-            //this.policy = new LockStepPolicy(state, headNode);
+            this.policy = new MaximizePolicy(state, headNode);
+            System.out.println("Using maximize policy");
         } else {
             throw new Error("Unknown policy in configuration file");
         }

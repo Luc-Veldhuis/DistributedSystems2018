@@ -24,6 +24,9 @@ public class JobWaiting {
      * @return
      */
     public boolean isDone() {
+        if(jobList.size() != Configuration.NUMBER_OF_BYZANTIAN_ERRORS) {
+            return false;
+        }
         boolean done = true;
         for(Pair<JobHandler, Integer> job: jobList) {
             done = done && job.first.done;
