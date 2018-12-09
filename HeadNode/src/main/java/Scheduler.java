@@ -29,4 +29,9 @@ public class Scheduler implements PolicyInterface {
     public JobWaiting update(JobHandler jobHandler, WorkerData worker) {
         return this.policy.update(jobHandler, worker);
     }
+
+    @Override
+    public void removeWorker(Integer workerId) {
+        this.policy.removeWorker(workerId);
+    }
 }

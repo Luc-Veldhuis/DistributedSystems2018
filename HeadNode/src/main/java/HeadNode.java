@@ -69,10 +69,9 @@ public class HeadNode extends AbstractActor {
      * @param message the message from the worker when it leaves the system
      */
     public void removeWorker(WorkerNode.RemoveWorkerFromHead message) {
-        //TODO update removed jobs
         if(this.isBoss) {
-            state.workerIdToWorkerNode.remove(message.workerNode.workerId);
             System.out.println("Removed worker " + message.workerNode.workerId);
+            scheduler.removeWorker(message.workerNode.workerId);
         }
     }
 
@@ -84,7 +83,7 @@ public class HeadNode extends AbstractActor {
         System.out.println("Received job result");
         if(this.isBoss) {//only do this on 1 actor
             JobWaiting jobWaiting = this.scheduler.update(message.jobHandler, message.workerNode);//get waiting jobs
-            if(jobWaiting.isDone()) {
+            if(jobWaiting != null && jobWaiting.isDone()) {
                 System.out.println("All jobs received");
                 JobHandler jobHander = this.failCheck.check(jobWaiting);
                 System.out.println("Job checked");

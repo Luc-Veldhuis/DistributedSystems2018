@@ -15,4 +15,7 @@ public interface PolicyInterface {
     //update when job finishes
     public JobWaiting update(JobHandler jobHandler, WorkerData worker);
 
+    //
+    public void removeWorker(Integer workerId);
+
 }

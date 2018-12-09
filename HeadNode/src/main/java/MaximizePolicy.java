@@ -90,11 +90,41 @@ public class MaximizePolicy implements PolicyInterface {
         if(jobWaiting.isDone()) {
             state.jobsWaitingForExecutionResults.remove(jobWaiting.jobHander.getId());
             for(Pair<JobHandler, Integer> pair : jobWaiting.jobList) {
-                state.jobHandlerForExecution.remove(pair.first.getParentId());//remove later in case a worker crashes
+                state.jobHandlerForExecution.remove(pair.first.getId());//remove later in case a worker crashes
             }
         }
         //Only after added workers to active, call dispatcher
         dispatchJob();//Get first job in FIFO manner
         return jobWaiting;
+    }
+
+    /**
+     * Called when a worker is removed
+     * @param workerId Worker to be removed
+     */
+    public void removeWorker(Integer workerId) {
+        if(!state.passiveWorkers.remove(workerId)) {
+            //it is executing a job
+            //execute this jobs again, because it is maximize
+            for(String jobWaitingId : state.jobsWaitingForExecutionResults.keySet()) {
+                JobHandler jobHanderFailing = null;
+                for( Pair<JobHandler, Integer> pair : state.jobsWaitingForExecutionResults.get(jobWaitingId).jobList) {
+                    if(pair.second.equals(workerId)) {
+                        //Found jobHandler which failed
+                        jobHanderFailing = pair.first;
+                    }
+                }
+                if(jobHanderFailing != null) {
+                    //run job again
+                    JobHandler newJob = jobHanderFailing.clone();
+                    state.jobHanderQueue.add(newJob.getId());
+                    state.jobHandlerForExecution.put(newJob.getId(), newJob);
+                    dispatchJob();
+                    break;
+                }
+            }
+            state.activeWorkers.remove(workerId);//remove from active workers
+        }
+        state.workerIdToWorkerNode.remove(workerId);//remove from workerId mapping
     }
 }

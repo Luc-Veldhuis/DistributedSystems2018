@@ -79,6 +79,10 @@ public class LockStepPolicy implements PolicyInterface {
     public JobWaiting update(JobHandler jobHandler, WorkerData workerNode){
         //done
         JobWaiting jobWaiting = state.jobsWaitingForExecutionResults.get(jobHandler.getParentId());//Get waiting job
+        if(jobWaiting == null) {
+            //If a worker crashed, ignore all other results
+            return null;
+        }
         jobWaiting.newResult(jobHandler);
         if(jobWaiting.isDone()) {
             //Lock step, only release the nodes when all jobs are done!
@@ -92,5 +96,37 @@ public class LockStepPolicy implements PolicyInterface {
         //Only after added workers to active, call dispatcher
         dispatchJob();//Get first job waiting in FIFO manner
         return jobWaiting;
+    }
+
+    /**
+     * Called when a worker is removed
+     * @param workerId Worker to be removed
+     */
+    public void removeWorker(Integer workerId) {
+        if(!state.passiveWorkers.remove(workerId)) {
+            //it is executing a job
+            //execute ALL jobs again, because it is lockstep
+            for(String jobWaitingId : state.jobsWaitingForExecutionResults.keySet()) {
+                boolean found = false;
+                for( Pair<JobHandler, Integer> pair : state.jobsWaitingForExecutionResults.get(jobWaitingId).jobList) {
+                    if(pair.second.equals(workerId)) {
+                        //Found jobHandler which failed
+                        found = true;
+                    }
+                }
+                if(found) {
+                    JobWaiting jobWaiting = state.jobsWaitingForExecutionResults.get(jobWaitingId);
+                    JobHandler jobHandler = jobWaiting.jobHander;
+                    ActorRef client = state.jobClientMapping.get(jobWaitingId);
+
+                    state.jobsWaitingForExecutionResults.remove(jobWaitingId);//remove from jobsWaiting
+                    state.jobClientMapping.remove(jobWaitingId);//remove from client mapping
+                    update(jobHandler, client);
+                    break;
+                }
+            }
+            state.activeWorkers.remove(workerId);//remove from active workers
+        }
+        state.workerIdToWorkerNode.remove(workerId);//remove from workerId mapping
     }
 }
