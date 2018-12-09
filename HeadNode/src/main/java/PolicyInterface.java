@@ -1,3 +1,5 @@
+import akka.actor.ActorRef;
+
 public interface PolicyInterface {
 
     /**
@@ -8,9 +10,9 @@ public interface PolicyInterface {
     //We have to think about what functions a policy really needs
 
     //update when job comes in
-    public void update(JobHandler jobHandler, JobActor jobActor);
+    public void update(JobHandler jobHandler, ActorRef jobActor);
 
     //update when job finishes
-    public boolean update(JobHandler jobHandler, WorkerData worker);
+    public JobWaiting update(JobHandler jobHandler, WorkerData worker);
 
 }

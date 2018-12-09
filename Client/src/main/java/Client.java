@@ -1,6 +1,3 @@
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
 public class Client {
 
     public String headNode;
@@ -14,8 +11,8 @@ public class Client {
     }
 
     /**
-     * Function which is executed on the remote system, MUST BE STATIC
-     * @return
+     * Function which is executed on the remote system, MUST BE STATIC and return type must override default equals function!!!
+     * @return return type E, which supports equals method
      */
     public static Integer sleep() {
         System.out.println("Sleep interupted");
@@ -25,10 +22,10 @@ public class Client {
     /**
      * Function which is executed as handler once the function is done
      *
-     * @param result
+     * @param result input type E
      */
     public static void done(int result) {
-        System.out.println(result);
+        System.out.println("Result: "+result);
     }
 
     /**

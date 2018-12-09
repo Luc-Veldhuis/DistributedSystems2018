@@ -19,8 +19,8 @@ public class HeadNode extends AbstractActor {
 
     /**
      * This actor handles all logic in scheduling, receiving and delegating jobs.
-     * @param headNodeId
-     * @return
+     * @param headNodeId the id of the HeadNode
+     * @return returns new Actor
      */
     public static Props props(Integer headNodeId) {
         System.out.println("Head node created");
@@ -41,7 +41,7 @@ public class HeadNode extends AbstractActor {
 
     /**
      * Call used to register a WorkerNode to the HeadNode
-     * @param message
+     * @param message the register message
      */
     public void registerWorker(WorkerNode.RegisterWorkerToHead message) {
         if(this.isBoss) {
@@ -54,19 +54,20 @@ public class HeadNode extends AbstractActor {
 
     /**
      * Call used when a Job is send by the client
-     * @param message
+     * @param message the message from the client
      */
     public void scheduleJob(JobActor.GetJobFromClient message) {
         if(this.isBoss) {
-            this.scheduler.update(message.jobHandler, message.jobActor);
+            this.scheduler.update(message.jobHandler, getSender());
         }
     }
 
     /**
      * Call used when a WorkerNode leaves the system
-     * @param message
+     * @param message the message from the worker when it leaves the system
      */
     public void removeWorker(WorkerNode.RemoveWorkerFromHead message) {
+        //TODO update removed jobs
         if(this.isBoss) {
             state.workerIdToWorkerNode.remove(message.workerNode.workerId);
             System.out.println("Removed worker " + message.workerNode.workerId);
@@ -75,24 +76,25 @@ public class HeadNode extends AbstractActor {
 
     /**
      * Once a job has run x times, check if there are any Byzantine errors
-     * @param message
+     * @param message Message from the head node to the client
      */
     public void checkJob(WorkerNode.SendJobDone message) {
+        System.out.println("Received job result");
         if(this.isBoss) {//only do this on 1 actor
-            if(this.scheduler.update(message.jobHandler, message.workerNode)) {
-                //TODO byzantian errors first
-                if (!this.failCheck.check(message.jobHandler)) {
-                    //TODO restart job
-                } else {
-                    //TODO tell client
-                }
+            JobWaiting jobWaiting = this.scheduler.update(message.jobHandler, message.workerNode);//get waiting jobs
+            if(jobWaiting.isDone()) {
+                System.out.println("All jobs received");
+                JobHandler jobHander = this.failCheck.check(jobWaiting);
+                System.out.println("Job checked");
+                ActorRef actor = state.jobClientMapping.get(jobHander.getId());
+                actor.tell(new JobActor.GetJobFromHead(jobHander), this.self());
             }
         }
     }
 
     /**
      * Call when 1 of the head nodes has failed, it receives the HeadNodeState
-     * @param message
+     * @param message From other HeadNode when it fails
      */
     public void switchToBackupHeadNode(HeadNode.CrashingHeadNode message) {
         //another headnode went down, take over the state
@@ -106,7 +108,7 @@ public class HeadNode extends AbstractActor {
 
     /**
      * Call to receive the location of the other HeadNodes, should be received from the SpawnHeadNodes class
-     * @param message
+     * @param message Called in initialization fase to distribute location of other HeadNodes
      */
     public void updateHeadNodes(HeadNode.PropagateHeadNodes message) {
         //TODO never send!!!

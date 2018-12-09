@@ -36,7 +36,7 @@ public class Job<E> implements JobInterface<E> {
 
     /**
      * Called to set the function to run on the worker
-     * @param job
+     * @param job Job to execute on worker
      */
     public void setJob(SerializableSupplier job) {
         this.jobHandler = new JobHandler<E>(job);
@@ -44,7 +44,7 @@ public class Job<E> implements JobInterface<E> {
 
     /**
      * Called once the function is done
-     * @param handler
+     * @param handler Function to execute on termination
      */
     public void setHandler(SerializableConsumer handler) {
         this.doneHandler = handler;
@@ -52,7 +52,7 @@ public class Job<E> implements JobInterface<E> {
 
     /**
      * Execute the function
-     * @throws Exception
+     * @throws Exception Exception thrown when job resulted in error
      */
     @Override
     public void run() throws Exception {

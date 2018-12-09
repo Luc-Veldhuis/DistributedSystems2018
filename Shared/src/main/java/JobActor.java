@@ -1,4 +1,5 @@
 import akka.actor.AbstractActor;
+import akka.actor.ActorRef;
 import akka.actor.ActorSelection;
 import akka.actor.Props;
 
@@ -12,10 +13,10 @@ public class JobActor<E> extends AbstractActor {
 
     /**
      * Actor used to communicate with head node, spawed by the Job class
-     * @param headNodeRef
-     * @param job
-     * @param doneHander
-     * @return
+     * @param headNodeRef Location where headNode is located
+     * @param job jobHandler to execute
+     * @param doneHander Function to execute when done
+     * @return new Actor
      */
     public static Props props(ActorSelection headNodeRef, JobHandler job, Consumer doneHander) {
         System.out.println("Client job created");
@@ -25,16 +26,16 @@ public class JobActor<E> extends AbstractActor {
     public JobActor(ActorSelection headNodeRef, JobHandler job, Consumer doneHander) {
         this.headNodeRef = headNodeRef;
         this.doneHander = doneHander;
-        headNodeRef.tell(new GetJobFromClient(job, this), this.self());
+        headNodeRef.tell(new GetJobFromClient(job), this.self());
     }
 
     /**
      * Function which is called once the job is done
-     * @param message
-     * @throws Exception
+     * @param message result from HeadNode
+     * @throws Exception possible error from the Job
      */
     public void receivedJob(GetJobFromHead message) throws Exception {
-        //this.doneHander.run(message.job.getResult());
+        this.doneHander.accept(message.jobHandler.getResult());
     }
 
     @Override
@@ -53,11 +54,9 @@ public class JobActor<E> extends AbstractActor {
      */
     public static class GetJobFromClient implements Serializable {
         public JobHandler jobHandler;
-        public JobActor jobActor;
 
-        public GetJobFromClient(JobHandler jobHandler, JobActor jobActor) {
+        public GetJobFromClient(JobHandler jobHandler) {
             this.jobHandler = jobHandler;
-            this.jobActor = jobActor;
         }
     }
 

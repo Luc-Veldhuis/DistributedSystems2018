@@ -20,12 +20,12 @@ public class Scheduler implements PolicyInterface {
     }
 
     @Override
-    public void update(JobHandler jobHandler, JobActor jobActor) {
+    public void update(JobHandler jobHandler, ActorRef jobActor) {
         this.policy.update(jobHandler, jobActor);
     }
 
     @Override
-    public boolean update(JobHandler jobHandler, WorkerData worker) {
+    public JobWaiting update(JobHandler jobHandler, WorkerData worker) {
         return this.policy.update(jobHandler, worker);
     }
 }

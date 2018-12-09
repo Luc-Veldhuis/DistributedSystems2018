@@ -70,7 +70,6 @@ public class JobHandler<E> implements Serializable {
      * @throws Exception
      */
     public E getResult() throws Exception {
-        //TODO how to implement this, not sure if this is the way
         if(this.e != null) {
             throw this.e;
         }
@@ -90,10 +89,22 @@ public class JobHandler<E> implements Serializable {
     public JobHandler<E> clone() {
         JobHandler<E> result = new JobHandler<E>(this.job);
         result.setId(this.getId());
-        result.setException(this.e);
-        result.setResult(this.result);
+        result.e = this.e;
+        result.result = this.result;
         result.setParentId(this.getParentId());
         return result;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof JobHandler) {
+            JobHandler jobHandler = (JobHandler)obj;
+            boolean exceptionEqual = (this.e == null && jobHandler.e == null) || (this.e != null && jobHandler.e != null && this.e.getClass().equals(jobHandler.e.getClass()));
+            boolean resultEqual = (this.result == null && jobHandler.result == null) || (this.result != null && jobHandler.result != null && this.result.equals(jobHandler.result));
+            return exceptionEqual && resultEqual;
+
+        } else {
+            return super.equals(obj);
+        }
+    }
 }

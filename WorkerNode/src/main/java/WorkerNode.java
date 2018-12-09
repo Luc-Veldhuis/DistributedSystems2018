@@ -19,8 +19,8 @@ public class WorkerNode extends AbstractActor {
 
     /**
      * A WorkerNode recieves a JobHandler and runs the corresponding function, then returns the JobHandler again with updated results.
-     * @param workerId
-     * @param headnodes
+     * @param workerId the id of the worker
+     * @param headnodes list of headnode urls
      */
     public WorkerNode(Integer workerId, String[] headnodes) {
         this.workerId = workerId;
@@ -80,7 +80,6 @@ public class WorkerNode extends AbstractActor {
      * When it goes down, send a message to the HeadNodes
      */
     public void sendRemove() {
-        //TODO maybe overkill to send it to each headnode
         for(ActorSelection node:headnodes){
             node.tell(new RemoveWorkerFromHead(createMessageData()), this.self());
         }

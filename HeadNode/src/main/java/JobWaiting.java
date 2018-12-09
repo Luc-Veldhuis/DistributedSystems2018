@@ -1,5 +1,4 @@
 import akka.actor.ActorRef;
-import jdk.javadoc.internal.doclets.toolkit.util.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +6,7 @@ import java.util.List;
 public class JobWaiting {
 
     public JobHandler jobHander;//main job
-    List<Utils.Pair<JobHandler, ActorRef>> jobList; //Store the job and the node on which it is run worker
+    List<Pair<JobHandler, ActorRef>> jobList; //Store the job and the node on which it is run worker
     int counter = 0;
 
     /**
@@ -26,7 +25,7 @@ public class JobWaiting {
      */
     public boolean isDone() {
         boolean done = true;
-        for(Utils.Pair<JobHandler, ActorRef> job: jobList) {
+        for(Pair<JobHandler, ActorRef> job: jobList) {
             done = done && job.first.done;
         }
         return done;
@@ -37,11 +36,10 @@ public class JobWaiting {
      * @param job
      */
     public void newResult(JobHandler job) {
-        for(Utils.Pair<JobHandler, ActorRef> storedJob: jobList) {
+        for(Pair<JobHandler, ActorRef> storedJob: jobList) {
             if(job.getId().equals(storedJob.first.getId())) {
-                //TODO check this copy, probabily does not work for objects?
-                storedJob.first.result = job.result;
-                storedJob.first.e = job.e;
+                storedJob.first.setResult(job.result);
+                storedJob.first.setException(job.e);
                 counter++;
                 break;
             }
