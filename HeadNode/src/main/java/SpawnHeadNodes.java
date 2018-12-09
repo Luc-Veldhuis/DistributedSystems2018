@@ -4,6 +4,8 @@ import java.util.List;
 
 import akka.actor.ActorSystem;
 import akka.actor.ActorRef;
+import akka.actor.Address;
+
 import java.util.Timer;
 
 public class SpawnHeadNodes {
@@ -24,14 +26,17 @@ public class SpawnHeadNodes {
 
         List<ActorRef> headNodes = new ArrayList<ActorRef>();
 
+        Address remoteAdress = root.provider().getDefaultAddress();
         try {
             // Create reference for top level actors (head nodes)
             for (int i = 0; i < headNodeIds.size(); i++) {
                 ActorRef headRef = root.actorOf(HeadNode.props(headNodeIds.get(i)), "headNodeId-" + headNodeIds.get(i));
                 headNodes.add(headRef);
             }
+            System.out.println("COPY PASTE THE FOLLOWING 3 LINES INTO THE PROGRAM ARGUMENTS:");
             for(ActorRef node : headNodes) {
-                System.out.println(node.path().toSerializationFormatWithAddress(node.path().address()));
+                node.tell(new HeadNode.PropagateHeadNodes(headNodes), ActorRef.noSender());
+                System.out.println(node.path().toSerializationFormatWithAddress(remoteAdress));
             }
             //createInitalWorkers(root, workerIds, headNodes);
             //runScheduledTask(headNodes);

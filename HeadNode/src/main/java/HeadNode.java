@@ -1,5 +1,6 @@
 import akka.actor.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class HeadNode extends AbstractActor {
@@ -61,7 +62,7 @@ public class HeadNode extends AbstractActor {
      */
     public void scheduleJob(JobActor.GetJobFromClient message) {
         if(this.isBoss) {
-            System.out.println("Got a new Job");
+            System.out.println("Got a new Job at "+headNodeId);
             if(message.jobHandler.crashHeadNodeWithId == this.headNodeId) {
                 getContext().stop(this.self());
             } else {
@@ -86,7 +87,6 @@ public class HeadNode extends AbstractActor {
      * @param message Message from the head node to the client
      */
     public void checkJob(WorkerNode.SendJobDone message) {
-        System.out.println("Received job "+ message.jobHandler.getId());
         if(this.isBoss) {//only do this on 1 actor
             JobWaiting jobWaiting = this.scheduler.update(message.jobHandler, message.workerNode);//get waiting jobs
             if(jobWaiting != null && jobWaiting.isDone()) {
@@ -110,6 +110,8 @@ public class HeadNode extends AbstractActor {
         if(failingNodes == this.headNodeId) {//because we use incremental ids, this works, might be more cleverly done
             System.out.println("Head node "+headNodeId+" is the boss");
             this.isBoss = true;
+            this.scheduler = new Scheduler(this.state, this.self());
+            this.failCheck = new ByzantianChecker(this.state);
         }
     }
 
@@ -118,7 +120,6 @@ public class HeadNode extends AbstractActor {
      * @param message Called in initialization fase to distribute location of other HeadNodes
      */
     public void updateHeadNodes(HeadNode.PropagateHeadNodes message) {
-        //TODO never send!!!
         //add more headnodes if they are added incrementally
         this.headNodes = message.headNodes;
     }
@@ -188,7 +189,7 @@ public class HeadNode extends AbstractActor {
     /**
      * Message to receive when all HeadNodes are online
      */
-    public class PropagateHeadNodes {
+    public static class PropagateHeadNodes implements Serializable {
         public List<ActorRef> headNodes;
         public PropagateHeadNodes(List<ActorRef> headNodes) {
             this.headNodes = headNodes;
@@ -198,7 +199,7 @@ public class HeadNode extends AbstractActor {
     /**
      * Message to send when the HeadNode crashes
      */
-    public class CrashingHeadNode {
+    public static class CrashingHeadNode implements Serializable {
         public HeadNode headNode;
         public CrashingHeadNode(HeadNode headNode) {
             this.headNode = headNode;

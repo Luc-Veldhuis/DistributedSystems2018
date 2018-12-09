@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 
 public class JobActor<E> extends AbstractActor {
 
-    ActorSelection headNodeRef;
+    ActorSelection[] headNodeRefs;
     Consumer doneHander;
 
     /**
@@ -18,15 +18,17 @@ public class JobActor<E> extends AbstractActor {
      * @param doneHander Function to execute when done
      * @return new Actor
      */
-    public static Props props(ActorSelection headNodeRef, JobHandler job, Consumer doneHander) {
+    public static Props props(ActorSelection[] headNodeRef, JobHandler job, Consumer doneHander) {
         System.out.println("Client job created");
         return Props.create(JobActor.class, () -> new JobActor(headNodeRef, job, doneHander));
     }
 
-    public JobActor(ActorSelection headNodeRef, JobHandler job, Consumer doneHander) {
-        this.headNodeRef = headNodeRef;
+    public JobActor(ActorSelection[] headNodeRefs, JobHandler job, Consumer doneHander) {
+        this.headNodeRefs = headNodeRefs;
         this.doneHander = doneHander;
-        headNodeRef.tell(new GetJobFromClient(job), this.self());
+        for(ActorSelection headNodeRef: headNodeRefs) {
+            headNodeRef.tell(new GetJobFromClient(job), this.self());
+        }
     }
 
     /**

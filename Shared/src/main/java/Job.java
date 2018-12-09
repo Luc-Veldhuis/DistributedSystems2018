@@ -15,19 +15,23 @@ public class Job<E> implements JobInterface<E> {
 
     private JobHandler<E> jobHandler;
     private Consumer doneHandler;
-    private ActorSelection headNodeRef;
+    private ActorSelection[] headNodeRefs;
 
-    public Job(String headNode) {
-        this.headNodeRef = root.actorSelection(headNode);
+    public Job(String[] headNodes) {
+        ActorSelection[] headNodeRefs = new ActorSelection[headNodes.length];
+        for(int i = 0; i < headNodes.length; i++) {
+            headNodeRefs[i] = root.actorSelection(headNodes[i]);
+        }
+        this.headNodeRefs = headNodeRefs;
     }
 
-    public Job(ActorSelection headNode, SerializableSupplier job) {
-        this.headNodeRef = headNode;
+    public Job(ActorSelection[] headNodes, SerializableSupplier job) {
+        this.headNodeRefs = headNodes;
         this.jobHandler = new JobHandler<E>(job);
     }
 
-    public Job(ActorSelection headNode, SerializableSupplier job, Consumer hander) {
-        this.headNodeRef = headNode;
+    public Job(ActorSelection[] headNodes, SerializableSupplier job, Consumer hander) {
+        this.headNodeRefs = headNodes;
         this.jobHandler = new JobHandler<E>(job);
         this.doneHandler = hander;
     }
@@ -73,6 +77,6 @@ public class Job<E> implements JobInterface<E> {
         if(this.doneHandler == null || this.jobHandler == null) {
             throw new Exception("Not all handers set");
         }
-        ActorRef jobActor = this.root.actorOf(JobActor.props(headNodeRef, this.jobHandler, this.doneHandler), "client-job-" + (counter++));
+        ActorRef jobActor = this.root.actorOf(JobActor.props(headNodeRefs, this.jobHandler, this.doneHandler), "client-job-" + (counter++));
     }
 }

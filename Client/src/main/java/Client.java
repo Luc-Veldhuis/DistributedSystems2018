@@ -1,13 +1,13 @@
 public class Client {
 
-    public String headNode;
+    public String[] headNodes;
 
     /**
      * Used to  spawn an example client to test the system
      * @param headNodeUri a URI of the location of the head node it should connect to
      */
-    public Client(String headNodeUri) {
-        this.headNode = headNodeUri;
+    public Client(String[] headNodeUri) {
+        this.headNodes = headNodeUri;
     }
 
     /**
@@ -32,25 +32,35 @@ public class Client {
      * Function which executes the client, it creates a new Job to run
      */
     public void execute() {
-        Job job = new Job(this.headNode);
+        Job job = new Job(this.headNodes);
         job.setJob((SerializableSupplier<Integer>) Client::sleep);
         job.setHandler((SerializableConsumer<Integer>) Client::done);
-        Job job1 = new Job(this.headNode);
+
+        Job job1 = new Job(this.headNodes);
         job1.setJob((SerializableSupplier<Integer>) Client::sleep);
         job1.setHandler((SerializableConsumer<Integer>) Client::done);
         job1.setErrors(0,0,1);
-        Job job2 = new Job(this.headNode);
+
+        Job job2 = new Job(this.headNodes);
         job2.setJob((SerializableSupplier<Integer>) Client::sleep);
         job2.setHandler((SerializableConsumer<Integer>) Client::done);
         job2.setErrors(2,0,0);
-        Job job3 = new Job(this.headNode);
+
+        Job job3 = new Job(this.headNodes);
         job3.setJob((SerializableSupplier<Integer>) Client::sleep);
         job3.setHandler((SerializableConsumer<Integer>) Client::done);
         job3.setErrors(0,1,0);
+
+        Job job4 = new Job(this.headNodes);
+        job4.setJob((SerializableSupplier<Integer>) Client::sleep);
+        job4.setHandler((SerializableConsumer<Integer>) Client::done);
+        job4.setHeadNodeCrash(0);
         try {
-            job.run();
-            job1.run();
-            job2.run();
+            job4.run();//let the headnode crash
+            Thread.sleep(1000);
+            job.run();//Normal job
+            //job1.run(); Will crash 1 random worker node
+            //job2.run();Contains 2 byzantian errors
             //job3.run(); This one will crash ALL workers in 1 location
         } catch (Exception e) {
             System.out.println("Incomplete setup");
@@ -62,7 +72,7 @@ public class Client {
             throw new Error("Missing argument: head node url");
         }
         System.out.println(args[0]);
-        Client client = new Client(args[0]);
+        Client client = new Client(args);
         client.execute();
     }
 
