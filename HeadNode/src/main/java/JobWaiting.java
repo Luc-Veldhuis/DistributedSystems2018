@@ -1,9 +1,10 @@
 import akka.actor.ActorRef;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JobWaiting {
+public class JobWaiting implements Serializable {
 
     public JobHandler jobHander;//main job
     List<Pair<JobHandler, Integer>> jobList; //Store the job and the node on which it is run worker

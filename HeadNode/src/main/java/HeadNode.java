@@ -1,6 +1,5 @@
-import akka.actor.AbstractActor;
-import akka.actor.Props;
-import akka.actor.ActorRef;
+import akka.actor.*;
+import akka.remote.DisassociatedEvent;
 
 import java.util.List;
 
@@ -52,6 +51,8 @@ public class HeadNode extends AbstractActor {
             getSender().tell(new WorkerNode.GetRegistrationResult(workerId), this.self());
             state.workerIdCounter++;
         }
+
+        getContext().watch(getSender());//Watch the actors!
     }
 
     /**
@@ -60,6 +61,7 @@ public class HeadNode extends AbstractActor {
      */
     public void scheduleJob(JobActor.GetJobFromClient message) {
         if(this.isBoss) {
+            System.out.println("Got a new Job");
             this.scheduler.update(message.jobHandler, getSender());
         }
     }
@@ -126,9 +128,25 @@ public class HeadNode extends AbstractActor {
         if(headNodes == null) {
             return;
         }
+        System.out.println("Headnode "+headNodeId+" going down, alerting others");
         for(ActorRef node : headNodes) {
             if(!this.self().equals(node)) {
                 node.tell(new HeadNode.CrashingHeadNode(this), this.self());
+            }
+        }
+    }
+
+    public void checkHeartBeat(Terminated event) {
+        if(this.isBoss) {
+            ActorRef failingActor = event.actor();
+            System.out.println("Seen some failure at " + failingActor.path().toSerializationFormat());
+            for (Integer workerId : state.workerIdToWorkerNode.keySet()) {
+                ActorRef node = state.workerIdToWorkerNode.get(workerId);
+                if (failingActor.equals(node)) {
+                    System.out.println("Silent failure of worker: " + workerId);
+                    scheduler.removeWorker(workerId);
+                    break;
+                }
             }
         }
     }
@@ -156,6 +174,9 @@ public class HeadNode extends AbstractActor {
                 )
                 .match(
                         HeadNode.PropagateHeadNodes.class, this::updateHeadNodes
+                )
+                .match(
+                        Terminated.class, this::checkHeartBeat
                 )
                 .build();
     }

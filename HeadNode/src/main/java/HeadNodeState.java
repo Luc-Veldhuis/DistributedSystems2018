@@ -1,8 +1,9 @@
 import akka.actor.ActorRef;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class HeadNodeState {
+public class HeadNodeState implements Serializable {
 
     public int workerIdCounter = 0;
     Map<Integer, ActorRef> workerIdToWorkerNode; // look up worker node actors by their worker IDs
