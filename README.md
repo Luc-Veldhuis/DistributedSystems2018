@@ -25,9 +25,28 @@ Go to the root folder of the project and run the following commands
 gradle build
 ```
 
+To run the program, first run
+
 ```
 gradle run
 ```
+
+In the HeadNode folder
+It will output 3 urls
+
+Next start the workers by running
+
+```
+gradle run --args='url1 url2 url3'
+```
+
+In the WorkerNode folder and then in the Client folder
+
+Or use the build in run button in IntelliJ :)
+
+To see the javadoc press `Tools -> Generate Javadoc` in IntelliJ
+
+If the build somehow is failing, press the `Build -> Rebuild Project` button
 
 ## Team Members
 
