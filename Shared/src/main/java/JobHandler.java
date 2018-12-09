@@ -17,6 +17,12 @@ public class JobHandler<E> implements Serializable {
     public String parentId;
     public boolean done = false;
 
+    //For debug purpouses
+    public int numberOfByzantianFailures = 0;
+    public int numberOfFailStopFailures = 0;
+    public int numberOfFailSilentFailures = 0;
+    public int crashHeadNodeWithId = -1;
+
     /**
      * Object storing all functions to use on the head node, MUST BE SERIALIZABLE!!!
      * @param job

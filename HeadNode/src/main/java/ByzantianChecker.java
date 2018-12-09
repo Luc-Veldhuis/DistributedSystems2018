@@ -32,6 +32,9 @@ public class ByzantianChecker {
                 //found enough equal results for this result to know it is not byzantian
                 result.setResult(jobHandler.result);
                 result.setException(jobHandler.e);
+                if(counter < job.jobList.size()) {
+                    System.out.println("Found and corrected errors: "+ (job.jobList.size()-counter));
+                }
                 break;
             }
         }

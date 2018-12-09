@@ -34,4 +34,9 @@ public class Scheduler implements PolicyInterface {
     public void removeWorker(Integer workerId) {
         this.policy.removeWorker(workerId);
     }
+
+    @Override
+    public void dispatchJob() {
+        this.policy.dispatchJob();
+    }
 }

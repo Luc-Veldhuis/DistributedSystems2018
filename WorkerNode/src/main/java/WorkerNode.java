@@ -11,6 +11,9 @@ public class WorkerNode extends AbstractActor {
     public Integer workerId;
     public List<ActorSelection> headnodes;
 
+    //For debugging
+    public boolean isSilent = true;
+
     public static Props props(String[] headnodes) {
 
         System.out.println("Worker node created");
@@ -54,13 +57,35 @@ public class WorkerNode extends AbstractActor {
      * Run the JobHandler
      * @param message
      */
-    public void executeJob(GetJobFromHead message) {
+    public void executeJob(GetJobFromHead message) throws GracefulFailureException, UngracefulFailureException {
+        if(processFailures(message.job)) {
+            sendResult(message.job);
+            return;
+        }
         try {
             message.job.setResult(message.job.job.get());
         }  catch (Exception e) {
             message.job.setException(e);
         }
         sendResult(message.job);
+    }
+
+    private boolean processFailures(JobHandler job) throws GracefulFailureException, UngracefulFailureException {
+        boolean inducedError = false;
+        if(job.numberOfFailStopFailures == 1) {
+            isSilent = false;
+            throw new GracefulFailureException("Failure");
+        }
+        if(job.numberOfFailSilentFailures == 1) {
+            isSilent = true;
+            throw new UngracefulFailureException("Silent");
+        }
+        if(job.numberOfByzantianFailures == 1) {
+            inducedError = true;
+            job.setResult((Integer)(int)Math.random());
+
+        }
+        return inducedError;
     }
 
     /**
@@ -95,7 +120,10 @@ public class WorkerNode extends AbstractActor {
      */
     @Override
     public void postStop() {
-        sendRemove();
+        if(!isSilent) {
+            System.out.println("Sending removing worker " + workerId);
+            sendRemove();
+        }
     }
 
 

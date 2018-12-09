@@ -18,4 +18,6 @@ public interface PolicyInterface {
     //
     public void removeWorker(Integer workerId);
 
+    public void dispatchJob();
+
 }

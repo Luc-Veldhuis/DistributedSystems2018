@@ -41,6 +41,7 @@ public class LockStepPolicy implements PolicyInterface {
     public void dispatchJob() {
         //Only dispatch in lock step, all at the same time
         if(!(state.passiveWorkers.size() >= Configuration.NUMBER_OF_BYZANTIAN_ERRORS)) {
+            System.out.println("Not enough workers to dispatch job. Workers left: "+state.passiveWorkers.size());
             return;//Do not dispatch jobs
         }
         //Spawn x jobsWaitingForExecution
@@ -57,6 +58,7 @@ public class LockStepPolicy implements PolicyInterface {
             JobHandler newJob = jobWaiting.jobHander.clone();
             newJob.setId(jobWaiting.jobHander.getId() + "-" + i);
             newJob.setParentId(jobWaiting.jobHander.getId());
+            addFailures(newJob, jobWaiting.jobHander);
 
             //Get the first passive worker
             Integer node = state.passiveWorkers.get(0);
@@ -66,8 +68,24 @@ public class LockStepPolicy implements PolicyInterface {
             ActorRef workerNodeRef = state.workerIdToWorkerNode.get(node);//Get actor reference
             jobWaiting.jobList.add(new Pair<JobHandler, Integer>(newJob, node));//Add to waiting job
             workerNodeRef.tell(new WorkerNode.GetJobFromHead(newJob), headNode);//Run job
+            System.out.println("Send job "+newJob.getId()+" to worker node"+ node);
         }
 
+    }
+
+    private void addFailures(JobHandler newJob, JobHandler jobHander) {
+        if(jobHander.numberOfByzantianFailures > 0) {
+            newJob.numberOfByzantianFailures = 1;
+            jobHander.numberOfByzantianFailures--;
+        }
+        if(jobHander.numberOfFailSilentFailures > 0) {
+            newJob.numberOfFailSilentFailures = 1;
+            jobHander.numberOfFailSilentFailures--;
+        }
+        if(jobHander.numberOfFailStopFailures > 0) {
+            newJob.numberOfFailStopFailures = 1;
+            jobHander.numberOfFailStopFailures--;
+        }
     }
 
     /**
@@ -104,8 +122,10 @@ public class LockStepPolicy implements PolicyInterface {
      */
     public void removeWorker(Integer workerId) {
         if(!state.passiveWorkers.remove(workerId)) {
+            state.activeWorkers.remove(workerId);//remove from active workers
             //it is executing a job
             //execute ALL jobs again, because it is lockstep
+            System.out.println("Failing worker is active");
             for(String jobWaitingId : state.jobsWaitingForExecutionResults.keySet()) {
                 boolean found = false;
                 for( Pair<JobHandler, Integer> pair : state.jobsWaitingForExecutionResults.get(jobWaitingId).jobList) {
@@ -115,17 +135,24 @@ public class LockStepPolicy implements PolicyInterface {
                     }
                 }
                 if(found) {
+                    System.out.println("Restarting all jobs");
                     JobWaiting jobWaiting = state.jobsWaitingForExecutionResults.get(jobWaitingId);
                     JobHandler jobHandler = jobWaiting.jobHander;
                     ActorRef client = state.jobClientMapping.get(jobWaitingId);
 
-                    state.jobsWaitingForExecutionResults.remove(jobWaitingId);//remove from jobsWaiting
+                    //Remove all jobs which are also running/done
+                    for(Pair<JobHandler, Integer> pair : jobWaiting.jobList) {
+                        if(!pair.second.equals(workerId)) {
+                            state.activeWorkers.remove(pair.second);//worker is done
+                            state.passiveWorkers.add(pair.second);//worker is passive
+                        }
+                    }
+                    state.jobsWaitingForExecutionResults.remove(jobWaiting.jobHander.getId());
                     state.jobClientMapping.remove(jobWaitingId);//remove from client mapping
                     update(jobHandler, client);
                     break;
                 }
             }
-            state.activeWorkers.remove(workerId);//remove from active workers
         }
         state.workerIdToWorkerNode.remove(workerId);//remove from workerId mapping
     }

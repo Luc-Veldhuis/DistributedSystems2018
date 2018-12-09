@@ -1,5 +1,4 @@
 import akka.actor.*;
-import akka.remote.DisassociatedEvent;
 
 import java.util.List;
 
@@ -50,6 +49,7 @@ public class HeadNode extends AbstractActor {
             System.out.println("Registered worker " + workerId);
             getSender().tell(new WorkerNode.GetRegistrationResult(workerId), this.self());
             state.workerIdCounter++;
+            scheduler.policy.dispatchJob();//If there were no workers left, check if we can run again
         }
 
         getContext().watch(getSender());//Watch the actors!
@@ -62,7 +62,11 @@ public class HeadNode extends AbstractActor {
     public void scheduleJob(JobActor.GetJobFromClient message) {
         if(this.isBoss) {
             System.out.println("Got a new Job");
-            this.scheduler.update(message.jobHandler, getSender());
+            if(message.jobHandler.crashHeadNodeWithId == this.headNodeId) {
+                getContext().stop(this.self());
+            } else {
+                this.scheduler.update(message.jobHandler, getSender());
+            }
         }
     }
 
@@ -82,7 +86,7 @@ public class HeadNode extends AbstractActor {
      * @param message Message from the head node to the client
      */
     public void checkJob(WorkerNode.SendJobDone message) {
-        System.out.println("Received job result");
+        System.out.println("Received job "+ message.jobHandler.getId());
         if(this.isBoss) {//only do this on 1 actor
             JobWaiting jobWaiting = this.scheduler.update(message.jobHandler, message.workerNode);//get waiting jobs
             if(jobWaiting != null && jobWaiting.isDone()) {

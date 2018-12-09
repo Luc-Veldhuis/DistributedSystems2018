@@ -34,7 +34,7 @@ public class MaximizePolicy implements PolicyInterface {
             JobHandler newJob = jobWaiting.jobHander.clone();
             newJob.setId(jobWaiting.jobHander.getId() + "-" + i);
             newJob.setParentId(jobWaiting.jobHander.getId());
-
+            addFailures(newJob, jobWaiting.jobHander);
             //add to the queue
             state.jobHanderQueue.add(newJob.getId());
             state.jobHandlerForExecution.put(newJob.getId(), newJob);
@@ -70,7 +70,7 @@ public class MaximizePolicy implements PolicyInterface {
             ActorRef workerNodeRef = state.workerIdToWorkerNode.get(node);//Get actor reference
             jobWaiting.jobList.add(new Pair<JobHandler, Integer>(jobHandler, node));//Add to waiting job
             workerNodeRef.tell(new WorkerNode.GetJobFromHead(jobHandler), headNode);//Run job
-
+            System.out.println("Send job "+jobHandler.getId()+" to worker node"+ node);
         }
 
     }
@@ -98,32 +98,51 @@ public class MaximizePolicy implements PolicyInterface {
         return jobWaiting;
     }
 
+    private void addFailures(JobHandler newJob, JobHandler jobHander) {
+        if(jobHander.numberOfByzantianFailures > 0) {
+            newJob.numberOfByzantianFailures = 1;
+            jobHander.numberOfByzantianFailures--;
+        }
+        if(jobHander.numberOfFailSilentFailures > 0) {
+            newJob.numberOfFailSilentFailures = 1;
+            jobHander.numberOfFailSilentFailures--;
+        }
+        if(jobHander.numberOfFailStopFailures > 0) {
+            newJob.numberOfFailStopFailures = 1;
+            jobHander.numberOfFailStopFailures--;
+        }
+    }
+
     /**
      * Called when a worker is removed
      * @param workerId Worker to be removed
      */
     public void removeWorker(Integer workerId) {
         if(!state.passiveWorkers.remove(workerId)) {
+            state.activeWorkers.remove(workerId);//remove from active workers
             //it is executing a job
             //execute this jobs again, because it is maximize
+            System.out.println("Failing worker is active");
             for(String jobWaitingId : state.jobsWaitingForExecutionResults.keySet()) {
-                JobHandler jobHanderFailing = null;
-                for( Pair<JobHandler, Integer> pair : state.jobsWaitingForExecutionResults.get(jobWaitingId).jobList) {
+                Pair<JobHandler, Integer> pairFailing = null;
+                JobWaiting jobWaiting = state.jobsWaitingForExecutionResults.get(jobWaitingId);
+                for( Pair<JobHandler, Integer> pair : jobWaiting.jobList) {
                     if(pair.second.equals(workerId)) {
                         //Found jobHandler which failed
-                        jobHanderFailing = pair.first;
+                        pairFailing = pair;
                     }
                 }
-                if(jobHanderFailing != null) {
+                if(pairFailing != null) {
                     //run job again
-                    JobHandler newJob = jobHanderFailing.clone();
+                    jobWaiting.jobList.remove(pairFailing);
+                    System.out.println("Running job again");
+                    JobHandler newJob = pairFailing.first.clone();
                     state.jobHanderQueue.add(newJob.getId());
                     state.jobHandlerForExecution.put(newJob.getId(), newJob);
                     dispatchJob();
                     break;
                 }
             }
-            state.activeWorkers.remove(workerId);//remove from active workers
         }
         state.workerIdToWorkerNode.remove(workerId);//remove from workerId mapping
     }

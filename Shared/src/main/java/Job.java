@@ -2,9 +2,7 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSelection;
 import akka.actor.ActorSystem;
 
-import java.io.Serializable;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class Job<E> implements JobInterface<E> {
     /**
@@ -13,10 +11,10 @@ public class Job<E> implements JobInterface<E> {
      */
 
     private static int counter = 0;
+    private static ActorSystem root = ActorSystem.create("root-node");
 
     private JobHandler<E> jobHandler;
     private Consumer doneHandler;
-    ActorSystem root = ActorSystem.create("root-node");
     private ActorSelection headNodeRef;
 
     public Job(String headNode) {
@@ -48,6 +46,22 @@ public class Job<E> implements JobInterface<E> {
      */
     public void setHandler(SerializableConsumer handler) {
         this.doneHandler = handler;
+    }
+
+    /**
+     * Used for debugging
+     * @param numberOfByzantianFailures Set the number of Byzantine failures
+     * @param numberOfFailSilentFailures Set the number of Fail-Silent failures
+     * @param numberOfFailStopFailures Set the number of Fail-Stop failures
+     */
+    public void setErrors(int numberOfByzantianFailures, int numberOfFailSilentFailures, int numberOfFailStopFailures) {
+        this.jobHandler.numberOfByzantianFailures = numberOfByzantianFailures;
+        this.jobHandler.numberOfFailSilentFailures = numberOfFailSilentFailures;
+        this.jobHandler.numberOfFailStopFailures = numberOfFailStopFailures;
+    }
+
+    public void setHeadNodeCrash(int crashHeadNodeWithId) {
+        this.jobHandler.crashHeadNodeWithId = crashHeadNodeWithId;
     }
 
     /**

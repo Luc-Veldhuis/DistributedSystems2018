@@ -35,8 +35,23 @@ public class Client {
         Job job = new Job(this.headNode);
         job.setJob((SerializableSupplier<Integer>) Client::sleep);
         job.setHandler((SerializableConsumer<Integer>) Client::done);
+        Job job1 = new Job(this.headNode);
+        job1.setJob((SerializableSupplier<Integer>) Client::sleep);
+        job1.setHandler((SerializableConsumer<Integer>) Client::done);
+        job1.setErrors(0,0,1);
+        Job job2 = new Job(this.headNode);
+        job2.setJob((SerializableSupplier<Integer>) Client::sleep);
+        job2.setHandler((SerializableConsumer<Integer>) Client::done);
+        job2.setErrors(2,0,0);
+        Job job3 = new Job(this.headNode);
+        job3.setJob((SerializableSupplier<Integer>) Client::sleep);
+        job3.setHandler((SerializableConsumer<Integer>) Client::done);
+        job3.setErrors(0,1,0);
         try {
             job.run();
+            job1.run();
+            job2.run();
+            //job3.run(); This one will crash ALL workers in 1 location
         } catch (Exception e) {
             System.out.println("Incomplete setup");
         }

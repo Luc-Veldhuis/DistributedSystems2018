@@ -4,8 +4,6 @@ import akka.actor.SupervisorStrategyConfigurator;
 import akka.japi.pf.DeciderBuilder;
 import scala.concurrent.duration.Duration;
 
-//TODO remoting with heartbeats
-
 /**
  * Implemented by Akka to have several different policies for actions
  */

@@ -35,7 +35,9 @@ public class JobActor<E> extends AbstractActor {
      * @throws Exception possible error from the Job
      */
     public void receivedJob(GetJobFromHead message) throws Exception {
+        System.out.println("Received response");
         this.doneHander.accept(message.jobHandler.getResult());
+        getContext().stop(self());//Prevent having a lot of never used again actors
     }
 
     @Override
