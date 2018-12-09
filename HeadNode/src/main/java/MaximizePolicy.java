@@ -59,7 +59,6 @@ public class MaximizePolicy implements PolicyInterface {
             }
             //Get JobHander and remove from mapping
             JobHandler jobHandler = state.jobHandlerForExecution.get(jobHandlerId);
-            state.jobHandlerForExecution.remove(jobHandlerId);
             //And corresponding jobWaiting
             JobWaiting jobWaiting = state.jobsWaitingForExecutionResults.get(jobHandler.getParentId());
 
@@ -90,6 +89,9 @@ public class MaximizePolicy implements PolicyInterface {
         state.passiveWorkers.add(workerNode.workerId);//worker is passive
         if(jobWaiting.isDone()) {
             state.jobsWaitingForExecutionResults.remove(jobWaiting.jobHander.getId());
+            for(Pair<JobHandler, Integer> pair : jobWaiting.jobList) {
+                state.jobHandlerForExecution.remove(pair.first.getParentId());//remove later in case a worker crashes
+            }
         }
         //Only after added workers to active, call dispatcher
         dispatchJob();//Get first job in FIFO manner
