@@ -44,7 +44,7 @@ public class LockStepPolicy implements PolicyInterface {
     public void dispatchJob() {
         //Only dispatch in lock step, all at the same time
         if(!(state.passiveWorkers.size() >= Configuration.NUMBER_OF_BYZANTIAN_ERRORS)) {
-            System.out.println("Not enough workers to dispatch job. Workers left: "+state.passiveWorkers.size());
+            //System.out.println("Not enough workers to dispatch job. Workers left: "+state.passiveWorkers.size());
             return;//Do not dispatch jobs
         }
         //Spawn x jobsWaitingForExecution
@@ -71,7 +71,7 @@ public class LockStepPolicy implements PolicyInterface {
             ActorRef workerNodeRef = state.workerIdToWorkerNode.get(node);//Get actor reference
             jobWaiting.jobList.add(new Pair<JobHandler, Integer>(newJob, node));//Add to waiting job
             workerNodeRef.tell(new WorkerNode.GetJobFromHead(newJob), headNode);//Run job
-            System.out.println("Send job "+newJob.getId()+" to worker node"+ node);
+            log.info("Send job "+newJob.getId()+" to worker node "+ node);
         }
 
     }

@@ -48,7 +48,7 @@ public class SameMachinePolicy implements PolicyInterface {
         ActorRef workerNodeRef = state.workerIdToWorkerNode.get(node);//Get actor reference
         jobWaiting.jobList.add(new Pair<JobHandler, Integer>(newJob, node));//Add to waiting job
         workerNodeRef.tell(new WorkerNode.GetJobFromHead(newJob), headNode);//Run job
-        System.out.println("Send job "+newJob.getId()+" to worker node"+ node);
+        log.info("Send job "+newJob.getId()+" to worker node "+ node);
     }
 
     /**
@@ -96,6 +96,7 @@ public class SameMachinePolicy implements PolicyInterface {
         } else {
             dispatchSingleJob(jobWaiting, workerNode.workerId);
         }
+        dispatchJob();
         return jobWaiting;
     }
 
