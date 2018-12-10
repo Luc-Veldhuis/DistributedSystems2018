@@ -1,9 +1,12 @@
 import akka.actor.*;
+import akka.event.Logging;
+import akka.event.LoggingAdapter;
 
 import java.io.Serializable;
 import java.util.List;
 
 public class HeadNode extends AbstractActor {
+    LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
     public final Integer headNodeId;
     public List<ActorRef> headNodes;
@@ -22,20 +25,19 @@ public class HeadNode extends AbstractActor {
      * @return returns new Actor
      */
     public static Props props(Integer headNodeId) {
-        System.out.println("Head node created");
         return Props.create(HeadNode.class, () -> new HeadNode(headNodeId));
     }
 
     public HeadNode(Integer headNodeId) {
         this.headNodeId = headNodeId;
-        System.out.println("headNodeId: " + headNodeId);
+        log.info("Headnode " + headNodeId+" created");
         if(headNodeId == 0){
-            System.out.println("Head node "+headNodeId+" is the boss");
+            log.info("Headnode " + headNodeId+" is the boss");
             this.isBoss = true;
+            this.state = new HeadNodeState();
+            this.scheduler = new Scheduler(this.state, this.self(), this.log);
+            this.failCheck = new ByzantianChecker(this.state);
         }
-        this.state = new HeadNodeState();
-        this.scheduler = new Scheduler(this.state, this.self());
-        this.failCheck = new ByzantianChecker(this.state);
     }
 
     /**
@@ -47,7 +49,7 @@ public class HeadNode extends AbstractActor {
             int workerId = state.workerIdCounter;
             state.workerIdToWorkerNode.put(workerId, message.workerNode.self);
             state.passiveWorkers.add(workerId);
-            System.out.println("Registered worker " + workerId);
+            log.info("Headnode " + headNodeId+" registered worker " + workerId);
             getSender().tell(new WorkerNode.GetRegistrationResult(workerId), this.self());
             state.workerIdCounter++;
             scheduler.policy.dispatchJob();//If there were no workers left, check if we can run again
@@ -62,7 +64,7 @@ public class HeadNode extends AbstractActor {
      */
     public void scheduleJob(JobActor.GetJobFromClient message) {
         if(this.isBoss) {
-            System.out.println("Got a new Job at "+headNodeId);
+            log.info("Headnode " + headNodeId+" got new job");
             if(message.jobHandler.crashHeadNodeWithId == this.headNodeId) {
                 getContext().stop(this.self());
             } else {
@@ -77,7 +79,7 @@ public class HeadNode extends AbstractActor {
      */
     public void removeWorker(WorkerNode.RemoveWorkerFromHead message) {
         if(this.isBoss) {
-            System.out.println("Removed worker " + message.workerNode.workerId);
+            log.info("Headnode " + headNodeId+" removed worker " + message.workerNode.workerId);
             scheduler.removeWorker(message.workerNode.workerId);
         }
     }
@@ -88,11 +90,12 @@ public class HeadNode extends AbstractActor {
      */
     public void checkJob(WorkerNode.SendJobDone message) {
         if(this.isBoss) {//only do this on 1 actor
+            log.info("Headnode "+headNodeId+" received result of job "+message.jobHandler.getId());
             JobWaiting jobWaiting = this.scheduler.update(message.jobHandler, message.workerNode);//get waiting jobs
             if(jobWaiting != null && jobWaiting.isDone()) {
-                System.out.println("All jobs received");
+                log.info("Headnode " + headNodeId+" done with job "+message.jobHandler.getParentId());
                 JobHandler jobHander = this.failCheck.check(jobWaiting);
-                System.out.println("Job checked");
+                log.info("Headnode " + headNodeId+" job "+jobHander.getId()+" checked");
                 ActorRef actor = state.jobClientMapping.get(jobHander.getId());
                 actor.tell(new JobActor.GetJobFromHead(jobHander), this.self());
             }
@@ -108,9 +111,9 @@ public class HeadNode extends AbstractActor {
         this.state = message.headNode.state;
         failingNodes++;
         if(failingNodes == this.headNodeId) {//because we use incremental ids, this works, might be more cleverly done
-            System.out.println("Head node "+headNodeId+" is the boss");
+            log.info("Headnode "+headNodeId+" is the boss after update");
             this.isBoss = true;
-            this.scheduler = new Scheduler(this.state, this.self());
+            this.scheduler = new Scheduler(this.state, this.self(), this.log);
             this.failCheck = new ByzantianChecker(this.state);
         }
     }
@@ -133,7 +136,7 @@ public class HeadNode extends AbstractActor {
         if(headNodes == null) {
             return;
         }
-        System.out.println("Headnode "+headNodeId+" going down, alerting others");
+        log.info("Headnode "+headNodeId+" going down, alerting others");
         for(ActorRef node : headNodes) {
             if(!this.self().equals(node)) {
                 node.tell(new HeadNode.CrashingHeadNode(this), this.self());
@@ -144,11 +147,11 @@ public class HeadNode extends AbstractActor {
     public void checkHeartBeat(Terminated event) {
         if(this.isBoss) {
             ActorRef failingActor = event.actor();
-            System.out.println("Seen some failure at " + failingActor.path().toSerializationFormat());
+            log.info("Headnode "+headNodeId+" seen some failure at location " + failingActor.path().toSerializationFormat());
             for (Integer workerId : state.workerIdToWorkerNode.keySet()) {
                 ActorRef node = state.workerIdToWorkerNode.get(workerId);
                 if (failingActor.equals(node)) {
-                    System.out.println("Silent failure of worker: " + workerId);
+                    log.info("Headnode "+headNodeId+" detected silent failure of worker: " + workerId);
                     scheduler.removeWorker(workerId);
                     break;
                 }

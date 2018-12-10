@@ -1,4 +1,5 @@
 import akka.actor.ActorRef;
+import akka.event.LoggingAdapter;
 
 /**
  * Lock step policy, releases worker only after all corresponding jobs are done
@@ -9,13 +10,15 @@ public class LockStepPolicy implements PolicyInterface {
     int idCounter = 0;
     ActorRef headNode;
     HeadNodeState state;
+    LoggingAdapter log;
 
-    LockStepPolicy(HeadNodeState state, ActorRef headNode) {
+    LockStepPolicy(HeadNodeState state, ActorRef headNode, LoggingAdapter log) {
         if(state == null || headNode == null) {
             throw new InstantiationError();
         }
         this.state = state;
         this.headNode = headNode;
+        this.log = log;
     }
     /**
      * Used to update the schedule when a client job comes in
@@ -125,7 +128,7 @@ public class LockStepPolicy implements PolicyInterface {
             state.activeWorkers.remove(workerId);//remove from active workers
             //it is executing a job
             //execute ALL jobs again, because it is lockstep
-            System.out.println("Failing worker is active");
+            System.out.println("Failing worker "+workerId+ " is active");
             for(String jobWaitingId : state.jobsWaitingForExecutionResults.keySet()) {
                 boolean found = false;
                 for( Pair<JobHandler, Integer> pair : state.jobsWaitingForExecutionResults.get(jobWaitingId).jobList) {
@@ -135,7 +138,7 @@ public class LockStepPolicy implements PolicyInterface {
                     }
                 }
                 if(found) {
-                    System.out.println("Restarting all jobs");
+                    System.out.println("Restarting all jobs "+jobWaitingId);
                     JobWaiting jobWaiting = state.jobsWaitingForExecutionResults.get(jobWaitingId);
                     JobHandler jobHandler = jobWaiting.jobHander;
                     ActorRef client = state.jobClientMapping.get(jobWaitingId);

@@ -1,4 +1,5 @@
 import akka.actor.ActorRef;
+import akka.event.LoggingAdapter;
 
 /**
  * Lock step policy, releases worker only after all corresponding jobs are done
@@ -9,13 +10,15 @@ public class MaximizePolicy implements PolicyInterface {
     int idCounter = 0;
     ActorRef headNode;
     HeadNodeState state;
+    LoggingAdapter log;
 
-    MaximizePolicy(HeadNodeState state, ActorRef headNode) {
+    MaximizePolicy(HeadNodeState state, ActorRef headNode, LoggingAdapter log) {
         if(state == null || headNode == null) {
             throw new InstantiationError();
         }
         this.state = state;
         this.headNode = headNode;
+        this.log = log;
     }
     /**
      * Used to update the schedule when a client job comes in
@@ -70,7 +73,7 @@ public class MaximizePolicy implements PolicyInterface {
             ActorRef workerNodeRef = state.workerIdToWorkerNode.get(node);//Get actor reference
             jobWaiting.jobList.add(new Pair<JobHandler, Integer>(jobHandler, node));//Add to waiting job
             workerNodeRef.tell(new WorkerNode.GetJobFromHead(jobHandler), headNode);//Run job
-            System.out.println("Send job "+jobHandler.getId()+" to worker node"+ node);
+            log.info("Headnode send job "+jobHandler.getId()+" to worker node "+ node);
         }
 
     }
@@ -122,7 +125,7 @@ public class MaximizePolicy implements PolicyInterface {
             state.activeWorkers.remove(workerId);//remove from active workers
             //it is executing a job
             //execute this jobs again, because it is maximize
-            System.out.println("Failing worker is active");
+            log.info("Failing worker "+workerId+ " is active");
             for(String jobWaitingId : state.jobsWaitingForExecutionResults.keySet()) {
                 Pair<JobHandler, Integer> pairFailing = null;
                 JobWaiting jobWaiting = state.jobsWaitingForExecutionResults.get(jobWaitingId);
@@ -135,8 +138,8 @@ public class MaximizePolicy implements PolicyInterface {
                 if(pairFailing != null) {
                     //run job again
                     jobWaiting.jobList.remove(pairFailing);
-                    System.out.println("Running job again");
                     JobHandler newJob = pairFailing.first.clone();
+                    log.info("Running job "+newJob.getId()+" again");
                     state.jobHanderQueue.add(newJob.getId());
                     state.jobHandlerForExecution.put(newJob.getId(), newJob);
                     dispatchJob();

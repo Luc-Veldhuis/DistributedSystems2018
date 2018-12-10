@@ -1,4 +1,5 @@
 import akka.actor.ActorRef;
+import akka.event.LoggingAdapter;
 
 /**
  * Lock step policy, releases worker only after all corresponding jobs are done
@@ -9,13 +10,15 @@ public class SameMachinePolicy implements PolicyInterface {
     int idCounter = 0;
     ActorRef headNode;
     HeadNodeState state;
+    LoggingAdapter log;
 
-    SameMachinePolicy(HeadNodeState state, ActorRef headNode) {
+    SameMachinePolicy(HeadNodeState state, ActorRef headNode, LoggingAdapter log) {
         if(state == null || headNode == null) {
             throw new InstantiationError();
         }
         this.state = state;
         this.headNode = headNode;
+        this.log = log;
     }
     /**
      * Used to update the schedule when a client job comes in
@@ -120,7 +123,7 @@ public class SameMachinePolicy implements PolicyInterface {
             state.activeWorkers.remove(workerId);//remove from active workers
             //it is executing a job
             //execute this jobs again, because it is maximize
-            System.out.println("Failing worker is active");
+            log.info("Failing worker "+workerId+ " is active");
             for(String jobWaitingId : state.jobsWaitingForExecutionResults.keySet()) {
                 boolean found = false;
                 JobWaiting jobWaiting = state.jobsWaitingForExecutionResults.get(jobWaitingId);
@@ -132,11 +135,11 @@ public class SameMachinePolicy implements PolicyInterface {
                 }
                 if(found) {
                     //Delete all job data
-                    System.out.println("Running job again");
                     ActorRef client = state.jobClientMapping.get(jobWaiting.jobHander.getId());
                     state.jobClientMapping.remove(jobWaiting.jobHander.getId());
                     state.jobsWaitingForExecutionResults.remove(jobWaitingId);
                     //restart job
+                    log.info("Running job "+jobWaiting.jobHander.getId()+" again");
                     update(jobWaiting.jobHander,client);
                     break;
                 }

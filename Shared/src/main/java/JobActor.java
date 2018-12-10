@@ -2,12 +2,14 @@ import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSelection;
 import akka.actor.Props;
+import akka.event.Logging;
+import akka.event.LoggingAdapter;
 
 import java.io.Serializable;
 import java.util.function.Consumer;
 
 public class JobActor<E> extends AbstractActor {
-
+    LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
     ActorSelection[] headNodeRefs;
     Consumer doneHander;
 
@@ -26,6 +28,7 @@ public class JobActor<E> extends AbstractActor {
     public JobActor(ActorSelection[] headNodeRefs, JobHandler job, Consumer doneHander) {
         this.headNodeRefs = headNodeRefs;
         this.doneHander = doneHander;
+        log.info("Job "+this+" created at client at " + System.currentTimeMillis() );
         for(ActorSelection headNodeRef: headNodeRefs) {
             headNodeRef.tell(new GetJobFromClient(job), this.self());
         }
@@ -37,7 +40,7 @@ public class JobActor<E> extends AbstractActor {
      * @throws Exception possible error from the Job
      */
     public void receivedJob(GetJobFromHead message) throws Exception {
-        System.out.println("Received response");
+        log.info("Job "+this+" with id "+ message.jobHandler.getId()+ " at " + System.currentTimeMillis() );
         this.doneHander.accept(message.jobHandler.getResult());
         getContext().stop(self());//Prevent having a lot of never used again actors
     }

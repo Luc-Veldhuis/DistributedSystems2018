@@ -2,6 +2,8 @@ import akka.actor.AbstractActor;
 import akka.actor.ActorSelection;
 import akka.actor.Props;
 import akka.actor.ActorRef;
+import akka.event.Logging;
+import akka.event.LoggingAdapter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,12 +11,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class WorkerNode extends AbstractActor {
+    LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
     public Integer workerId;
     public List<ActorSelection> headnodes;
 
     public static Props props(String[] headnodes) {
-
-        System.out.println("Worker node created");
         return Props.create(WorkerNode.class, () -> new WorkerNode(headnodes));
     }
 
@@ -23,6 +24,7 @@ public class WorkerNode extends AbstractActor {
      * @param headnodes list of headnode urls
      */
     public WorkerNode(String[] headnodes) {
+        log.info("Workernode created");
         this.headnodes = new ArrayList<>();
         for(String node : headnodes) {
             this.headnodes.add(getContext().actorSelection(node));
@@ -49,6 +51,7 @@ public class WorkerNode extends AbstractActor {
         for(ActorSelection node:headnodes) {
             node.tell(new SendJobDone(job,createMessageData()), this.self());
         }
+        log.info("Worker " +workerId+" "+"done with job "+job.getId()+" at "+System.currentTimeMillis());
     }
 
     /**
@@ -56,6 +59,7 @@ public class WorkerNode extends AbstractActor {
      * @param message
      */
     public void executeJob(GetJobFromHead message) throws GracefulFailureException, UngracefulFailureException {
+        log.info("Worker " +workerId+" "+"received job "+message.job.getId()+" at "+System.currentTimeMillis());
         if(processFailures(message.job)) {
             sendResult(message.job);
             return;
@@ -104,7 +108,7 @@ public class WorkerNode extends AbstractActor {
      */
     public void getAssignedId(GetRegistrationResult message) {
         this.workerId = message.workerId;
-        System.out.println("workerNodeId: " + workerId);
+        log.info("Workernode " + workerId + " registered");
     }
 
     /**
@@ -117,9 +121,15 @@ public class WorkerNode extends AbstractActor {
     }
 
     @Override
+    public void postStop() throws Exception {
+        log.info("Worker " +workerId+" "+"silent failing at "+System.currentTimeMillis());
+        super.postStop();
+    }
+
+    @Override
     public void preRestart(Throwable reason, Optional<Object> message) throws Exception {
-        System.out.println("Sending removing worker " + workerId);
         sendRemove();
+        log.info("Worker " +workerId+" "+"stop failing at "+System.currentTimeMillis());
         super.preRestart(reason, message);
     }
 
