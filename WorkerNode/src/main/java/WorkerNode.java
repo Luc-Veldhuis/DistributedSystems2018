@@ -59,6 +59,10 @@ public class WorkerNode extends AbstractActor {
      * @param message
      */
     public void executeJob(GetJobFromHead message) throws GracefulFailureException, UngracefulFailureException {
+        if(workerId == null) {
+            //discard message, not initialized
+            return;
+        }
         log.info("Worker " +workerId+" "+"received job "+message.job.getId()+" at "+System.currentTimeMillis());
         if(processFailures(message.job)) {
             sendResult(message.job);
@@ -109,6 +113,9 @@ public class WorkerNode extends AbstractActor {
     public void getAssignedId(GetRegistrationResult message) {
         this.workerId = message.workerId;
         log.info("Workernode " + workerId + " registered");
+        for(ActorSelection node:headnodes) {
+            node.tell(new ConfirmRegistrationResult(workerId), this.self());
+        }
     }
 
     /**
@@ -165,6 +172,17 @@ public class WorkerNode extends AbstractActor {
         Integer workerId;
 
         public GetRegistrationResult(Integer id) {
+            this.workerId = id;
+        }
+    }
+
+    /**
+     * Message send WorkerNode to confirm it can receive responses
+     */
+    public static class ConfirmRegistrationResult implements Serializable {
+        Integer workerId;
+
+        public ConfirmRegistrationResult(Integer id) {
             this.workerId = id;
         }
     }

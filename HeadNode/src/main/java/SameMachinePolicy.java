@@ -129,7 +129,7 @@ public class SameMachinePolicy implements PolicyInterface {
                 boolean found = false;
                 JobWaiting jobWaiting = state.jobsWaitingForExecutionResults.get(jobWaitingId);
                 for( Pair<JobHandler, Integer> pair : jobWaiting.jobList) {
-                    if(pair.second.equals(workerId)) {
+                    if(pair.second.equals(workerId) && !pair.first.done) {
                         //Found jobHandler which failed
                         found = true;
                     }

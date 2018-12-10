@@ -128,17 +128,17 @@ public class LockStepPolicy implements PolicyInterface {
             state.activeWorkers.remove(workerId);//remove from active workers
             //it is executing a job
             //execute ALL jobs again, because it is lockstep
-            System.out.println("Failing worker "+workerId+ " is active");
+            log.info("Failing worker "+workerId+ " is active");
             for(String jobWaitingId : state.jobsWaitingForExecutionResults.keySet()) {
                 boolean found = false;
                 for( Pair<JobHandler, Integer> pair : state.jobsWaitingForExecutionResults.get(jobWaitingId).jobList) {
-                    if(pair.second.equals(workerId)) {
+                    if(pair.second.equals(workerId) && !pair.first.done) {
                         //Found jobHandler which failed
                         found = true;
                     }
                 }
                 if(found) {
-                    System.out.println("Restarting all jobs "+jobWaitingId);
+                    log.info("Restarting all jobs "+jobWaitingId);
                     JobWaiting jobWaiting = state.jobsWaitingForExecutionResults.get(jobWaitingId);
                     JobHandler jobHandler = jobWaiting.jobHander;
                     ActorRef client = state.jobClientMapping.get(jobWaitingId);

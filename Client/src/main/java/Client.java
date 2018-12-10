@@ -36,7 +36,7 @@ public class Client {
             Job job = new Job(this.headNodes);
             job.setJob((SerializableSupplier<Integer>) Client::sleep);
             job.setHandler((SerializableConsumer<Integer>) Client::done);
-
+            job.setErrors(0,0,2);
         /*Job job1 = new Job(this.headNodes);
         job1.setJob((SerializableSupplier<Integer>) Client::sleep);
         job1.setHandler((SerializableConsumer<Integer>) Client::done);

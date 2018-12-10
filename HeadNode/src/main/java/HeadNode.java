@@ -47,15 +47,25 @@ public class HeadNode extends AbstractActor {
     public void registerWorker(WorkerNode.RegisterWorkerToHead message) {
         if(this.isBoss) {
             int workerId = state.workerIdCounter;
-            state.workerIdToWorkerNode.put(workerId, message.workerNode.self);
-            state.passiveWorkers.add(workerId);
             log.info("Headnode " + headNodeId+" registered worker " + workerId);
             getSender().tell(new WorkerNode.GetRegistrationResult(workerId), this.self());
             state.workerIdCounter++;
-            scheduler.policy.dispatchJob();//If there were no workers left, check if we can run again
         }
 
         getContext().watch(getSender());//Watch the actors!
+    }
+
+    /**
+     * Call used to confirm registration from WorkerNode to the HeadNode
+     * @param message the register confirmation message
+     */
+    public void confirmRegistration(WorkerNode.ConfirmRegistrationResult message) {
+        if(this.isBoss) {
+            state.passiveWorkers.add(message.workerId);
+            state.workerIdToWorkerNode.put(message.workerId, getSender());
+            log.info("Headnode " + headNodeId+" confirmed registered worker " + message.workerId);
+            scheduler.policy.dispatchJob();//If there were no workers left, check if we can run again
+        }
     }
 
     /**
@@ -115,6 +125,10 @@ public class HeadNode extends AbstractActor {
             this.isBoss = true;
             this.scheduler = new Scheduler(this.state, this.self(), this.log);
             this.failCheck = new ByzantianChecker(this.state);
+            //watch all actors
+            for(Integer workerId:state.activeWorkers) {
+                getContext().watch(state.workerIdToWorkerNode.get(workerId));
+            }
         }
     }
 
@@ -167,6 +181,9 @@ public class HeadNode extends AbstractActor {
                 })
                 .match(
                         WorkerNode.RegisterWorkerToHead.class, this::registerWorker
+                )
+                .match(
+                        WorkerNode.ConfirmRegistrationResult.class, this::confirmRegistration
                 )
                 .match(
                         WorkerNode.RemoveWorkerFromHead.class, this::removeWorker
