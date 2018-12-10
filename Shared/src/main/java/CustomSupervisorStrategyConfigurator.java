@@ -12,7 +12,8 @@ public class CustomSupervisorStrategyConfigurator implements SupervisorStrategyC
     private static SupervisorStrategy strategy =
             new OneForOneStrategy(-1, Duration.Inf(),
                     DeciderBuilder
-                            .match(GracefulFailureException.class, e -> SupervisorStrategy.stop())
+                            .match(GracefulFailureException.class, e -> SupervisorStrategy.restart())
+                            .match(UngracefulFailureException.class, e -> SupervisorStrategy.stop())
                             .matchAny(o -> SupervisorStrategy.escalate())
                             .build());
 

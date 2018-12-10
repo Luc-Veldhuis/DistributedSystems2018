@@ -6,13 +6,11 @@ import akka.actor.ActorRef;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class WorkerNode extends AbstractActor {
     public Integer workerId;
     public List<ActorSelection> headnodes;
-
-    //For debugging
-    public boolean isSilent = true;
 
     public static Props props(String[] headnodes) {
 
@@ -73,12 +71,15 @@ public class WorkerNode extends AbstractActor {
     private boolean processFailures(JobHandler job) throws GracefulFailureException, UngracefulFailureException {
         boolean inducedError = false;
         if(job.numberOfFailStopFailures == 1) {
-            isSilent = false;
-            throw new GracefulFailureException("Failure");
+            throw new GracefulFailureException("Failure");//Restart node
         }
         if(job.numberOfFailSilentFailures == 1) {
-            isSilent = true;
-            throw new UngracefulFailureException("Silent");
+            try {
+                Thread.sleep(5000);//Simulate timeout
+            } catch (InterruptedException e) {
+                System.out.println("Sleep interrupted");
+            }
+            throw new UngracefulFailureException("Silent");//Stop node
         }
         if(job.numberOfByzantianFailures == 1) {
             inducedError = true;
@@ -115,17 +116,12 @@ public class WorkerNode extends AbstractActor {
         }
     }
 
-    /**
-     * Called when the Actor goes woen
-     */
     @Override
-    public void postStop() {
-        if(!isSilent) {
-            System.out.println("Sending removing worker " + workerId);
-            sendRemove();
-        }
+    public void preRestart(Throwable reason, Optional<Object> message) throws Exception {
+        System.out.println("Sending removing worker " + workerId);
+        sendRemove();
+        super.preRestart(reason, message);
     }
-
 
     public Receive createReceive() {
         return receiveBuilder()

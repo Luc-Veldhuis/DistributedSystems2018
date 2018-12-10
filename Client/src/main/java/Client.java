@@ -59,9 +59,9 @@ public class Client {
             //job4.run();//let the headnode crash
             //Thread.sleep(1000);
             job.run();//Normal job
-            job1.run(); //Will crash 1 random worker node
+            job1.run(); //Will crash 1 random worker node and restart it
             job2.run(); //Contains 2 byzantian errors
-            //job3.run(); //This one will crash ALL workers in 1 location
+            job3.run(); //This one will crash the worker with simulated timeout
         } catch (Exception e) {
             System.out.println("Incomplete setup");
         }
