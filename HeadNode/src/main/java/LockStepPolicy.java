@@ -4,7 +4,7 @@ import akka.event.LoggingAdapter;
 /**
  * Lock step policy, releases worker only after all corresponding jobs are done
  */
-public class LockStepPolicy implements PolicyInterface {
+public class LockStepPolicy extends Policy {
 
     //Number every JobHandler
     int idCounter = 0;
@@ -28,7 +28,9 @@ public class LockStepPolicy implements PolicyInterface {
     @Override
     public void update(JobHandler jobHandler, ActorRef jobActor) {
         //added
+        addRandomFailures(jobHandler);
         jobHandler.setId(idCounter+"");
+        log.info("Job "+ jobHandler.getId() + " has errors: "+ jobHandler.numberOfByzantianFailures + " "+ jobHandler.numberOfFailStopFailures + " "+ jobHandler.numberOfFailSilentFailures);
         JobWaiting jobWaiting = new JobWaiting(jobHandler);
         state.jobClientMapping.put(jobWaiting.jobHander.getId(), jobActor);
         state.jobsWaitingForExecutionResults.put(jobWaiting.jobHander.getId(),jobWaiting);
@@ -74,21 +76,6 @@ public class LockStepPolicy implements PolicyInterface {
             log.info("Send job "+newJob.getId()+" to worker node "+ node);
         }
 
-    }
-
-    private void addFailures(JobHandler newJob, JobHandler jobHander) {
-        if(jobHander.numberOfByzantianFailures > 0) {
-            newJob.numberOfByzantianFailures = 1;
-            jobHander.numberOfByzantianFailures--;
-        }
-        if(jobHander.numberOfFailSilentFailures > 0) {
-            newJob.numberOfFailSilentFailures = 1;
-            jobHander.numberOfFailSilentFailures--;
-        }
-        if(jobHander.numberOfFailStopFailures > 0) {
-            newJob.numberOfFailStopFailures = 1;
-            jobHander.numberOfFailStopFailures--;
-        }
     }
 
     /**

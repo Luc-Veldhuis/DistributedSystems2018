@@ -1,9 +1,9 @@
 import akka.actor.ActorRef;
 import akka.event.LoggingAdapter;
 
-public class Scheduler implements PolicyInterface {
+public class Scheduler{
 
-    public PolicyInterface policy;
+    public Policy policy;
     /**
      * Wrapper class for the policy, choise of policy should be made here.
      */
@@ -24,22 +24,18 @@ public class Scheduler implements PolicyInterface {
         }
     }
 
-    @Override
     public void update(JobHandler jobHandler, ActorRef jobActor) {
         this.policy.update(jobHandler, jobActor);
     }
 
-    @Override
     public JobWaiting update(JobHandler jobHandler, WorkerData worker) {
         return this.policy.update(jobHandler, worker);
     }
 
-    @Override
     public void removeWorker(Integer workerId) {
         this.policy.removeWorker(workerId);
     }
 
-    @Override
     public void dispatchJob() {
         this.policy.dispatchJob();
     }

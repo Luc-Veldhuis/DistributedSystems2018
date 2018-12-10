@@ -76,23 +76,34 @@ public class WorkerNode extends AbstractActor {
         sendResult(message.job);
     }
 
+    private void simulateTiming(long timeToWait) {
+        long startTime;
+        long thisTime = System.currentTimeMillis();
+        startTime = thisTime;
+        while(true) {
+            if ((thisTime - startTime) <= timeToWait) {
+                thisTime = System.currentTimeMillis();;
+            } else {
+                return;
+            }
+        }
+    }
+
     private boolean processFailures(JobHandler job) throws GracefulFailureException, UngracefulFailureException {
         boolean inducedError = false;
+        if(job.numberOfByzantianFailures != 0 || job.numberOfFailSilentFailures != 0 || job.numberOfFailStopFailures != 0) {
+            simulateTiming((long)(Math.random()*Configuration.MAXIMUM_WAITING_TIME));//Simulate failure during the job
+            inducedError = true;
+        }
         if(job.numberOfFailStopFailures == 1) {
             throw new GracefulFailureException("Failure");//Restart node
         }
         if(job.numberOfFailSilentFailures == 1) {
-            try {
-                Thread.sleep(5000);//Simulate timeout
-            } catch (InterruptedException e) {
-                System.out.println("Sleep interrupted");
-            }
+            simulateTiming(Configuration.TIMEOUT_DETECTION_TIME);
             throw new UngracefulFailureException("Silent");//Stop node
         }
         if(job.numberOfByzantianFailures == 1) {
-            inducedError = true;
-            job.setResult((Integer)(int)Math.random());
-
+            job.setResult((Integer)(int)(Math.random()*1000));//Random value
         }
         return inducedError;
     }
