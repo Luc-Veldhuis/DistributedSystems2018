@@ -14,6 +14,7 @@ public class WorkerNode extends AbstractActor {
     LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
     public Integer workerId;
     public List<ActorSelection> headnodes;
+    public boolean silentFailing = false;
 
     public static Props props(String[] headnodes) {
         return Props.create(WorkerNode.class, () -> new WorkerNode(headnodes));
@@ -100,6 +101,7 @@ public class WorkerNode extends AbstractActor {
         }
         if(job.numberOfFailSilentFailures == 1) {
             simulateTiming(Configuration.TIMEOUT_DETECTION_TIME);
+            silentFailing = true;
             throw new UngracefulFailureException("Silent");//Stop node
         }
         if(job.numberOfByzantianFailures == 1) {
@@ -139,14 +141,10 @@ public class WorkerNode extends AbstractActor {
     }
 
     @Override
-    public void postStop() throws Exception {
-        log.info("Worker " +workerId+" "+"silent failing at "+System.currentTimeMillis());
-        super.postStop();
-    }
-
-    @Override
     public void preRestart(Throwable reason, Optional<Object> message) throws Exception {
-        sendRemove();
+        if(!this.silentFailing) {
+            sendRemove();
+        }
         log.info("Worker " +workerId+" "+"stop failing at "+System.currentTimeMillis());
         super.preRestart(reason, message);
     }

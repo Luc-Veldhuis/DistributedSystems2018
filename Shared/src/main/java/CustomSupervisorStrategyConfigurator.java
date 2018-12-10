@@ -13,7 +13,7 @@ public class CustomSupervisorStrategyConfigurator implements SupervisorStrategyC
             new OneForOneStrategy(-1, Duration.Inf(),
                     DeciderBuilder
                             .match(GracefulFailureException.class, e -> SupervisorStrategy.restart())
-                            .match(UngracefulFailureException.class, e -> SupervisorStrategy.stop())
+                            .match(UngracefulFailureException.class, e -> SupervisorStrategy.restart())
                             .matchAny(o -> SupervisorStrategy.escalate())
                             .build());
 
