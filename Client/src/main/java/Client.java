@@ -56,12 +56,12 @@ public class Client {
         job4.setHandler((SerializableConsumer<Integer>) Client::done);
         job4.setHeadNodeCrash(0);
         try {
-            job4.run();//let the headnode crash
-            Thread.sleep(1000);
+            //job4.run();//let the headnode crash
+            //Thread.sleep(1000);
             job.run();//Normal job
-            //job1.run(); Will crash 1 random worker node
-            //job2.run();Contains 2 byzantian errors
-            //job3.run(); This one will crash ALL workers in 1 location
+            job1.run(); //Will crash 1 random worker node
+            job2.run(); //Contains 2 byzantian errors
+            //job3.run(); //This one will crash ALL workers in 1 location
         } catch (Exception e) {
             System.out.println("Incomplete setup");
         }

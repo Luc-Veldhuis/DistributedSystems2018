@@ -14,7 +14,9 @@ public class Scheduler implements PolicyInterface {
         }
         else if(Configuration.policy == Configuration.Policies.MAXIMIZE) {
             this.policy = new MaximizePolicy(state, headNode);
-            System.out.println("Using maximize policy");
+            System.out.println("Using same machine policy");
+        }else if (Configuration.policy == Configuration.Policies.SAME_MACHINE) {
+            this.policy = new SameMachinePolicy(state, headNode);
         } else {
             throw new Error("Unknown policy in configuration file");
         }
