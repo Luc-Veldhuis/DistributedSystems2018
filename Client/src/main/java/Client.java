@@ -32,11 +32,12 @@ public class Client {
      * Function which executes the client, it creates a new Job to run
      */
     public void execute() {
-        Job job = new Job(this.headNodes);
-        job.setJob((SerializableSupplier<Integer>) Client::sleep);
-        job.setHandler((SerializableConsumer<Integer>) Client::done);
+        for(int i = 0; i < 100; i++ ) {
+            Job job = new Job(this.headNodes);
+            job.setJob((SerializableSupplier<Integer>) Client::sleep);
+            job.setHandler((SerializableConsumer<Integer>) Client::done);
 
-        Job job1 = new Job(this.headNodes);
+        /*Job job1 = new Job(this.headNodes);
         job1.setJob((SerializableSupplier<Integer>) Client::sleep);
         job1.setHandler((SerializableConsumer<Integer>) Client::done);
         job1.setErrors(0,0,1);
@@ -54,16 +55,17 @@ public class Client {
         Job job4 = new Job(this.headNodes);
         job4.setJob((SerializableSupplier<Integer>) Client::sleep);
         job4.setHandler((SerializableConsumer<Integer>) Client::done);
-        job4.setHeadNodeCrash(0);
-        try {
-            //job4.run();//let the headnode crash
-            //Thread.sleep(1000);
-            job.run();//Normal job
-            job1.run(); //Will crash 1 random worker node and restart it
-            job2.run(); //Contains 2 byzantian errors
-            job3.run(); //This one will crash the worker with simulated timeout
-        } catch (Exception e) {
-            System.out.println("Incomplete setup");
+        job4.setHeadNodeCrash(0);*/
+            try {
+                //job4.run();//let the headnode crash
+                //Thread.sleep(1000);
+                job.run();//Normal job
+                //job1.run(); //Will crash 1 random worker node and restart it
+                //job2.run(); //Contains 2 byzantian errors
+                //job3.run(); //This one will crash the worker with simulated timeout
+            } catch (Exception e) {
+                System.out.println("Incomplete setup");
+            }
         }
     }
 
