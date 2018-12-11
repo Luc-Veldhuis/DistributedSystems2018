@@ -18,7 +18,7 @@ public class JobHandler<K,E> implements Serializable {
     private String id;
     public String parentId;
     public boolean done = false;
-    public String debugId;
+    public int debugId;
 
     //For debug purpouses
     public int numberOfByzantianFailures = 0;
@@ -32,15 +32,18 @@ public class JobHandler<K,E> implements Serializable {
      */
     public JobHandler(SerializableSupplier job) {
         this.job = job;
+        this.debugId = this.hashCode();
     }
 
     /**
      * Object storing all functions to use on the head node, MUST BE SERIALIZABLE!!!
      * @param functionJob
+     * @param input
      */
     public JobHandler(SerializableFunction functionJob, K input) {
         this.functionJob = functionJob;
         this.input = input;
+        this.debugId = this.hashCode();
     }
 
     /**

@@ -76,7 +76,7 @@ public class HeadNode extends AbstractActor {
      */
     public void scheduleJob(JobActor.GetJobFromClient message) {
         if(this.isBoss) {
-            log.info("Headnode " + headNodeId+" got new job");
+            log.info("Headnode " + headNodeId+" got new job " + message.jobHandler.debugId);
             if(message.jobHandler.crashHeadNodeWithId == this.headNodeId) {
                 getContext().stop(this.self());
             } else {
