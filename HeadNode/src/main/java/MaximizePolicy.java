@@ -34,7 +34,7 @@ public class MaximizePolicy extends Policy {
         JobWaiting jobWaiting = new JobWaiting(jobHandler);
         state.jobClientMapping.put(jobWaiting.jobHander.getId(), jobActor);
         state.jobsWaitingForExecutionResults.put(jobHandler.getId(), jobWaiting);
-        for (int i = 0; i < Configuration.NUMBER_OF_BYZANTIAN_ERRORS; i++) {
+        for (int i = 0; i < Configuration.NUMBER_OF_DUPLICATIONS; i++) {
             //Clone original job into x copies
             JobHandler newJob = jobWaiting.jobHander.clone();
             newJob.setId(jobWaiting.jobHander.getId() + "-" + i);

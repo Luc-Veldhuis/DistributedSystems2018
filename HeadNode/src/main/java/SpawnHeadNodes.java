@@ -22,7 +22,7 @@ public class SpawnHeadNodes {
         //create the Actor
         ActorSystem root = ActorSystem.create("root-node");
         List<Integer> headNodeIds = Utils.getListOfLength(Configuration.NUMBER_OF_HEADNODES);
-        List<Integer> workerIds = Utils.getListOfLength(Configuration.NUMBER_OF_BYZANTIAN_ERRORS);
+        List<Integer> workerIds = Utils.getListOfLength(Configuration.NUMBER_OF_DUPLICATIONS);
 
         List<ActorRef> headNodes = new ArrayList<ActorRef>();
 

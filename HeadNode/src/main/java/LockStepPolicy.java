@@ -45,7 +45,7 @@ public class LockStepPolicy extends Policy {
      */
     public void dispatchJob() {
         //Only dispatch in lock step, all at the same time
-        if(!(state.passiveWorkers.size() >= Configuration.NUMBER_OF_BYZANTIAN_ERRORS)) {
+        if(!(state.passiveWorkers.size() >= Configuration.NUMBER_OF_DUPLICATIONS)) {
             //System.out.println("Not enough workers to dispatch job. Workers left: "+state.passiveWorkers.size());
             return;//Do not dispatch jobs
         }
@@ -58,7 +58,7 @@ public class LockStepPolicy extends Policy {
         JobWaiting jobWaiting = state.jobsWaitingForExecutionResults.get(jobWaitingId);
 
         state.jobsWaitingForExecutionResults.put(jobWaiting.jobHander.getId(), jobWaiting); //Waiting for execution to finish
-        for (int i = 0; i < Configuration.NUMBER_OF_BYZANTIAN_ERRORS; i++) {
+        for (int i = 0; i < Configuration.NUMBER_OF_DUPLICATIONS; i++) {
             //Clone original job into x copies
             JobHandler newJob = jobWaiting.jobHander.clone();
             newJob.setId(jobWaiting.jobHander.getId() + "-" + i);

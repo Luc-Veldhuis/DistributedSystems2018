@@ -97,14 +97,17 @@ public class WorkerNode extends AbstractActor {
             inducedError = true;
         }
         if(job.numberOfFailStopFailures == 1) {
+            log.info("Stop failure at "+workerId+" at "+System.currentTimeMillis());
             throw new GracefulFailureException("Failure");//Restart node
         }
         if(job.numberOfFailSilentFailures == 1) {
             simulateTiming(Configuration.TIMEOUT_DETECTION_TIME);
             silentFailing = true;
+            log.info("Silent failure at "+workerId+" at "+System.currentTimeMillis());
             throw new UngracefulFailureException("Silent");//Stop node
         }
         if(job.numberOfByzantianFailures == 1) {
+            log.info("Byzantian failure at "+workerId+" at "+System.currentTimeMillis());
             job.setResult((Integer)(int)(Math.random()*1000));//Random value
         }
         return inducedError;

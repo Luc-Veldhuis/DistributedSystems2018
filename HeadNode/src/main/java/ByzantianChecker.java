@@ -1,5 +1,3 @@
-import akka.actor.ActorRef;
-
 public class ByzantianChecker {
 
     public HeadNodeState state;
@@ -28,7 +26,7 @@ public class ByzantianChecker {
                     counter++;
                 }
             }
-            if(counter >= Math.ceil(Configuration.NUMBER_OF_BYZANTIAN_ERRORS/2.)) {//make sure to check k+1 errors
+            if(counter >= Math.ceil(Configuration.NUMBER_OF_DUPLICATIONS /2.)) {//make sure to check k+1 errors
                 //found enough equal results for this result to know it is not byzantian
                 result.setResult(jobHandler.result);
                 result.setException(jobHandler.e);

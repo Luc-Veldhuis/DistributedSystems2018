@@ -1,5 +1,3 @@
-import akka.actor.ActorRef;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +23,7 @@ public class JobWaiting implements Serializable {
      * @return
      */
     public boolean isDone() {
-        if(jobList.size() != Configuration.NUMBER_OF_BYZANTIAN_ERRORS) {
+        if(jobList.size() != Configuration.NUMBER_OF_DUPLICATIONS) {
             return false;
         }
         boolean done = true;
