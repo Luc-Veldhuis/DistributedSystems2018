@@ -11,14 +11,16 @@ public class LockStepPolicy extends Policy {
     ActorRef headNode;
     HeadNodeState state;
     LoggingAdapter log;
+    Configuration config;
 
-    LockStepPolicy(HeadNodeState state, ActorRef headNode, LoggingAdapter log) {
+    LockStepPolicy(HeadNodeState state, ActorRef headNode, Configuration config, LoggingAdapter log) {
         if(state == null || headNode == null) {
             throw new InstantiationError();
         }
         this.state = state;
         this.headNode = headNode;
         this.log = log;
+        this.config = config;
     }
     /**
      * Used to update the schedule when a client job comes in
@@ -28,7 +30,7 @@ public class LockStepPolicy extends Policy {
     @Override
     public void update(JobHandler jobHandler, ActorRef jobActor) {
         //added
-        addRandomFailures(jobHandler);
+        addRandomFailures(jobHandler, config);
         jobHandler.setId(idCounter+"");
         log.info("Job "+ jobHandler.getId() + " has errors: "+ jobHandler.numberOfByzantianFailures + " "+ jobHandler.numberOfFailStopFailures + " "+ jobHandler.numberOfFailSilentFailures);
         JobWaiting jobWaiting = new JobWaiting(jobHandler);
@@ -45,7 +47,7 @@ public class LockStepPolicy extends Policy {
      */
     public void dispatchJob() {
         //Only dispatch in lock step, all at the same time
-        if(!(state.passiveWorkers.size() >= Configuration.NUMBER_OF_DUPLICATIONS)) {
+        if(!(state.passiveWorkers.size() >= config.NUMBER_OF_DUPLICATIONS)) {
             //System.out.println("Not enough workers to dispatch job. Workers left: "+state.passiveWorkers.size());
             return;//Do not dispatch jobs
         }
@@ -58,7 +60,7 @@ public class LockStepPolicy extends Policy {
         JobWaiting jobWaiting = state.jobsWaitingForExecutionResults.get(jobWaitingId);
 
         state.jobsWaitingForExecutionResults.put(jobWaiting.jobHander.getId(), jobWaiting); //Waiting for execution to finish
-        for (int i = 0; i < Configuration.NUMBER_OF_DUPLICATIONS; i++) {
+        for (int i = 0; i < config.NUMBER_OF_DUPLICATIONS; i++) {
             //Clone original job into x copies
             JobHandler newJob = jobWaiting.jobHander.clone();
             newJob.setId(jobWaiting.jobHander.getId() + "-" + i);
@@ -92,7 +94,7 @@ public class LockStepPolicy extends Policy {
             return null;
         }
         jobWaiting.newResult(jobHandler);
-        if(jobWaiting.isDone()) {
+        if(jobWaiting.isDone(config.NUMBER_OF_DUPLICATIONS)) {
             //Lock step, only release the nodes when all jobs are done!
             for(Pair<JobHandler, Integer> pair : jobWaiting.jobList) {
                 state.activeWorkers.remove(pair.second);//worker is done

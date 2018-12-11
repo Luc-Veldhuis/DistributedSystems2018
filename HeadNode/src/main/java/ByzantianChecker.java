@@ -1,13 +1,15 @@
 public class ByzantianChecker {
 
     public HeadNodeState state;
+    public Configuration config;
 
     /**
      * Used to check if any Job contains Byzantine errors and to correct these
      * @param state the HeadNode state
      */
-    public ByzantianChecker(HeadNodeState state) {
+    public ByzantianChecker(HeadNodeState state, Configuration config) {
         this.state = state;
+        this.config = config;
     }
 
     /**
@@ -26,7 +28,7 @@ public class ByzantianChecker {
                     counter++;
                 }
             }
-            if(counter >= Math.ceil(Configuration.NUMBER_OF_DUPLICATIONS /2.)) {//make sure to check k+1 errors
+            if(counter >= Math.ceil(config.NUMBER_OF_DUPLICATIONS /2.)) {//make sure to check k+1 errors
                 //found enough equal results for this result to know it is not byzantian
                 result.setResult(jobHandler.result);
                 result.setException(jobHandler.e);

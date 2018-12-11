@@ -22,8 +22,8 @@ public class JobWaiting implements Serializable {
      * Checks if all x copies are done
      * @return
      */
-    public boolean isDone() {
-        if(jobList.size() != Configuration.NUMBER_OF_DUPLICATIONS) {
+    public boolean isDone(int expectedSize) {
+        if(jobList.size() != expectedSize) {
             return false;
         }
         boolean done = true;

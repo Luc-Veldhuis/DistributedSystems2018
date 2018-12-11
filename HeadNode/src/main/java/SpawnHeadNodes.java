@@ -17,12 +17,12 @@ public class SpawnHeadNodes {
      * @throws InterruptedException
      */
     //TODO maybe all on separate system?
-    public static void main(String[] args) throws IOException, InterruptedException{
-
+    public static void main(String[] args) throws IOException{
+        System.out.println("Usage: NUMBER_OF_DUPLICATIONS RATE_OF_STOP_FAILURES RATE_OF_SILENT_FAILURES RATE_OF_BYZANTINE_FAILURES POLICY{LOCK_STEP, MAXIMIZE, SAME_MACHINE}");
+        Configuration config = new Configuration(args);
         //create the Actor
         ActorSystem root = ActorSystem.create("root-node");
         List<Integer> headNodeIds = Utils.getListOfLength(Configuration.NUMBER_OF_HEADNODES);
-        List<Integer> workerIds = Utils.getListOfLength(Configuration.NUMBER_OF_DUPLICATIONS);
 
         List<ActorRef> headNodes = new ArrayList<ActorRef>();
 
@@ -30,13 +30,8 @@ public class SpawnHeadNodes {
         try {
             // Create reference for top level actors (head nodes)
             for (int i = 0; i < headNodeIds.size(); i++) {
-                ActorRef headRef = root.actorOf(HeadNode.props(headNodeIds.get(i)), "headNodeId-" + headNodeIds.get(i));
+                ActorRef headRef = root.actorOf(HeadNode.props(headNodeIds.get(i), config), "headNodeId-" + headNodeIds.get(i));
                 headNodes.add(headRef);
-            }
-            System.out.println("COPY PASTE THE FOLLOWING 3 LINES INTO THE PROGRAM ARGUMENTS:");
-            for(ActorRef node : headNodes) {
-                node.tell(new HeadNode.PropagateHeadNodes(headNodes), ActorRef.noSender());
-                System.out.println(node.path().toSerializationFormatWithAddress(remoteAdress));
             }
             //createInitalWorkers(root, workerIds, headNodes);
             //runScheduledTask(headNodes);

@@ -10,6 +10,7 @@ public class HeadNode extends AbstractActor {
 
     public final Integer headNodeId;
     public List<ActorRef> headNodes;
+    Configuration config;
     /**
      * Any stuff relating to the state of the node should be stored in this class.
      */
@@ -24,19 +25,20 @@ public class HeadNode extends AbstractActor {
      * @param headNodeId the id of the HeadNode
      * @return returns new Actor
      */
-    public static Props props(Integer headNodeId) {
-        return Props.create(HeadNode.class, () -> new HeadNode(headNodeId));
+    public static Props props(Integer headNodeId, Configuration config) {
+        return Props.create(HeadNode.class, () -> new HeadNode(headNodeId, config));
     }
 
-    public HeadNode(Integer headNodeId) {
+    public HeadNode(Integer headNodeId, Configuration config) {
         this.headNodeId = headNodeId;
+        this.config = config;
         log.info("Headnode " + headNodeId+" created");
         if(headNodeId == 0){
             log.info("Headnode " + headNodeId+" is the boss");
             this.isBoss = true;
             this.state = new HeadNodeState();
-            this.scheduler = new Scheduler(this.state, this.self(), this.log);
-            this.failCheck = new ByzantianChecker(this.state);
+            this.scheduler = new Scheduler(this.state, this.self(), this.config, this.log);
+            this.failCheck = new ByzantianChecker(this.state, this.config);
         }
     }
 
@@ -102,7 +104,7 @@ public class HeadNode extends AbstractActor {
         if(this.isBoss) {//only do this on 1 actor
             log.info("Headnode "+headNodeId+" received result of job "+message.jobHandler.getId());
             JobWaiting jobWaiting = this.scheduler.update(message.jobHandler, message.workerNode);//get waiting jobs
-            if(jobWaiting != null && jobWaiting.isDone()) {
+            if(jobWaiting != null && jobWaiting.isDone(config.NUMBER_OF_DUPLICATIONS)) {
                 log.info("Headnode " + headNodeId+" done with job "+message.jobHandler.getParentId());
                 JobHandler jobHander = this.failCheck.check(jobWaiting);
                 log.info("Headnode " + headNodeId+" job "+jobHander.getId()+" checked");
@@ -123,8 +125,8 @@ public class HeadNode extends AbstractActor {
         if(failingNodes == this.headNodeId) {//because we use incremental ids, this works, might be more cleverly done
             log.info("Headnode "+headNodeId+" is the boss after update");
             this.isBoss = true;
-            this.scheduler = new Scheduler(this.state, this.self(), this.log);
-            this.failCheck = new ByzantianChecker(this.state);
+            this.scheduler = new Scheduler(this.state, this.self(), this.config, this.log);
+            this.failCheck = new ByzantianChecker(this.state, this.config);
             //watch all actors
             for(Integer workerId:state.activeWorkers) {
                 getContext().watch(state.workerIdToWorkerNode.get(workerId));

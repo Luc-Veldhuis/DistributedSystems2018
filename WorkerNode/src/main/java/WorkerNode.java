@@ -1,7 +1,6 @@
 import akka.actor.AbstractActor;
 import akka.actor.ActorSelection;
 import akka.actor.Props;
-import akka.actor.ActorRef;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 
@@ -93,7 +92,7 @@ public class WorkerNode extends AbstractActor {
     private boolean processFailures(JobHandler job) throws GracefulFailureException, UngracefulFailureException {
         boolean inducedError = false;
         if(job.numberOfByzantianFailures != 0 || job.numberOfFailSilentFailures != 0 || job.numberOfFailStopFailures != 0) {
-            simulateTiming((long)(Math.random()*Configuration.MAXIMUM_WAITING_TIME));//Simulate failure during the job
+            simulateTiming((long)(Math.random()*Configuration.MAXIMUM_FAKED_EXECUTION_TIME));//Simulate failure during the job
             inducedError = true;
         }
         if(job.numberOfFailStopFailures == 1) {

@@ -11,14 +11,16 @@ public class SameMachinePolicy extends Policy {
     ActorRef headNode;
     HeadNodeState state;
     LoggingAdapter log;
+    Configuration config;
 
-    SameMachinePolicy(HeadNodeState state, ActorRef headNode, LoggingAdapter log) {
+    SameMachinePolicy(HeadNodeState state, ActorRef headNode, Configuration config, LoggingAdapter log) {
         if(state == null || headNode == null) {
             throw new InstantiationError();
         }
         this.state = state;
         this.headNode = headNode;
         this.log = log;
+        this.config = config;
     }
     /**
      * Used to update the schedule when a client job comes in
@@ -28,7 +30,7 @@ public class SameMachinePolicy extends Policy {
     @Override
     public void update(JobHandler jobHandler, ActorRef jobActor) {
         //added
-        addRandomFailures(jobHandler);
+        addRandomFailures(jobHandler, config);
         jobHandler.setId(idCounter+"");
         log.info("Job "+ jobHandler.getId() + " has errors: "+ jobHandler.numberOfByzantianFailures + " "+ jobHandler.numberOfFailStopFailures + " "+ jobHandler.numberOfFailSilentFailures);
         JobWaiting jobWaiting = new JobWaiting(jobHandler);
@@ -88,7 +90,7 @@ public class SameMachinePolicy extends Policy {
         //done
         JobWaiting jobWaiting = state.jobsWaitingForExecutionResults.get(jobHandler.getParentId());//Get waiting job
         jobWaiting.newResult(jobHandler);
-        if(jobWaiting.isDone()) {
+        if(jobWaiting.isDone(config.NUMBER_OF_DUPLICATIONS)) {
             state.jobsWaitingForExecutionResults.remove(jobWaiting.jobHander.getId());
             for(Pair<JobHandler, Integer> pair : jobWaiting.jobList) {
                 state.jobHandlerForExecution.remove(pair.first.getId());//remove later in case a worker crashes

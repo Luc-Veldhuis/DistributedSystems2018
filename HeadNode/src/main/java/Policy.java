@@ -20,16 +20,16 @@ public abstract class Policy {
 
     public abstract void dispatchJob();
 
-    public void addRandomFailures(JobHandler jobHander) {
-        if(Configuration.RANDOM_FAILURES) {
-            for(int i = 0 ; i < Configuration.RATE_OF_BYZANTINE_FAILURES; i++) {
-                if (Math.random() < Configuration.RATE_OF_BYZANTINE_FAILURES) {
+    public void addRandomFailures(JobHandler jobHander, Configuration config) {
+        if(config.RANDOM_FAILURES) {
+            for(int i = 0 ; i < config.RATE_OF_BYZANTINE_FAILURES; i++) {
+                if (Math.random() < config.RATE_OF_BYZANTINE_FAILURES) {
                     jobHander.numberOfByzantianFailures++;
                 }
-                if (Math.random() < Configuration.RATE_OF_SILENT_FAILURES) {
+                if (Math.random() < config.RATE_OF_SILENT_FAILURES) {
                     jobHander.numberOfFailSilentFailures++;
                 }
-                if (Math.random() < Configuration.RATE_OF_STOP_FAILURES) {
+                if (Math.random() < config.RATE_OF_STOP_FAILURES) {
                     jobHander.numberOfFailStopFailures++;
                 }
             }
