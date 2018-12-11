@@ -23,6 +23,23 @@ public class Client {
     }
 
     /**
+     * Function which is executed on the remote system, MUST BE STATIC and return type must override default equals function!!!
+     * @return return type E, which supports equals method
+     */
+    public static Integer sleep(Integer timeToWait) {
+        long startTime;
+        long thisTime = System.currentTimeMillis();
+        startTime = thisTime;
+        while(true) {
+            if ((thisTime - startTime) <= timeToWait) {
+                thisTime = System.currentTimeMillis();
+            } else {
+                return 10;
+            }
+        }
+    }
+
+    /**
      * Function which is executed as handler once the function is done
      *
      * @param result input type E
@@ -35,7 +52,8 @@ public class Client {
         List<Job> jobList = new ArrayList<Job>();
         for (int i = 0; i < 100; i++) {
             Job job = new Job(this.headNodes);
-            job.setJob((SerializableSupplier<Integer>) Client::sleep);
+            //job.setJob((SerializableSupplier<Integer>) Client::sleep);
+            job.setJob((SerializableFunction<Integer, Integer>) Client::sleep, (Integer)10);
             job.setHandler((SerializableConsumer<Integer>) Client::done);
             jobList.add(job);
         }

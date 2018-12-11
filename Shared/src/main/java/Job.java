@@ -4,7 +4,7 @@ import akka.actor.ActorSystem;
 
 import java.util.function.Consumer;
 
-public class Job<E> implements JobInterface<E> {
+public class Job<K,E> implements JobInterface<E> {
     /**
      * Class with which you can interact to create a new Job
      *
@@ -13,7 +13,7 @@ public class Job<E> implements JobInterface<E> {
     private static int counter = 0;
     private static ActorSystem root = ActorSystem.create("root-node");
 
-    private JobHandler<E> jobHandler;
+    private JobHandler<K,E> jobHandler;
     private Consumer doneHandler;
     private ActorSelection[] headNodeRefs;
 
@@ -25,23 +25,20 @@ public class Job<E> implements JobInterface<E> {
         this.headNodeRefs = headNodeRefs;
     }
 
-    public Job(ActorSelection[] headNodes, SerializableSupplier job) {
-        this.headNodeRefs = headNodes;
-        this.jobHandler = new JobHandler<E>(job);
-    }
-
-    public Job(ActorSelection[] headNodes, SerializableSupplier job, Consumer hander) {
-        this.headNodeRefs = headNodes;
-        this.jobHandler = new JobHandler<E>(job);
-        this.doneHandler = hander;
+    /**
+     * Called to set the function to run on the worker
+     * @param job Job to execute on worker
+     */
+    public void setJob(SerializableSupplier job) {
+        this.jobHandler = new JobHandler<K,E>(job);
     }
 
     /**
      * Called to set the function to run on the worker
      * @param job Job to execute on worker
      */
-    public void setJob(SerializableSupplier job) {
-        this.jobHandler = new JobHandler<E>(job);
+    public void setJob(SerializableFunction<K,E> job, K input) {
+        this.jobHandler = new JobHandler<K,E>(job, input);
     }
 
     /**

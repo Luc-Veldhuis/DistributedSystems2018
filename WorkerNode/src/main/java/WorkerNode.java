@@ -69,8 +69,12 @@ public class WorkerNode extends AbstractActor {
             return;
         }
         try {
-            message.job.setResult(message.job.job.get());
-        }  catch (Exception e) {
+            if(message.job.job == null) {
+                message.job.setResult(message.job.functionJob.apply(message.job.input)); // function
+            } else {
+                message.job.setResult(message.job.job.get()); //consumer
+            }
+        } catch (Exception e) {
             message.job.setException(e);
         }
         sendResult(message.job);

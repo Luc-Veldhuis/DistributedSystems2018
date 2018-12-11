@@ -8,14 +8,17 @@ import java.util.function.Supplier;
 import akka.actor.Actor;
 
 
-public class JobHandler<E> implements Serializable {
+public class JobHandler<K,E> implements Serializable {
 
     public SerializableSupplier job;
+    public SerializableFunction<K,E> functionJob;
     public E result;
+    public K input;
     public Exception e;
     private String id;
     public String parentId;
     public boolean done = false;
+    public String debugId;
 
     //For debug purpouses
     public int numberOfByzantianFailures = 0;
@@ -29,6 +32,15 @@ public class JobHandler<E> implements Serializable {
      */
     public JobHandler(SerializableSupplier job) {
         this.job = job;
+    }
+
+    /**
+     * Object storing all functions to use on the head node, MUST BE SERIALIZABLE!!!
+     * @param functionJob
+     */
+    public JobHandler(SerializableFunction functionJob, K input) {
+        this.functionJob = functionJob;
+        this.input = input;
     }
 
     /**
@@ -92,8 +104,14 @@ public class JobHandler<E> implements Serializable {
     }
 
     @Override
-    public JobHandler<E> clone() {
-        JobHandler<E> result = new JobHandler<E>(this.job);
+    public JobHandler<K,E> clone() {
+        JobHandler<K, E> result;
+        if(this.job == null) {
+            result = new JobHandler<K, E>(this.functionJob, this.input);
+        } else {
+            result = new JobHandler<K, E>(this.job);
+        }
+        result.input = this.input;
         result.setId(this.getId());
         result.e = this.e;
         result.result = this.result;
