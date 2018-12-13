@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Client {
 
@@ -48,12 +49,32 @@ public class Client {
         System.out.println("Result: "+result);
     }
 
-    public List<Job> createWorkload() {
+    /**
+     * Function which creates a job workload with either normally or uniformly distributed durations
+     *
+     * @param normalDist determines normal or uniform distribution
+     * @param mean mean for normal distribution
+     * @param stdev standard deviation for normal distribution
+     * @param min minimum value for uniform distribution
+     * @param max maximum value for uniform distribution
+     * @return List of jobs in the workload
+     */
+    public List<Job> createWorkload(int size, boolean normalDist, int mean, int stdev, int min, int max) {
         List<Job> jobList = new ArrayList<Job>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < size; i++) {
             Job job = new Job(this.headNodes);
-            //job.setJob((SerializableSupplier<Integer>) Client::sleep);
-            job.setJob((SerializableFunction<Integer, Integer>) Client::sleep, (Integer)10);
+
+            // Use either normal or uniform distribution to select next duration
+            Random r = new Random();
+            double timeToSleep;
+            if (normalDist) {
+                timeToSleep = r.nextGaussian()*stdev+mean;
+            }
+            else {
+                timeToSleep = min + (max - min) * r.nextDouble();
+            }
+
+            job.setJob((SerializableFunction<Integer, Integer>) Client::sleep, (int)timeToSleep);
             job.setHandler((SerializableConsumer<Integer>) Client::done);
             jobList.add(job);
         }
@@ -64,11 +85,10 @@ public class Client {
     /**
      * Function which executes the client, it creates a new Job to run
      */
-    public void runTest() {
-        List<Job> list = createWorkload();
+    public void runTest(List<Job> list) {
         for(Job job: list){
             try {
-                job.run();//Normal job
+                job.run(); //Normal job
             } catch (Exception e) {
                 System.out.println("Incomplete setup");
             }
@@ -81,7 +101,13 @@ public class Client {
         }
         System.out.println(args[0]);
         Client client = new Client(args);
-        client.runTest();
+
+        // Normal distribution
+        List<Job> list = client.createWorkload(100,true, 10, 3, 0, 0);
+        // Uniform distribution
+        //List<Job> list = client.createWorkload(100, false, 0, 0, 5, 15);
+
+        client.runTest(list);
     }
 
 }
