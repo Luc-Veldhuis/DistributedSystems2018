@@ -24,21 +24,9 @@ public class SpawnHeadNodes {
         ActorSystem root = ActorSystem.create("root-node");
         List<Integer> headNodeIds = Utils.getListOfLength(Configuration.NUMBER_OF_HEADNODES);
 
-        List<ActorRef> headNodes = new ArrayList<ActorRef>();
-
         Address remoteAdress = root.provider().getDefaultAddress();
-        try {
-            // Create reference for top level actors (head nodes)
-            for (int i = 0; i < headNodeIds.size(); i++) {
-                ActorRef headRef = root.actorOf(HeadNode.props(headNodeIds.get(i), config), "headNodeId-" + headNodeIds.get(i));
-                headNodes.add(headRef);
-            }
-            //createInitalWorkers(root, workerIds, headNodes);
-            //runScheduledTask(headNodes);
-            //System.out.println("Press ENTER to exit the system");
-            System.in.read();
-        } finally {
-            root.terminate();//also terminates all other nodes
+        for (int i = 0; i < headNodeIds.size(); i++) {
+            ActorRef headRef = root.actorOf(HeadNode.props(headNodeIds.get(i), config), "headNodeId-" + headNodeIds.get(i));
         }
 
     }

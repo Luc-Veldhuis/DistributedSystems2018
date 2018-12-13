@@ -22,7 +22,7 @@ dependencies {
     compile project(':Client')
 }
 
-mainClassName = "MainApplication"
+mainClassName = "SpawnHeadNodes"
 
 run {
     standardInput = System.in
