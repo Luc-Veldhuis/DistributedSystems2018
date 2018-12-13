@@ -35,7 +35,7 @@ public class Client {
             if ((thisTime - startTime) <= timeToWait) {
                 thisTime = System.currentTimeMillis();
             } else {
-                return 10;
+                return timeToWait;
             }
         }
     }
