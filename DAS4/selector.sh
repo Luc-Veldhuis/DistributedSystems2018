@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ "$(hostname)" == "node$1" ]; then
+if [ "$(hostname)" == "node$6" ]; then
     echo node$1
     echo headnode
     cd ../HeadNode 
@@ -8,9 +8,9 @@ if [ "$(hostname)" == "node$1" ]; then
     cd ../DAS4
     python replacer.py node$1
     cd .././HeadNode/build/install/HeadNode/bin
-    ./HeadNode
+    ./HeadNode $1 $2 $3 $4 $5
 else
-    if [ "$(hostname)" != "node$2" ]; then
+    if [ "$(hostname)" != "node$7" ]; then
         echo workerNode
         cd .././WorkerNode/build/install/WorkerNode/bin
         sleep 20

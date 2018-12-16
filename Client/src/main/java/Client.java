@@ -103,7 +103,7 @@ public class Client {
         Client client = new Client(args);
 
         // Normal distribution
-        List<Job> list = client.createWorkload(100,true, 10, 3, 0, 0);
+        List<Job> list = client.createWorkload(5000,true, 10, 3, 0, 0);
         // Uniform distribution
         //List<Job> list = client.createWorkload(100, false, 0, 0, 5, 15);
 

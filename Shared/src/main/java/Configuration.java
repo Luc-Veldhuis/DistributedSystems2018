@@ -4,7 +4,7 @@ public class Configuration {
      */
     public static final int NUMBER_OF_ERRORS_TO_CORRECT = 2;
     public static final int NUMBER_OF_HEADNODES = NUMBER_OF_ERRORS_TO_CORRECT+1;
-    public static final int NUMBER_OF_WORKERS_PER_SYSTEM = 8;
+    public static final int NUMBER_OF_WORKERS_PER_SYSTEM = 50;
     public static final int MAXIMUM_FAKED_EXECUTION_TIME = 1000;
     public static final int TIMEOUT_DETECTION_TIME = 5000;
     public enum Policies {LOCK_STEP, MAXIMIZE, SAME_MACHINE};
