@@ -1,8 +1,11 @@
 #!/bin/bash
+
+echo $1 $2 $3 $4 $5 $6 $7
 if [ "$(hostname)" == "node$6" ]; then
+    echo "hello, im headnode"
     echo node$1
     echo headnode
-    python replacer.py node$1
+    python replacer.py node$6
     cd ../HeadNode 
     gradle build
     gradle install
