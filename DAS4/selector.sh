@@ -2,11 +2,10 @@
 if [ "$(hostname)" == "node$6" ]; then
     echo node$1
     echo headnode
+    python replacer.py node$1
     cd ../HeadNode 
     gradle build
     gradle install
-    cd ../DAS4
-    python replacer.py node$1
     cd .././HeadNode/build/install/HeadNode/bin
     ./HeadNode $1 $2 $3 $4 $5
 else
