@@ -119,6 +119,7 @@ public class JobHandler<K,E> implements Serializable {
         result.e = this.e;
         result.result = this.result;
         result.setParentId(this.getParentId());
+        result.debugId = this.debugId;
         return result;
     }
 

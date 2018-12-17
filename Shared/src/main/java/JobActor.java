@@ -40,7 +40,7 @@ public class JobActor<E> extends AbstractActor {
      * @throws Exception possible error from the Job
      */
     public void receivedJob(GetJobFromHead message) throws Exception {
-        log.info("Received job "+message.jobHandler.debugId+" with id "+ message.jobHandler.getId()+ " at " + System.currentTimeMillis() );
+        log.info("Received job "+message.jobHandler.debugId+" with id "+ message.jobHandler.getId()+ " at " + System.currentTimeMillis() + " with result " + message.jobHandler.getResult() );
         this.doneHander.accept(message.jobHandler.getResult());
         getContext().stop(self());//Prevent having a lot of never used again actors
     }

@@ -32,6 +32,7 @@ public class MaximizePolicy extends Policy {
         //added
         addRandomFailures(jobHandler, config);
         jobHandler.setId(idCounter+"");
+        log.info("Assigned job "+jobHandler.debugId + " interal id "+jobHandler.getId());
         log.info("Job "+ jobHandler.getId() + " has errors: "+ jobHandler.numberOfByzantianFailures + " "+ jobHandler.numberOfFailStopFailures + " "+ jobHandler.numberOfFailSilentFailures);
         JobWaiting jobWaiting = new JobWaiting(jobHandler);
         state.jobClientMapping.put(jobWaiting.jobHander.getId(), jobActor);
@@ -77,7 +78,7 @@ public class MaximizePolicy extends Policy {
             ActorRef workerNodeRef = state.workerIdToWorkerNode.get(node);//Get actor reference
             jobWaiting.jobList.add(new Pair<JobHandler, Integer>(jobHandler, node));//Add to waiting job
             workerNodeRef.tell(new WorkerNode.GetJobFromHead(jobHandler), headNode);//Run job
-            log.info("Headnode send job "+jobHandler.getId()+" to worker node "+ node);
+            log.info("Send job "+jobHandler.getId()+" to worker node "+ node);
         }
 
     }

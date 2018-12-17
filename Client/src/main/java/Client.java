@@ -69,6 +69,9 @@ public class Client {
             double timeToSleep;
             if (normalDist) {
                 timeToSleep = r.nextGaussian()*stdev+mean;
+                if(timeToSleep < 0) {
+                    timeToSleep = 0;
+                }
             }
             else {
                 timeToSleep = min + (max - min) * r.nextDouble();
@@ -103,7 +106,7 @@ public class Client {
         Client client = new Client(args);
 
         // Normal distribution
-        List<Job> list = client.createWorkload(5000,true, 10, 3, 0, 0);
+        List<Job> list = client.createWorkload(5000,true, 10000, 3000, 0, 0);
         // Uniform distribution
         //List<Job> list = client.createWorkload(100, false, 0, 0, 5, 15);
 
