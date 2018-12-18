@@ -2,8 +2,7 @@
 
 echo $1 $2 $3 $4 $5 $6 $7
 if [ "$(hostname)" == "node$6" ]; then
-    echo "hello, im headnode"
-    echo node$1
+    echo node$6
     echo headnode
     python replacer.py node$6
     cd ../HeadNode 
@@ -15,12 +14,12 @@ else
     if [ "$(hostname)" != "node$7" ]; then
         echo workerNode
         cd .././WorkerNode/build/install/WorkerNode/bin
-        sleep 20
+        sleep 30
         ./WorkerNode akka.tcp://root-node@node$6:2552/user/*
     else
         echo clientNode
         cd .././Client/build/install/Client/bin
-        sleep 40
+        sleep 50
         ./Client akka.tcp://root-node@node$6:2552/user/*
      fi
 fi
