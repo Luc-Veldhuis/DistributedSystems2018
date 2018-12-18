@@ -10,6 +10,8 @@ import akka.actor.Actor;
 
 public class JobHandler<K,E> implements Serializable {
 
+    private static final long serialVersionUID = -1449680354072352132L;
+
     public SerializableSupplier job;
     public SerializableFunction<K,E> functionJob;
     public E result;
@@ -20,7 +22,7 @@ public class JobHandler<K,E> implements Serializable {
     public boolean done = false;
     public int debugId;
 
-    public long originalCreationTime;
+    public long originalCreationTime ;
     //public long finishedTime;
     public long workerIncomingTimestamp;
 
@@ -38,7 +40,7 @@ public class JobHandler<K,E> implements Serializable {
     public JobHandler(SerializableSupplier job) {
         this.job = job;
         this.debugId = this.hashCode();
-        this.parentId = Long.toString(debugId);
+        this.parentId = debugId+"";
 
     }
 
@@ -51,7 +53,7 @@ public class JobHandler<K,E> implements Serializable {
         this.functionJob = functionJob;
         this.input = input;
         this.debugId = this.hashCode();
-        this.parentId = Long.toString(debugId);
+        this.parentId = debugId+"";
     }
 
     /**
@@ -133,9 +135,12 @@ public class JobHandler<K,E> implements Serializable {
         result.setId(this.getId());
         result.e = this.e;
         result.result = this.result;
-        result.setParentId(this.getParentId());
+        result.parentId = this.parentId;
         result.debugId = this.debugId;
         result.originalCreationTime = this.originalCreationTime;
+        result.workerIncomingTimestamp = this.workerIncomingTimestamp;
+
+
         //result.finishedTime = this.finishedTime;
 
         return result;
