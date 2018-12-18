@@ -51,6 +51,8 @@ public class JobActor<E> extends AbstractActor {
         log.info("//CLIENT-FINISHED-JOB: ("+message.jobHandler.getParentId()+","+ (System.currentTimeMillis() - message.jobHandler.originalCreationTime) +","+ message.jobHandler.input  + ")"    );
 
         this.doneHander.accept(message.jobHandler.getResult());
+
+        Utils.runNextJob();
         getContext().stop(self());//Prevent having a lot of never used again actors
     }
 

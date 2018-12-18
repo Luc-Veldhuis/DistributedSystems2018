@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Random;
+import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Client {
 
@@ -79,7 +82,8 @@ public class Client {
 
             job.setJob((SerializableFunction<Integer, Integer>) Client::sleep, (int)timeToSleep);
             job.setFinishedFunction((SerializableConsumer<Integer>) Client::done);
-            jobList.add(job);
+            //jobList.add(job);
+            Utils.jobQueue.add(job);
         }
         return jobList;
 
@@ -89,6 +93,14 @@ public class Client {
      * Function which executes the client, it creates a new Job to run
      */
     public void runTest(List<Job> list) {
+
+
+        for(int i = 0; i < Configuration.NUMBER_OF_CONCURRENT_JOBS; i++) {
+            Utils.runNextJob();
+        }
+
+
+        /*
         for(Job job: list){
             try {
                 job.run(); //Normal job
@@ -96,7 +108,11 @@ public class Client {
                 System.out.println("Incomplete setup");
             }
         }
+        */
+
     }
+
+
 
     public static void main(String[] args) {
         if(args.length == 0) {
@@ -106,19 +122,20 @@ public class Client {
         Client client = new Client(args);
 
         // Normal distribution
-        List<Job> list = client.createWorkload(80,true, 10000, 2500, 0, 0);
+        //List<Job> list = client.createWorkload(80,true, 10000, 2500, 0, 0);
         // Uniform distribution
         //List<Job> list = client.createWorkload(100, false, 0, 0, 5, 15);
 
-        /*
+
         List<Job> list = new ArrayList<>();
         for(int i = 0; i < 3; i++) {
             Job j = new Job(client.headNodes);
             j.setJob((SerializableFunction<Integer, Integer>) Client::sleep, (int) 2000);
             j.setFinishedFunction((SerializableConsumer<Integer>) Client::done);
-            list.add(j);
+            //list.add(j);
+            Utils.jobQueue.add(j);
         }
-        */
+
 
         client.runTest(list);
     }
