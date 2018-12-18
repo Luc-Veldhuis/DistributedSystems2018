@@ -13,12 +13,12 @@ else
     if [ "$(hostname)" != "node$7" ]; then
         echo workerNode
         cd .././WorkerNode/build/install/WorkerNode/bin
-        sleep 80
+        sleep 60
         ./WorkerNode akka.tcp://root-node@node$6:2552/user/*
     else
         echo clientNode
         cd .././Client/build/install/Client/bin
-        sleep 100
+        sleep 70
         ./Client akka.tcp://root-node@node$6:2552/user/*
      fi
 fi
