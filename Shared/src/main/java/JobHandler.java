@@ -11,7 +11,6 @@ import akka.actor.Actor;
 public class JobHandler<K,E> implements Serializable {
 
     private static final long serialVersionUID = -1449680354072352132L;
-
     public SerializableSupplier job;
     public SerializableFunction<K,E> functionJob;
     public E result;
