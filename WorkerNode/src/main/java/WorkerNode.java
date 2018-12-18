@@ -48,10 +48,14 @@ public class WorkerNode extends AbstractActor {
      * @param job
      */
     public void sendResult(JobHandler job) {
+        //job.finishedTime = System.currentTimeMillis();
         for(ActorSelection node:headnodes) {
             node.tell(new SendJobDone(job,createMessageData()), this.self());
         }
-        log.info("Worker " +workerId+" "+"done with job "+job.getId()+" at "+System.currentTimeMillis());
+        //log.info("Worker " +workerId+" "+"done with job "+job.getId()+" at "+job.finishedTime);
+        log.info("///WORKER-FINISHED-JOB: ("+job.parentId+","+ (System.currentTimeMillis() - job.workerIncomingTimestamp)+ ")"    );
+
+        //log.info("///WORKER-FINISHED-JOB: ("+job.originalCreationTime+","+job.finishedTime+","+ (job.finishedTime - job.originalCreationTime) +"," + job.input +"," + job.parentId.length()+","+job.parentId+")" );
     }
 
     /**
@@ -59,6 +63,8 @@ public class WorkerNode extends AbstractActor {
      * @param message
      */
     public void executeJob(GetJobFromHead message) throws GracefulFailureException, UngracefulFailureException {
+        message.job.workerIncomingTimestamp = System.currentTimeMillis();
+
         if(workerId == null) {
             //discard message, not initialized
             return;
@@ -101,12 +107,14 @@ public class WorkerNode extends AbstractActor {
         }
         if(job.numberOfFailStopFailures == 1) {
             log.info("Stop failure at "+workerId+" at "+System.currentTimeMillis());
+            log.info("///////WORKER-STOP-FAILURE: ("+job.parentId+","+ (System.currentTimeMillis() - job.workerIncomingTimestamp)+ ")"    );
             throw new GracefulFailureException("Failure");//Restart node
         }
         if(job.numberOfFailSilentFailures == 1) {
             simulateTiming(Configuration.TIMEOUT_DETECTION_TIME);
             silentFailing = true;
             log.info("Silent failure at "+workerId+" at "+System.currentTimeMillis());
+            log.info("///////WORKER-SILENT-FAILURE: ("+job.parentId+","+ (System.currentTimeMillis() - job.workerIncomingTimestamp)+ ")"    );
             throw new UngracefulFailureException("Silent");//Stop node
         }
         if(job.numberOfByzantianFailures == 1) {

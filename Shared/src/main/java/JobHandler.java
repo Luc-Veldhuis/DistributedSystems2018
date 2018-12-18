@@ -20,6 +20,11 @@ public class JobHandler<K,E> implements Serializable {
     public boolean done = false;
     public int debugId;
 
+    public long originalCreationTime;
+    //public long finishedTime;
+    public long workerIncomingTimestamp;
+
+
     //For debug purpouses
     public int numberOfByzantianFailures = 0;
     public int numberOfFailStopFailures = 0;
@@ -33,6 +38,8 @@ public class JobHandler<K,E> implements Serializable {
     public JobHandler(SerializableSupplier job) {
         this.job = job;
         this.debugId = this.hashCode();
+        this.parentId = Long.toString(debugId);
+
     }
 
     /**
@@ -44,6 +51,7 @@ public class JobHandler<K,E> implements Serializable {
         this.functionJob = functionJob;
         this.input = input;
         this.debugId = this.hashCode();
+        this.parentId = Long.toString(debugId);
     }
 
     /**
@@ -58,7 +66,10 @@ public class JobHandler<K,E> implements Serializable {
     Function to be called by the scheduler
      */
     public void setId(String id) {
-        this.id = id;
+        if(id.startsWith(Integer.toString(debugId)))
+            this.id = id;
+        else
+            this.id = debugId+"-"+id;
     }
 
     /**
@@ -74,7 +85,11 @@ public class JobHandler<K,E> implements Serializable {
      * @param id
      */
     public void setParentId(String id) {
-        this.parentId = id;
+        //System.out.println(id);
+        if(id != null && id.startsWith(Integer.toString(debugId)))
+            this.parentId = id;
+        else
+            this.parentId = debugId+"-"+id;
     }
 
     /**
@@ -120,6 +135,9 @@ public class JobHandler<K,E> implements Serializable {
         result.result = this.result;
         result.setParentId(this.getParentId());
         result.debugId = this.debugId;
+        result.originalCreationTime = this.originalCreationTime;
+        //result.finishedTime = this.finishedTime;
+
         return result;
     }
 

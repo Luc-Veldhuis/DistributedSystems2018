@@ -78,7 +78,7 @@ public class Client {
             }
 
             job.setJob((SerializableFunction<Integer, Integer>) Client::sleep, (int)timeToSleep);
-            job.setHandler((SerializableConsumer<Integer>) Client::done);
+            job.setFinishedFunction((SerializableConsumer<Integer>) Client::done);
             jobList.add(job);
         }
         return jobList;
@@ -106,9 +106,17 @@ public class Client {
         Client client = new Client(args);
 
         // Normal distribution
-        List<Job> list = client.createWorkload(5000,true, 10000, 3000, 0, 0);
+        //List<Job> list = client.createWorkload(5000,true, 10000, 3000, 0, 0);
         // Uniform distribution
         //List<Job> list = client.createWorkload(100, false, 0, 0, 5, 15);
+
+        List<Job> list = new ArrayList<>();
+        for(int i = 0; i < 3; i++) {
+            Job j = new Job(client.headNodes);
+            j.setJob((SerializableFunction<Integer, Integer>) Client::sleep, (int) 2000);
+            j.setFinishedFunction((SerializableConsumer<Integer>) Client::done);
+            list.add(j);
+        }
 
         client.runTest(list);
     }

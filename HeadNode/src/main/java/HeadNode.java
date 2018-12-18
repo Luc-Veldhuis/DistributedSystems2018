@@ -105,11 +105,13 @@ public class HeadNode extends AbstractActor {
             log.info("Headnode "+headNodeId+" received result of job "+message.jobHandler.getId());
             JobWaiting jobWaiting = this.scheduler.update(message.jobHandler, message.workerNode);//get waiting jobs
             if(jobWaiting != null && jobWaiting.isDone(config.NUMBER_OF_DUPLICATIONS)) {
-                log.info("Headnode " + headNodeId+" done with job "+message.jobHandler.getParentId());
-                JobHandler jobHander = this.failCheck.check(jobWaiting);
-                log.info("Headnode " + headNodeId+" job "+jobHander.getId()+" checked");
-                ActorRef actor = state.jobClientMapping.get(jobHander.getId());
-                actor.tell(new JobActor.GetJobFromHead(jobHander), this.self());
+                //log.info("JOB-FINISHING-MESSAGE ("+message.jobHandler.getParentId().length()+","+message.jobHandler.getParentId()+","+System.currentTimeMillis()+") @ : Headnode " + headNodeId+" done with job "+message.jobHandler.getParentId());
+                log.info("///HEADNODE-FINISHED: ("+message.jobHandler.parentId+","+ (System.currentTimeMillis() - message.jobHandler.originalCreationTime)+ ")"    );
+
+                JobHandler jobHandler = this.failCheck.check(jobWaiting);
+                log.info("Headnode " + headNodeId+" job "+jobHandler.getId()+" checked");
+                ActorRef client = state.jobClientMapping.get(jobHandler.getId());
+                client.tell(new JobActor.GetJobFromHead(jobHandler), this.self());
             }
         }
     }

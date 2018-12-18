@@ -29,6 +29,9 @@ public class JobActor<E> extends AbstractActor {
         this.headNodeRefs = headNodeRefs;
         this.doneHander = doneHander;
         log.info("Job "+job.debugId+" created at client at " + System.currentTimeMillis() );
+        job.originalCreationTime = System.currentTimeMillis();
+
+
         for(ActorSelection headNodeRef: headNodeRefs) {
             headNodeRef.tell(new GetJobFromClient(job), this.self());
         }
@@ -40,7 +43,13 @@ public class JobActor<E> extends AbstractActor {
      * @throws Exception possible error from the Job
      */
     public void receivedJob(GetJobFromHead message) throws Exception {
-        log.info("Received job "+message.jobHandler.debugId+" with id "+ message.jobHandler.getId()+ " at " + System.currentTimeMillis() + " with result " + message.jobHandler.getResult() );
+        long receivedTime = System.currentTimeMillis();
+
+        log.info("Received job "+message.jobHandler.debugId+" with id "+ message.jobHandler.getId()+ " at " + receivedTime + " with result " + message.jobHandler.getResult() );
+        //Format: ////CLIENT-FINISHED-JOB: (originalCreationTime, receivedTime, latency (received-orig), expected duration, finished timestamp, len of parentID,parentId)
+        //log.info("////CLIENT-FINISHED-JOB: ("+message.jobHandler.originalCreationTime+","+receivedTime+","+ (receivedTime - message.jobHandler.originalCreationTime) +"," + message.jobHandler.input +","+ message.jobHandler.finishedTime +"," +message.jobHandler.parentId.length()+","+message.jobHandler.parentId+")" );
+        log.info("//CLIENT-FINISHED-JOB: ("+message.jobHandler.getParentId()+","+ (System.currentTimeMillis() - message.jobHandler.originalCreationTime) +","+ message.jobHandler.input  + ")"    );
+
         this.doneHander.accept(message.jobHandler.getResult());
         getContext().stop(self());//Prevent having a lot of never used again actors
     }

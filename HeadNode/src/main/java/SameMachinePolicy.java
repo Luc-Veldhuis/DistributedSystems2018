@@ -32,9 +32,9 @@ public class SameMachinePolicy extends Policy {
         //added
         addRandomFailures(jobHandler, config);
         jobHandler.setId(idCounter+"");
-        log.info("Assigned job "+jobHandler.debugId + " interal id "+jobHandler.getId());
+        //log.info("Assigned job "+jobHandler.debugId + " interal id "+jobHandler.getId());
         log.info("Job "+ jobHandler.getId() + " has errors: "+ jobHandler.numberOfByzantianFailures + " "+ jobHandler.numberOfFailStopFailures + " "+ jobHandler.numberOfFailSilentFailures);
-        JobWaiting jobWaiting = new JobWaiting(jobHandler);
+        JobWaiting jobWaiting = new JobWaiting(jobHandler, log);
         state.jobClientMapping.put(jobWaiting.jobHander.getId(), jobActor);
         state.jobsWaitingForExecutionResults.put(jobHandler.getId(), jobWaiting);
         state.jobWaitingQueue.add(jobHandler.getId());
