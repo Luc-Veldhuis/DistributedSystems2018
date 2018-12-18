@@ -29,11 +29,17 @@ public class Utils {
         Job j;
         synchronized(Utils.class) {
             j = jobQueue.poll();
+            if(j == null) {
+                System.out.println("No new jobs to run.");
+                return;
+            }
+
         }
+
         try {
-                j.run(); //Normal job
+            j.run();
             } catch (Exception e) {
-                System.out.println("Incomplete setup");
+                System.out.println("Exception inside run job: "+e.toString());
             }
 
     }
