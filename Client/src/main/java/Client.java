@@ -82,8 +82,8 @@ public class Client {
 
             job.setJob((SerializableFunction<Integer, Integer>) Client::sleep, (int)timeToSleep);
             job.setFinishedFunction((SerializableConsumer<Integer>) Client::done);
-            jobList.add(job);
-            //Utils.jobQueue.add(job);
+            //jobList.add(job);
+            Utils.jobQueue.add(job);
         }
         return jobList;
 
@@ -95,12 +95,12 @@ public class Client {
     public void runTest(List<Job> list) {
 
 
-        //for(int i = 0; i < Configuration.NUMBER_OF_CONCURRENT_JOBS; i++) {
-        //    Utils.runNextJob();
-        //}
+        for(int i = 0; i < Configuration.NUMBER_OF_CONCURRENT_JOBS; i++) {
+            Utils.runNextJob();
+        }
 
 
-
+        /*
         for(Job job: list){
             try {
                 job.run(); //Normal job
@@ -108,7 +108,7 @@ public class Client {
                 System.out.println("Incomplete setup");
             }
         }
-
+        */
 
     }
 
@@ -122,7 +122,7 @@ public class Client {
         Client client = new Client(args);
 
         // Normal distribution
-        List<Job> list = client.createWorkload(80,true, 8000, 2500, 0, 0);
+        List<Job> list = client.createWorkload(1000,true, 8000, 2000, 0, 0);
         // Uniform distribution
         //List<Job> list = client.createWorkload(100, false, 0, 0, 5, 15);
 

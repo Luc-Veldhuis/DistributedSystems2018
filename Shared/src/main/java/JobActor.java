@@ -52,7 +52,7 @@ public class JobActor<E> extends AbstractActor {
 
         this.doneHander.accept(message.jobHandler.getResult());
 
-        //Utils.runNextJob();
+        Utils.runNextJob();
         getContext().stop(self());//Prevent having a lot of never used again actors
     }
 

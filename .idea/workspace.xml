@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="35abc9e5-66bb-4c9b-8b72-9208190708cc" name="Default" comment="selector changed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAS4/selector.sh" beforeDir="false" afterPath="$PROJECT_DIR$/DAS4/selector.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/src/main/java/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/src/main/java/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/src/main/java/JobActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/src/main/java/JobActor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/src/main/java/JobHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/src/main/java/JobHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkerNode/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/WorkerNode/src/main/resources/application.conf" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -43,26 +48,14 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.28444213">
+    <splitter split-orientation="horizontal" split-proportion="0.47092718">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/WorkerNode/src/main/java/WorkerNode.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-17">
+                <state relative-caret-position="660">
                   <caret line="55" column="57" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="57" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1425">
-                  <caret line="100" column="62" selection-start-line="100" selection-start-column="62" selection-end-line="100" selection-end-column="62" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -79,7 +72,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Job.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="696">
+                <state relative-caret-position="960">
                   <caret line="76" column="140" selection-start-line="76" selection-start-column="140" selection-end-line="76" selection-end-column="140" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -90,11 +83,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Configuration.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+                <state relative-caret-position="360">
+                  <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
                 </state>
               </provider>
             </entry>
@@ -111,20 +104,11 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Shared/src/main/java/JobActor.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="885">
-                  <caret line="59" column="36" lean-forward="true" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="36" />
+                <state relative-caret-position="690">
+                  <caret line="54" column="8" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="8" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/DAS4/selector.sh">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="75">
-                  <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -143,52 +127,49 @@
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/JobWaiting.java">
+            <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/LockStepPolicy.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="12">
-                  <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+                <state relative-caret-position="510">
+                  <caret line="35" column="48" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/MaximizePolicy.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="480">
+                  <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/SpawnHeadNodes.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="75">
+                  <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/SameMachinePolicy.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="480">
+                  <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Shared/src/main/java/JobHandler.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="525">
+                  <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
-                  <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/DAS4/scriptToSubmitToScheduler.sh">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/DAS4/submitAllJobs.sh">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="467">
-                  <caret line="32" column="23" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/DAS4/spawn.sh">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="315">
-                  <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
                 </state>
               </provider>
             </entry>
@@ -196,8 +177,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Client/src/main/java/Client.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-279">
-                  <caret line="69" column="80" lean-forward="true" selection-start-line="69" selection-start-column="80" selection-end-line="69" selection-end-column="80" />
+                <state relative-caret-position="528">
+                  <caret line="124" column="68" selection-start-line="124" selection-start-column="68" selection-end-line="124" selection-end-column="68" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -208,8 +189,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/HeadNode/src/main/resources/application.conf">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+                <state relative-caret-position="135">
+                  <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
                 </state>
               </provider>
             </entry>
@@ -217,8 +198,17 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/DAS4/replacer.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="150">
-                  <caret line="10" column="32" lean-forward="true" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+                <state relative-caret-position="135">
+                  <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Client/src/main/resources/application.conf">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="165">
+                  <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -227,7 +217,7 @@
             <entry file="file://$PROJECT_DIR$/WorkerNode/src/main/resources/application.conf">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="135">
-                  <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="19" />
+                  <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
                 </state>
               </provider>
             </entry>
@@ -255,7 +245,12 @@
       <find>log</find>
       <find>millis</find>
       <find>some failure</find>
+      <find>1632497828</find>
+      <find>1940055334</find>
       <find>has errors</find>
+      <find>1757317128</find>
+      <find>335107734</find>
+      <find>1558079303</find>
     </findStrings>
     <replaceStrings>
       <replace>JobHandler</replace>
@@ -312,21 +307,21 @@
         <option value="$PROJECT_DIR$/Shared/build.gradle" />
         <option value="$PROJECT_DIR$/HeadNode/build.gradle" />
         <option value="$PROJECT_DIR$/HeadNode/src/main/java/JobWaiting.java" />
-        <option value="$PROJECT_DIR$/HeadNode/src/main/java/LockStepPolicy.java" />
-        <option value="$PROJECT_DIR$/HeadNode/src/main/java/MaximizePolicy.java" />
-        <option value="$PROJECT_DIR$/HeadNode/src/main/java/SameMachinePolicy.java" />
         <option value="$PROJECT_DIR$/WorkerNode/src/main/java/WorkerNode.java" />
-        <option value="$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java" />
         <option value="$PROJECT_DIR$/Shared/src/main/java/Job.java" />
         <option value="$PROJECT_DIR$/Shared/src/main/java/Utils.java" />
-        <option value="$PROJECT_DIR$/Shared/src/main/java/Configuration.java" />
+        <option value="$PROJECT_DIR$/DAS4/scriptToSubmitToScheduler.sh" />
+        <option value="$PROJECT_DIR$/DAS4/selector.sh" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java" />
+        <option value="$PROJECT_DIR$/WorkerNode/src/main/resources/application.conf" />
         <option value="$PROJECT_DIR$/Shared/src/main/java/JobHandler.java" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/SameMachinePolicy.java" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/MaximizePolicy.java" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/LockStepPolicy.java" />
         <option value="$PROJECT_DIR$/Client/src/main/java/Client.java" />
         <option value="$PROJECT_DIR$/Shared/src/main/java/JobActor.java" />
-        <option value="$PROJECT_DIR$/DAS4/scriptToSubmitToScheduler.sh" />
-        <option value="$PROJECT_DIR$/WorkerNode/src/main/resources/application.conf" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/Configuration.java" />
         <option value="$PROJECT_DIR$/HeadNode/src/main/resources/application.conf" />
-        <option value="$PROJECT_DIR$/DAS4/selector.sh" />
       </list>
     </option>
   </component>
@@ -702,6 +697,7 @@
       <workItem from="1543748790692" duration="922000" />
       <workItem from="1545076192125" duration="24957000" />
       <workItem from="1545133320637" duration="4755000" />
+      <workItem from="1545217259336" duration="207000" />
     </task>
     <task id="LOCAL-00001" summary="Added many small changes and logging at the important steps.">
       <created>1545108596886</created>
@@ -812,7 +808,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69104000" />
+    <option name="totallyTimeSpent" value="71753000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -827,7 +823,7 @@
     <frame x="0" y="-2" width="2560" height="1082" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.497479" visible="true" weight="0.24065235" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.497479" visible="true" weight="0.20684169" />
       <window_info id="Structure" order="1" sideWeight="0.50252104" side_tool="true" weight="0.1762132" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -837,7 +833,7 @@
       <window_info id="Find" order="7" sideWeight="0.497479" weight="0.2442323" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49681783" weight="0.32423925" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49681783" visible="true" weight="0.16264428" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39979014" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -847,7 +843,8 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.19689737" side_tool="true" weight="0.32948583" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49733475" weight="0.32738718" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.8031026" visible="true" weight="0.32948583" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.8031026" weight="0.32948583" />
+      <window_info anchor="right" id="SciView" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -860,6 +857,40 @@
       <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info anchor="right" id="Maven" order="10" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.497479" visible="true" weight="0.24065235" />
+      <window_info id="Structure" order="1" sideWeight="0.50252104" side_tool="true" weight="0.1762132" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Find" order="7" sideWeight="0.497479" weight="0.2442323" />
+      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49681783" visible="true" weight="0.96852046" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39979014" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49761337" weight="0.32738718" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32843652" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.19689737" side_tool="true" weight="0.32948583" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49733475" weight="0.32738718" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.8031026" weight="0.32948583" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="right" id="Gradle" order="6" />
+      <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="right" id="Maven" order="10" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -899,6 +930,20 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added many small changes and logging at the important steps." />
@@ -912,17 +957,6 @@
     <MESSAGE value="hostname changed in HeadNode" />
     <MESSAGE value="selector changed" />
     <option name="LAST_COMMIT_MESSAGE" value="selector changed" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Shared/src/main/java/JobHandler.java</url>
-          <line>2</line>
-          <properties />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://$PROJECT_DIR$/../Downloads/jdk-11.0.1_windows-x64_bin/jdk-11.0.1/lib/src.zip!/java.base/jdk/internal/util/xml/impl/Pair.java" />
@@ -938,13 +972,6 @@
     <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/PolicyInterface.java" />
     <entry file="file://$PROJECT_DIR$/.gradle/5.0/gc.properties">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/SpawnHeadNodes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="24" column="93" selection-start-line="24" selection-start-column="93" selection-end-line="24" selection-end-column="93" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Shared/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
@@ -1047,9 +1074,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DAS4/slurm-283658.out">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/DAS4/slurm-283658.out" />
     <entry file="jar:///usr/lib/jvm/openjdk-11/lib/src.zip!/java.base/java/util/function/Consumer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1074,20 +1099,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/MaximizePolicy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="34" column="10" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/SameMachinePolicy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="34" column="10" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/ByzantianChecker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -1106,13 +1117,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/resources/application.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -1127,41 +1131,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="4" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HeadNode/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorkerNode/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/JobHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1494">
-          <caret line="12" column="71" selection-start-line="12" selection-start-column="71" selection-end-line="12" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/LockStepPolicy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/JobWaiting.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12">
@@ -1172,73 +1141,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1425">
-          <caret line="100" column="62" selection-start-line="100" selection-start-column="62" selection-end-line="100" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Configuration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Job.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
-          <caret line="76" column="140" selection-start-line="76" selection-start-column="140" selection-end-line="76" selection-end-column="140" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1185#1186#0" expanded="true" />
-            <element signature="e#1250#1251#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DAS4/slurm-285631.out">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="475" column="134" selection-start-line="475" selection-start-column="134" selection-end-line="475" selection-end-column="134" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/JobActor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="59" column="36" lean-forward="true" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/java/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-279">
-          <caret line="69" column="80" lean-forward="true" selection-start-line="69" selection-start-column="80" selection-end-line="69" selection-end-column="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorkerNode/src/main/java/WorkerNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="55" column="57" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/DAS4/slurm-285631.out" />
     <entry file="file://$PROJECT_DIR$/DAS4/spawn.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
@@ -1252,38 +1159,160 @@
     <entry file="file://$PROJECT_DIR$/DAS4/scriptToSubmitToScheduler.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WorkerNode/src/main/resources/application.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DAS4/replacer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="32" lean-forward="true" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/resources/application.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DAS4/selector.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="657">
+          <caret line="183" column="17" selection-start-line="183" selection-start-column="17" selection-end-line="183" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorkerNode/src/main/java/WorkerNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="55" column="57" selection-start-line="55" selection-start-column="49" selection-end-line="55" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="4" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Job.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="960">
+          <caret line="76" column="140" selection-start-line="76" selection-start-column="140" selection-end-line="76" selection-end-column="140" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1185#1186#0" expanded="true" />
+            <element signature="e#1250#1251#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HeadNode/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/JobActor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="54" column="8" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorkerNode/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/LockStepPolicy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="35" column="48" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/MaximizePolicy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/SpawnHeadNodes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/SameMachinePolicy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/JobHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DAS4/replacer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/resources/application.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorkerNode/src/main/resources/application.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Configuration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/java/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="124" column="68" selection-start-line="124" selection-start-column="68" selection-end-line="124" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/resources/application.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
         </state>
       </provider>
     </entry>

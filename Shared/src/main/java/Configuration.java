@@ -13,7 +13,7 @@ public class Configuration {
 
     public int NUMBER_OF_DUPLICATIONS = NUMBER_OF_ERRORS_TO_CORRECT*2+1;
     public boolean RANDOM_FAILURES = true;
-    public double RATE_OF_STOP_FAILURES = 0.8;
+    public double RATE_OF_STOP_FAILURES = 0.1;
     public double RATE_OF_SILENT_FAILURES = 0;
     public double RATE_OF_BYZANTINE_FAILURES = 0.1;
     public Policies policy = Policies.LOCK_STEP;

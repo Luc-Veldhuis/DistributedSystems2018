@@ -1,16 +1,10 @@
 import java.io.Serializable;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.function.Supplier;
+import java.util.Random;
 
-import akka.actor.Actor;
 
 
 public class JobHandler<K,E> implements Serializable {
 
-    private static final long serialVersionUID = -1449680354072352132L;
     public SerializableSupplier job;
     public SerializableFunction<K,E> functionJob;
     public E result;
@@ -38,8 +32,9 @@ public class JobHandler<K,E> implements Serializable {
      */
     public JobHandler(SerializableSupplier job) {
         this.job = job;
-        this.debugId = this.hashCode();
+        this.debugId = this.hashCode()+new Random().nextInt();
         this.parentId = debugId+"";
+        this.id = Integer.toString(debugId);
 
     }
 
