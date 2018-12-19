@@ -1,20 +1,24 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Client {
 
     public String[] headNodes;
+    int num_concurrent;
 
     /**
      * Used to  spawn an example client to test the system
-     * @param headNodeUri a URI of the location of the head node it should connect to
+     * @param cmdline a URI of the location of the head node it should connect to and whether byzentine errors are supported
      */
-    public Client(String[] headNodeUri) {
-        this.headNodes = headNodeUri;
+    public Client(String[] cmdline) {
+        String[] headnodes = Arrays.copyOf(cmdline, cmdline.length-1);
+        this.headNodes = headnodes;
+
+        int num_errors_to_correct = Integer.valueOf(cmdline[cmdline.length -1]);
+
+        num_concurrent = (num_errors_to_correct == 0) ? 400 : 80;
+
     }
 
     /**
@@ -95,7 +99,7 @@ public class Client {
     public void runTest(List<Job> list) {
 
 
-        for(int i = 0; i < Configuration.NUMBER_OF_CONCURRENT_JOBS; i++) {
+        for(int i = 0; i < num_concurrent; i++) {
             Utils.runNextJob();
         }
 

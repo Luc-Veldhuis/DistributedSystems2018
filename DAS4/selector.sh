@@ -29,7 +29,7 @@ else
         sleep 10
         #echo SixthSleep
 
-        ./Client akka.tcp://root-node@node$6:2552/user/*
+        ./Client akka.tcp://root-node@node$6:2552/user/* $1
         echo "Client is done"
         sleep 40
         exit 0
