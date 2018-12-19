@@ -20,7 +20,7 @@ public class Configuration {
 
     public static final int NUM_DAS4_WORKERS = 8;
 
-    public static final int NUMBER_OF_JOBS = 3000;
+    public static final int NUMBER_OF_JOBS = 5000;
 
     Configuration(String[] args) {
         if(args.length == 5) {
