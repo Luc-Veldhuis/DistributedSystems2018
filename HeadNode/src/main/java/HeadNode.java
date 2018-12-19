@@ -136,7 +136,15 @@ public class HeadNode extends AbstractActor {
                         //getContext().stop(workerNode);
 
                     }
-                    log.info("////HEADNODE-DONE");
+                    log.info("////HEADNODE-DONE. Sleeping for 2000 millis");
+
+                    //wait for termination messaage to workers to get delivered
+                    try{
+                        Thread.sleep(2000);
+                    } catch (Exception e) {
+                        log.info("Headnode sleep interrupted");
+                    }
+
                     System.exit(0);
                     //getContext().stop(self());
                 }

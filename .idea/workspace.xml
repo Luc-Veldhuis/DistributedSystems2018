@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="35abc9e5-66bb-4c9b-8b72-9208190708cc" name="Default" comment="stop jobs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAS4/selector.sh" beforeDir="false" afterPath="$PROJECT_DIR$/DAS4/selector.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -43,7 +43,7 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.46319738">
+    <splitter split-orientation="horizontal" split-proportion="0.41002813">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -178,11 +178,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="154">
-                  <caret line="133" column="56" selection-start-line="133" selection-start-column="56" selection-end-line="133" selection-end-column="56" />
+                <state relative-caret-position="229">
+                  <caret line="138" column="73" selection-start-line="138" selection-start-column="73" selection-end-line="138" selection-end-column="73" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -220,7 +220,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/DAS4/selector.sh">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="555">
@@ -345,8 +345,8 @@
         <option value="$PROJECT_DIR$/Shared/src/main/java/Configuration.java" />
         <option value="$PROJECT_DIR$/WorkerNode/src/main/java/WorkerNode.java" />
         <option value="$PROJECT_DIR$/Shared/src/main/java/JobActor.java" />
-        <option value="$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java" />
         <option value="$PROJECT_DIR$/DAS4/selector.sh" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java" />
       </list>
     </option>
   </component>
@@ -520,7 +520,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545226439553" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545227071764" />
     <property name="last_opened_file_path" value="/usr/lib/jvm/openjdk-11/lib/src.zip!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -722,7 +722,7 @@
       <workItem from="1543748790692" duration="922000" />
       <workItem from="1545076192125" duration="24957000" />
       <workItem from="1545133320637" duration="4755000" />
-      <workItem from="1545217259336" duration="8399000" />
+      <workItem from="1545217259336" duration="9012000" />
     </task>
     <task id="LOCAL-00001" summary="Added many small changes and logging at the important steps.">
       <created>1545108596886</created>
@@ -899,11 +899,18 @@
       <option name="project" value="LOCAL" />
       <updated>1545226015808</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="stop jobs">
+      <created>1545226445548</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1545226445548</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79945000" />
+    <option name="totallyTimeSpent" value="80558000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1415,20 +1422,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="133" column="56" selection-start-line="133" selection-start-column="56" selection-end-line="133" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DAS4/selector.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
           <caret line="37" column="8" lean-forward="true" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="138" column="73" selection-start-line="138" selection-start-column="73" selection-end-line="138" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
