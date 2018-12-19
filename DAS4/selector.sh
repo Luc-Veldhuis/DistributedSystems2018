@@ -14,7 +14,7 @@ else
         cd .././WorkerNode/build/install/WorkerNode/bin
         sleep 30
         echo FirstSleep
-        sleep 30
+        #sleep 30
         ./WorkerNode akka.tcp://root-node@node$6:2552/user/*
         echo "Worker is done"
         sleep 40
@@ -24,9 +24,9 @@ else
         cd .././Client/build/install/Client/bin
         sleep 30
         echo FirstSleep Client
-        sleep 30
-        echo SecondSleep
-        sleep 10
+        sleep 5
+        #echo SecondSleep
+        #sleep 10
         #echo SixthSleep
 
         ./Client akka.tcp://root-node@node$6:2552/user/* $1
