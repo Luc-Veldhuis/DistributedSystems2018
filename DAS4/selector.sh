@@ -15,9 +15,9 @@ else
         cd .././WorkerNode/build/install/WorkerNode/bin
         sleep 30
         echo FirstSleep
-        sleep 20
+        sleep 30
         echo SecondSleep
-        #sleep 30
+        sleep 30
         #echo ThirdSleep
         ./WorkerNode akka.tcp://root-node@node$6:2552/user/*
     else
@@ -25,11 +25,11 @@ else
         cd .././Client/build/install/Client/bin
         sleep 30
         echo FirstSleep Client
-        sleep 25
+        sleep 30
         echo SecondSleep
-        #sleep 30
-        #echo ThirdSleep
-        #sleep 30
+        sleep 30
+        echo ThirdSleep
+        sleep 5
         #echo FourthSleep
         #sleep 30
         #echo FifthSleep
