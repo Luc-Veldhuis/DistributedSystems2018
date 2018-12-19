@@ -9,9 +9,9 @@ import java.util.List;
 public class HeadNode extends AbstractActor {
 
     static int executed_jobs = Configuration.NUMBER_OF_JOBS;
-    static boolean decrementJobs() {
+    static int decrementJobs() {
         synchronized(HeadNode.class) {
-            return executed_jobs-- < 0;
+            return --executed_jobs;
         }
     }
 
@@ -125,9 +125,10 @@ public class HeadNode extends AbstractActor {
                 log.info("///HEADNODE-FINISHED: ("+message.jobHandler.debugId+","+ (System.currentTimeMillis() - message.jobHandler.originalCreationTime)+ ")"    );
                 client.tell(new JobActor.GetJobFromHead(jobHandler), this.self());
 
-                boolean doneTestingWorkload = decrementJobs();
+                int num_left = decrementJobs();
+                log.info("Jobs left to run in Headnode: "+num_left);
+                if (num_left == 0) {
 
-                if (doneTestingWorkload) {
                     log.info("/////HEADNODE-IS-DONE: Done testing the workload");
                     Collection<ActorRef> workers = state.workerIdToWorkerNode.values();
                     for(ActorRef workerNode : workers) {
@@ -135,7 +136,9 @@ public class HeadNode extends AbstractActor {
                         //getContext().stop(workerNode);
 
                     }
-                    getContext().stop(self());
+                    log.info("////HEADNODE-DONE");
+                    System.exit(0);
+                    //getContext().stop(self());
                 }
             }
         }

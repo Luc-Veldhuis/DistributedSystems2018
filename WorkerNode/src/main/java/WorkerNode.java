@@ -164,6 +164,7 @@ public class WorkerNode extends AbstractActor {
     }
 
     void terminateSystem(TerminateSystem message) {
+        log.info("//////////WORKER-DONE");
         System.exit(0);
     }
 

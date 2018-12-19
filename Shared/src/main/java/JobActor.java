@@ -14,9 +14,9 @@ public class JobActor<E> extends AbstractActor {
     Consumer doneHander;
 
     static int number_of_jobs_to_be_yet_finished = Configuration.NUMBER_OF_JOBS;
-    static boolean decrementJobs() {
+    static int decrementJobs() {
         synchronized(JobActor.class) {
-            return number_of_jobs_to_be_yet_finished-- < 0;
+            return --number_of_jobs_to_be_yet_finished;
         }
     }
 
@@ -60,9 +60,9 @@ public class JobActor<E> extends AbstractActor {
         this.doneHander.accept(message.jobHandler.getResult());
 
         Utils.runNextJob();
-
-        boolean doneTestingWorkload = decrementJobs();
-        if(doneTestingWorkload) {
+        int num_left = decrementJobs();
+        log.info("CLIENT Number of jobs yet to finish: "+num_left);
+        if(num_left == 0) {
             log.info("/////CLIENT-DONE");
             System.exit(0);
         }
