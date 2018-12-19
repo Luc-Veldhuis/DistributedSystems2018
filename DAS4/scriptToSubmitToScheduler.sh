@@ -4,8 +4,8 @@
 ids=$(echo $SLURM_JOB_NODELIST | grep -oP "(\d*)")
 echo $ids
 echo "starting with options $1 $2 $3 $4 $5"
-cd ../HeadNode
 python replacer.py node$ids
+cd ../HeadNode
 gradle build
 gradle install
 cd ../DAS4
