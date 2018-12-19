@@ -19,7 +19,7 @@ public class Configuration {
     public Policies policy = Policies.LOCK_STEP;
 
 
-    public static final int NUMBER_OF_JOBS = 4;
+    public static final int NUMBER_OF_JOBS = 3000;
 
     Configuration(String[] args) {
         if(args.length == 5) {
