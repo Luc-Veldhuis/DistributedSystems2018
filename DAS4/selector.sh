@@ -25,11 +25,11 @@ else
         sleep 30
         echo FirstSleep Client
         sleep 5
-        for i in {1..10}
-            do
+        #for i in {1..10}
+            #do
              echo "Client number "$i
              ./Client akka.tcp://root-node@node$6:2552/user/* $1
-        done
+        #done
         echo "Client is done"
         sleep 40
         exit 0
