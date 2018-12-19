@@ -2,7 +2,7 @@ public class Configuration {
     /**
      * All global configuration parameters should be stored here
      */
-    public static final int NUMBER_OF_WORKERS_PER_SYSTEM = 8;
+    public static final int NUMBER_OF_WORKERS_PER_SYSTEM = 50;
     public static int NUMBER_OF_ERRORS_TO_CORRECT = 2;
     public static int NUMBER_OF_HEADNODES = NUMBER_OF_ERRORS_TO_CORRECT+1;
     public static final int MAXIMUM_FAKED_EXECUTION_TIME = 1000;
@@ -19,7 +19,7 @@ public class Configuration {
     public Policies policy = Policies.LOCK_STEP;
 
 
-    public static final int NUMBER_OF_JOBS = 4;
+    public static final int NUMBER_OF_JOBS = 3000;
 
     Configuration(String[] args) {
         if(args.length == 5) {
