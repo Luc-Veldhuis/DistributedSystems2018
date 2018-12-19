@@ -3,9 +3,20 @@ import akka.event.Logging;
 import akka.event.LoggingAdapter;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 public class HeadNode extends AbstractActor {
+
+    static int executed_jobs = Configuration.NUMBER_OF_JOBS;
+    static boolean decrementJobs() {
+        synchronized(HeadNode.class) {
+            return executed_jobs-- == 0;
+        }
+    }
+
+
+
     LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
     public final Integer headNodeId;
@@ -113,6 +124,17 @@ public class HeadNode extends AbstractActor {
                 ActorRef client = state.jobClientMapping.get(jobHandler.getId());
                 log.info("///HEADNODE-FINISHED: ("+message.jobHandler.debugId+","+ (System.currentTimeMillis() - message.jobHandler.originalCreationTime)+ ")"    );
                 client.tell(new JobActor.GetJobFromHead(jobHandler), this.self());
+
+                boolean doneTestingWorkload = decrementJobs();
+
+                if (doneTestingWorkload) {
+                    Collection<ActorRef> workers = state.workerIdToWorkerNode.values();
+                    for(ActorRef workerNode : workers) {
+                        //workerNode.tell(akka.actor.Kill.getInstance(), ActorRef.noSender());
+                        getContext().stop(workerNode);
+                    }
+                    getContext().stop(self());
+                }
             }
         }
     }

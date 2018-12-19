@@ -19,6 +19,8 @@ public class Configuration {
     public Policies policy = Policies.LOCK_STEP;
 
 
+    public static final int NUMBER_OF_JOBS = 4000;
+
     Configuration(String[] args) {
         if(args.length == 5) {
             NUMBER_OF_DUPLICATIONS = Integer.parseInt(args[0]);
