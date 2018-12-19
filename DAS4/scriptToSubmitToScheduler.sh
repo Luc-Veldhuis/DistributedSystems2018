@@ -4,4 +4,4 @@
 ids=$(echo $SLURM_JOB_NODELIST | grep -oP "(\d*)")
 echo $ids
 echo "starting with options $1 $2 $3 $4 $5"
-sbatch -N10 -l ./selector.sh $1 $2 $3 $4 $5 $ids
+srun -N10 -l ./selector.sh $1 $2 $3 $4 $5 $ids
