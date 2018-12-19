@@ -128,10 +128,12 @@ public class HeadNode extends AbstractActor {
                 boolean doneTestingWorkload = decrementJobs();
 
                 if (doneTestingWorkload) {
+                    log.info("/////HEADNODE-IS-DONE: Done testing the workload");
                     Collection<ActorRef> workers = state.workerIdToWorkerNode.values();
                     for(ActorRef workerNode : workers) {
                         //workerNode.tell(akka.actor.Kill.getInstance(), ActorRef.noSender());
                         getContext().stop(workerNode);
+
                     }
                     getContext().stop(self());
                 }

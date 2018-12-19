@@ -13,6 +13,8 @@ public class JobActor<E> extends AbstractActor {
     ActorSelection[] headNodeRefs;
     Consumer doneHander;
 
+
+
     /**
      * Actor used to communicate with head node, spawed by the Job class
      * @param headNodeRef Location where headNode is located
