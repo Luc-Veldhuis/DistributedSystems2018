@@ -9,6 +9,7 @@ if [ "$(hostname)" == "node$6" ]; then
     gradle install
     cd .././HeadNode/build/install/HeadNode/bin
     ./HeadNode $1 $2 $3 $4 $5
+    echo "Headnode is done"
 else
     if [ "$(hostname)" != "node$7" ]; then
         echo workerNode
@@ -20,6 +21,7 @@ else
         sleep 30
         #echo ThirdSleep
         ./WorkerNode akka.tcp://root-node@node$6:2552/user/*
+        echo "Worker is done"
     else
         echo clientNode
         cd .././Client/build/install/Client/bin
@@ -37,6 +39,6 @@ else
         #echo SixthSleep
 
         ./Client akka.tcp://root-node@node$6:2552/user/*
-
+        echo "Client is done"
      fi
 fi
