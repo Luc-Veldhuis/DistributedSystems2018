@@ -13,7 +13,12 @@ public class JobActor<E> extends AbstractActor {
     ActorSelection[] headNodeRefs;
     Consumer doneHander;
 
-
+    static int number_of_jobs_to_be_yet_finished = Configuration.NUMBER_OF_JOBS;
+    static boolean decrementJobs() {
+        synchronized(JobActor.class) {
+            return number_of_jobs_to_be_yet_finished-- < 0;
+        }
+    }
 
     /**
      * Actor used to communicate with head node, spawed by the Job class
@@ -55,6 +60,13 @@ public class JobActor<E> extends AbstractActor {
         this.doneHander.accept(message.jobHandler.getResult());
 
         Utils.runNextJob();
+
+        boolean doneTestingWorkload = decrementJobs();
+        if(doneTestingWorkload) {
+            log.info("/////CLIENT-DONE");
+            System.exit(0);
+        }
+
         getContext().stop(self());//Prevent having a lot of never used again actors
     }
 

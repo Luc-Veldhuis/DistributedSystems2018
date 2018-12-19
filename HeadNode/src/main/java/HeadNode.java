@@ -11,7 +11,7 @@ public class HeadNode extends AbstractActor {
     static int executed_jobs = Configuration.NUMBER_OF_JOBS;
     static boolean decrementJobs() {
         synchronized(HeadNode.class) {
-            return executed_jobs-- == 0;
+            return executed_jobs-- < 0;
         }
     }
 
