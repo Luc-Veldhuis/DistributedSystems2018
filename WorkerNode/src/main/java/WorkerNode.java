@@ -163,6 +163,10 @@ public class WorkerNode extends AbstractActor {
         super.preRestart(reason, message);
     }
 
+    void terminateSystem(TerminateSystem message) {
+        System.exit(0);
+    }
+
     public Receive createReceive() {
         return receiveBuilder()
                 .match(String.class, msg -> {
@@ -173,6 +177,9 @@ public class WorkerNode extends AbstractActor {
                 )
                 .match(
                         GetRegistrationResult.class, this::getAssignedId
+                )
+                .match(
+                        TerminateSystem.class, this::terminateSystem
                 )
                 .build();
     }
@@ -242,6 +249,13 @@ public class WorkerNode extends AbstractActor {
             this.jobHandler = worker;
             this.workerNode = workerNode;
         }
+    }
+
+    /**
+     * Message send from HeadNode to terminate the system
+     */
+    public static class TerminateSystem implements Serializable {
+
     }
 
 
