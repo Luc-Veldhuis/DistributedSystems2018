@@ -18,7 +18,9 @@ public class Client {
         int num_errors_to_correct = Integer.valueOf(cmdline[cmdline.length -1]);
 
 
-        num_concurrent = (num_errors_to_correct == 0) ? 400 : 80;
+        num_concurrent = (num_errors_to_correct == 0) ?
+                Configuration.NUMBER_OF_WORKERS_PER_SYSTEM*Configuration.NUM_DAS4_WORKERS
+                : Configuration.NUMBER_OF_WORKERS_PER_SYSTEM*Configuration.NUM_DAS4_WORKERS/5;
 
         System.out.println("Num concurrent: "+ num_concurrent);
     }

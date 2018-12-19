@@ -4,7 +4,7 @@
     <list default="true" id="35abc9e5-66bb-4c9b-8b72-9208190708cc" name="Default" comment="num jobs 3000">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/src/main/java/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAS4/selector.sh" beforeDir="false" afterPath="$PROJECT_DIR$/DAS4/selector.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/src/main/java/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/src/main/java/Configuration.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -106,8 +106,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Configuration.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="315">
-                  <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+                <state relative-caret-position="465">
+                  <caret line="31" column="113" selection-start-line="31" selection-start-column="113" selection-end-line="31" selection-end-column="113" />
                 </state>
               </provider>
             </entry>
@@ -167,11 +167,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Client/src/main/java/Client.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="437">
-                  <caret line="101" column="41" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
+                <state relative-caret-position="330">
+                  <caret line="22" column="93" selection-start-line="22" selection-start-column="93" selection-end-line="22" selection-end-column="93" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -224,11 +224,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/DAS4/selector.sh">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="465">
-                  <caret line="31" column="59" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
+                <state relative-caret-position="435">
+                  <caret line="29" column="24" lean-forward="true" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
                 </state>
               </provider>
             </entry>
@@ -356,10 +356,10 @@
         <option value="$PROJECT_DIR$/WorkerNode/src/main/java/WorkerNode.java" />
         <option value="$PROJECT_DIR$/Shared/src/main/java/JobActor.java" />
         <option value="$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java" />
-        <option value="$PROJECT_DIR$/Shared/src/main/java/Configuration.java" />
         <option value="$PROJECT_DIR$/DAS4/submitAllJobs.sh" />
-        <option value="$PROJECT_DIR$/Client/src/main/java/Client.java" />
         <option value="$PROJECT_DIR$/DAS4/selector.sh" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/Configuration.java" />
+        <option value="$PROJECT_DIR$/Client/src/main/java/Client.java" />
       </list>
     </option>
   </component>
@@ -735,7 +735,7 @@
       <workItem from="1543748790692" duration="922000" />
       <workItem from="1545076192125" duration="24957000" />
       <workItem from="1545133320637" duration="4755000" />
-      <workItem from="1545217259336" duration="12940000" />
+      <workItem from="1545217259336" duration="14113000" />
     </task>
     <task id="LOCAL-00001" summary="Added many small changes and logging at the important steps.">
       <created>1545108596886</created>
@@ -968,11 +968,25 @@
       <option name="project" value="LOCAL" />
       <updated>1545230012358</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="num jobs 3000">
+      <created>1545230998069</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1545230998069</updated>
+    </task>
+    <task id="LOCAL-00035" summary="num jobs 3000">
+      <created>1545231050060</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1545231050060</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84486000" />
+    <option name="totallyTimeSpent" value="85659000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1427,13 +1441,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Configuration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DAS4/spawn.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1465,13 +1472,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DAS4/scriptToSubmitToScheduler.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/openjdk-11/lib/src.zip!/java.base/java/util/Arrays.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
@@ -1485,20 +1485,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/src/main/java/Client.java">
+    <entry file="file://$PROJECT_DIR$/DAS4/scriptToSubmitToScheduler.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="101" column="41" selection-start-line="101" selection-start-column="41" selection-end-line="101" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="180">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DAS4/selector.sh">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="24" lean-forward="true" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Configuration.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
-          <caret line="31" column="59" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
+          <caret line="31" column="113" selection-start-line="31" selection-start-column="113" selection-end-line="31" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/java/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="93" selection-start-line="22" selection-start-column="93" selection-end-line="22" selection-end-column="93" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

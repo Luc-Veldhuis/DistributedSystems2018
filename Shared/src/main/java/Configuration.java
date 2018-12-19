@@ -2,7 +2,7 @@ public class Configuration {
     /**
      * All global configuration parameters should be stored here
      */
-    public static final int NUMBER_OF_WORKERS_PER_SYSTEM = 50;
+    public static final int NUMBER_OF_WORKERS_PER_SYSTEM = 25;
     public static int NUMBER_OF_ERRORS_TO_CORRECT = 2;
     public static int NUMBER_OF_HEADNODES = NUMBER_OF_ERRORS_TO_CORRECT+1;
     public static final int MAXIMUM_FAKED_EXECUTION_TIME = 1000;
@@ -18,6 +18,7 @@ public class Configuration {
     public double RATE_OF_BYZANTINE_FAILURES = 0.1;
     public Policies policy = Policies.LOCK_STEP;
 
+    public static final int NUM_DAS4_WORKERS = 8;
 
     public static final int NUMBER_OF_JOBS = 3000;
 
@@ -26,8 +27,9 @@ public class Configuration {
             NUMBER_OF_ERRORS_TO_CORRECT = Integer.parseInt(args[0]);
             NUMBER_OF_DUPLICATIONS = NUMBER_OF_ERRORS_TO_CORRECT*2+1;
             if(NUMBER_OF_ERRORS_TO_CORRECT == 0) {
-                NUMBER_OF_CONCURRENT_JOBS = 400;
-            }
+                NUMBER_OF_CONCURRENT_JOBS = NUMBER_OF_WORKERS_PER_SYSTEM*NUM_DAS4_WORKERS;
+            } else
+                NUMBER_OF_CONCURRENT_JOBS = NUMBER_OF_WORKERS_PER_SYSTEM*NUM_DAS4_WORKERS/NUMBER_OF_DUPLICATIONS;
             RATE_OF_STOP_FAILURES = Double.parseDouble(args[1]);
             RATE_OF_SILENT_FAILURES = Double.parseDouble(args[2]);
             RATE_OF_BYZANTINE_FAILURES = Double.parseDouble(args[3]);
