@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="35abc9e5-66bb-4c9b-8b72-9208190708cc" name="Default" comment="hostname changed in HeadNode">
+    <list default="true" id="35abc9e5-66bb-4c9b-8b72-9208190708cc" name="Default" comment="selector changed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -122,8 +122,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/DAS4/selector.sh">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="6" column="19" lean-forward="true" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+                <state relative-caret-position="75">
+                  <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
                 </state>
               </provider>
             </entry>
@@ -149,15 +149,6 @@
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/LockStepPolicy.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="960">
-                  <caret line="65" selection-start-line="65" selection-end-line="65" />
                 </state>
               </provider>
             </entry>
@@ -333,8 +324,8 @@
         <option value="$PROJECT_DIR$/Shared/src/main/java/JobActor.java" />
         <option value="$PROJECT_DIR$/DAS4/scriptToSubmitToScheduler.sh" />
         <option value="$PROJECT_DIR$/WorkerNode/src/main/resources/application.conf" />
-        <option value="$PROJECT_DIR$/DAS4/selector.sh" />
         <option value="$PROJECT_DIR$/HeadNode/src/main/resources/application.conf" />
+        <option value="$PROJECT_DIR$/DAS4/selector.sh" />
       </list>
     </option>
   </component>
@@ -508,7 +499,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545181212399" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545181643712" />
     <property name="last_opened_file_path" value="/usr/lib/jvm/openjdk-11/lib/src.zip!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -802,11 +793,18 @@
       <option name="project" value="LOCAL" />
       <updated>1545180005792</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="selector changed">
+      <created>1545181250510</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1545181250510</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68665000" />
+    <option name="totallyTimeSpent" value="69096000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -821,7 +819,7 @@
     <frame x="0" y="-2" width="2560" height="1082" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.497479" visible="true" weight="0.24065235" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.497479" visible="true" weight="0.24065235" />
       <window_info id="Structure" order="1" sideWeight="0.50252104" side_tool="true" weight="0.1762132" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -838,10 +836,10 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49761337" weight="0.32738718" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32843652" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.19689737" side_tool="true" visible="true" weight="0.32948583" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.19689737" side_tool="true" weight="0.32948583" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49733475" weight="0.32738718" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.8031026" visible="true" weight="0.32948583" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.8031026" visible="true" weight="0.32948583" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -904,7 +902,8 @@
     <MESSAGE value="sleep cascade" />
     <MESSAGE value="hostname changed" />
     <MESSAGE value="hostname changed in HeadNode" />
-    <option name="LAST_COMMIT_MESSAGE" value="hostname changed in HeadNode" />
+    <MESSAGE value="selector changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="selector changed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -918,16 +917,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/WorkerData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../Downloads/jdk-11.0.1_windows-x64_bin/jdk-11.0.1/lib/src.zip!/java.base/jdk/internal/util/xml/impl/Pair.java" />
     <entry file="jar://$PROJECT_DIR$/../Downloads/jdk-11.0.1_windows-x64_bin/jdk-11.0.1/lib/src.zip!/java.base/java/util/List.java" />
     <entry file="jar://$PROJECT_DIR$/../Downloads/jdk-11.0.1_windows-x64_bin/jdk-11.0.1/lib/src.zip!/jdk.javadoc/jdk/javadoc/internal/doclets/toolkit/util/Utils.java" />
@@ -1273,6 +1262,9 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/HeadNode/src/main/resources/application.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1282,8 +1274,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DAS4/selector.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="19" lean-forward="true" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        <state relative-caret-position="75">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
         </state>
       </provider>
     </entry>
