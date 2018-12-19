@@ -146,6 +146,8 @@ public class Client {
         */
 
         client.runTest(list);
+
+
     }
 
 }
