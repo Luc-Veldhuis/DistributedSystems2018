@@ -6,7 +6,7 @@ echo $ids
 echo "starting with options $1 $2 $3 $4 $5"
 cd ../HeadNode
 python replacer.py node$ids
-cd ../DAS4
 gradle build
 gradle install
+cd ../DAS4
 srun -N10 -l ./selector.sh $1 $2 $3 $4 $5 $ids
