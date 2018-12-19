@@ -6,6 +6,7 @@ if [ "$(hostname)" == "node$6" ]; then
     cd .././HeadNode/build/install/HeadNode/bin
     ./HeadNode $1 $2 $3 $4 $5
     echo "Headnode is done"
+    sleep 40
     exit 0
 else
     if [ "$(hostname)" != "node$7" ]; then
@@ -15,6 +16,7 @@ else
         echo FirstSleep
         ./WorkerNode akka.tcp://root-node@node$6:2552/user/*
         echo "Worker is done"
+        sleep 40
         exit 0
     else
         echo clientNode
@@ -28,6 +30,7 @@ else
 
         ./Client akka.tcp://root-node@node$6:2552/user/*
         echo "Client is done"
+        sleep 40
         exit 0
      fi
 fi
