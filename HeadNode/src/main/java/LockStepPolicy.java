@@ -32,9 +32,9 @@ public class LockStepPolicy extends Policy {
         //added
         addRandomFailures(jobHandler, config);
         jobHandler.setId(idCounter+"");
-        log.info("Assigned job "+jobHandler.debugId + " interal id "+jobHandler.getId());
+        //log.info("Assigned job "+jobHandler.getId());
         log.info("Job "+ jobHandler.getId() + " has errors: "+ jobHandler.numberOfByzantianFailures + " "+ jobHandler.numberOfFailStopFailures + " "+ jobHandler.numberOfFailSilentFailures);
-        JobWaiting jobWaiting = new JobWaiting(jobHandler);
+        JobWaiting jobWaiting = new JobWaiting(jobHandler, log);
         state.jobClientMapping.put(jobWaiting.jobHander.getId(), jobActor);
         state.jobsWaitingForExecutionResults.put(jobWaiting.jobHander.getId(),jobWaiting);
         state.jobWaitingQueue.add(jobWaiting.jobHander.getId());

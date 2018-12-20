@@ -3,9 +3,20 @@ import akka.event.Logging;
 import akka.event.LoggingAdapter;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 public class HeadNode extends AbstractActor {
+
+    static int executed_jobs = Configuration.NUMBER_OF_JOBS;
+    static int decrementJobs() {
+        synchronized(HeadNode.class) {
+            return --executed_jobs;
+        }
+    }
+
+
+
     LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
 
     public final Integer headNodeId;
@@ -105,11 +116,38 @@ public class HeadNode extends AbstractActor {
             log.info("Headnode "+headNodeId+" received result of job "+message.jobHandler.getId());
             JobWaiting jobWaiting = this.scheduler.update(message.jobHandler, message.workerNode);//get waiting jobs
             if(jobWaiting != null && jobWaiting.isDone(config.NUMBER_OF_DUPLICATIONS)) {
-                log.info("Headnode " + headNodeId+" done with job "+message.jobHandler.getParentId());
-                JobHandler jobHander = this.failCheck.check(jobWaiting);
-                log.info("Headnode " + headNodeId+" job "+jobHander.getId()+" checked");
-                ActorRef actor = state.jobClientMapping.get(jobHander.getId());
-                actor.tell(new JobActor.GetJobFromHead(jobHander), this.self());
+                //log.info("JOB-FINISHING-MESSAGE ("+message.jobHandler.getParentId().length()+","+message.jobHandler.getParentId()+","+System.currentTimeMillis()+") @ : Headnode " + headNodeId+" done with job "+message.jobHandler.getParentId());
+
+
+                JobHandler jobHandler = this.failCheck.check(jobWaiting);
+                log.info("Headnode " + headNodeId+" job "+jobHandler.getId()+" checked");
+                ActorRef client = state.jobClientMapping.get(jobHandler.getId());
+                log.info("///HEADNODE-FINISHED: ("+message.jobHandler.debugId+","+ (System.currentTimeMillis() - message.jobHandler.originalCreationTime)+ ")"    );
+                client.tell(new JobActor.GetJobFromHead(jobHandler), this.self());
+
+                int num_left = decrementJobs();
+                log.info("Jobs left to run in Headnode: "+num_left);
+                if (num_left == 0) {
+
+                    log.info("/////HEADNODE-IS-DONE: Done testing the workload");
+                    Collection<ActorRef> workers = state.workerIdToWorkerNode.values();
+                    for(ActorRef workerNode : workers) {
+                        workerNode.tell(new WorkerNode.TerminateSystem(), ActorRef.noSender());
+                        //getContext().stop(workerNode);
+
+                    }
+                    log.info("////HEADNODE-DONE. Sleeping for 2000 millis");
+
+                    //wait for termination messaage to workers to get delivered
+                    try{
+                        Thread.sleep(2000);
+                    } catch (Exception e) {
+                        log.info("Headnode sleep interrupted");
+                    }
+
+                    System.exit(0);
+                    //getContext().stop(self());
+                }
             }
         }
     }
