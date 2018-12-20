@@ -45,7 +45,7 @@ public class Job<K,E> implements JobInterface<E> {
      * Called once the function is done
      * @param handler Function to execute on termination
      */
-    public void setHandler(SerializableConsumer handler) {
+    public void setFinishedFunction(SerializableConsumer handler) {
         this.doneHandler = handler;
     }
 

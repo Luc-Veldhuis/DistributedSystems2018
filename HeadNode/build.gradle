@@ -19,7 +19,7 @@ dependencies {
     compile group: 'com.typesafe.akka', name: 'akka-remote_2.12', version: '2.5.18'
     compile project(':Shared')
     compile project(':WorkerNode')
-    compile project(':Client')
+    compile project(path: ':Client', configuration: 'default')
 }
 
 mainClassName = "SpawnHeadNodes"

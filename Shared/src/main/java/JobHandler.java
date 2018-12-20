@@ -1,11 +1,6 @@
 import java.io.Serializable;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.function.Supplier;
+import java.util.Random;
 
-import akka.actor.Actor;
 
 
 public class JobHandler<K,E> implements Serializable {
@@ -20,6 +15,11 @@ public class JobHandler<K,E> implements Serializable {
     public boolean done = false;
     public int debugId;
 
+    public long originalCreationTime ;
+    //public long finishedTime;
+    public long workerIncomingTimestamp;
+
+
     //For debug purpouses
     public int numberOfByzantianFailures = 0;
     public int numberOfFailStopFailures = 0;
@@ -32,7 +32,10 @@ public class JobHandler<K,E> implements Serializable {
      */
     public JobHandler(SerializableSupplier job) {
         this.job = job;
-        this.debugId = this.hashCode();
+        this.debugId = this.hashCode()+new Random().nextInt();
+        this.parentId = debugId+"";
+        this.id = Integer.toString(debugId);
+
     }
 
     /**
@@ -44,6 +47,7 @@ public class JobHandler<K,E> implements Serializable {
         this.functionJob = functionJob;
         this.input = input;
         this.debugId = this.hashCode();
+        this.parentId = debugId+"";
     }
 
     /**
@@ -58,7 +62,10 @@ public class JobHandler<K,E> implements Serializable {
     Function to be called by the scheduler
      */
     public void setId(String id) {
-        this.id = id;
+        if(id.startsWith(Integer.toString(debugId)))
+            this.id = id;
+        else
+            this.id = debugId+"-"+id;
     }
 
     /**
@@ -74,7 +81,11 @@ public class JobHandler<K,E> implements Serializable {
      * @param id
      */
     public void setParentId(String id) {
-        this.parentId = id;
+        //System.out.println(id);
+        if(id != null && id.startsWith(Integer.toString(debugId)))
+            this.parentId = id;
+        else
+            this.parentId = debugId+"-"+id;
     }
 
     /**
@@ -118,7 +129,14 @@ public class JobHandler<K,E> implements Serializable {
         result.setId(this.getId());
         result.e = this.e;
         result.result = this.result;
-        result.setParentId(this.getParentId());
+        result.parentId = this.parentId;
+        result.debugId = this.debugId;
+        result.originalCreationTime = this.originalCreationTime;
+        result.workerIncomingTimestamp = this.workerIncomingTimestamp;
+
+
+        //result.finishedTime = this.finishedTime;
+
         return result;
     }
 

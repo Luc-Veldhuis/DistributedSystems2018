@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Client.iml" filepath="$PROJECT_DIR$/.idea/modules/Client.iml" group="Client" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Client/Client.iml" filepath="$PROJECT_DIR$/.idea/modules/Client/Client.iml" group="Client" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Client/Client_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Client/Client_main.iml" group="Client" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Client/Client_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Client/Client_test.iml" group="Client" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/HeadNode.iml" filepath="$PROJECT_DIR$/.idea/modules/HeadNode.iml" group="HeadNode" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/HeadNode/HeadNode.iml" filepath="$PROJECT_DIR$/.idea/modules/HeadNode/HeadNode.iml" group="HeadNode" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/HeadNode/HeadNode_main.iml" filepath="$PROJECT_DIR$/.idea/modules/HeadNode/HeadNode_main.iml" group="HeadNode" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/HeadNode/HeadNode_test.iml" filepath="$PROJECT_DIR$/.idea/modules/HeadNode/HeadNode_test.iml" group="HeadNode" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Shared.iml" filepath="$PROJECT_DIR$/.idea/modules/Shared.iml" group="Shared" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Shared/Shared.iml" filepath="$PROJECT_DIR$/.idea/modules/Shared/Shared.iml" group="Shared" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Shared/Shared_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Shared/Shared_main.iml" group="Shared" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Shared/Shared_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Shared/Shared_test.iml" group="Shared" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/WorkerNode/WorkerNode.iml" filepath="$PROJECT_DIR$/.idea/modules/WorkerNode/WorkerNode.iml" group="WorkerNode" />

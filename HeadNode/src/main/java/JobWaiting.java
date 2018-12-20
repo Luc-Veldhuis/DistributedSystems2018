@@ -1,3 +1,6 @@
+import akka.event.Logging;
+import akka.event.LoggingAdapter;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,13 +11,17 @@ public class JobWaiting implements Serializable {
     List<Pair<JobHandler, Integer>> jobList; //Store the job and the node on which it is run worker
     int counter = 0;
 
+    LoggingAdapter log;
+
+
     /**
      * Once a Job has been copied in x separate Jobs, this class stores the state of all of the jobs
      * @param jobHandler
      */
-    JobWaiting(JobHandler jobHandler) {
+    JobWaiting(JobHandler jobHandler, LoggingAdapter log) {
         //TODO Update on failing node, restart job, otherwise it waits forever on a job which is not restarted
         this.jobHander = jobHandler;
+        this.log = log;
         jobList = new ArrayList<>();
     }
 
@@ -38,6 +45,8 @@ public class JobWaiting implements Serializable {
      * @param job
      */
     public void newResult(JobHandler job) {
+          //job.debugId
+
         for(Pair<JobHandler, Integer> storedJob: jobList) {
             if(job.getId().equals(storedJob.first.getId())) {
                 storedJob.first.setResult(job.result);
