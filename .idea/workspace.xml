@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="35abc9e5-66bb-4c9b-8b72-9208190708cc" name="Default" comment="">
+    <list default="true" id="35abc9e5-66bb-4c9b-8b72-9208190708cc" name="Default" comment="num jobs 3000">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/main/java/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/main/java/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAS4/selector.sh" beforeDir="false" afterPath="$PROJECT_DIR$/DAS4/selector.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAS4/slurm-287243.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/src/main/java/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/src/main/java/Configuration.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
     <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/WorkerEnvironment/.gradle/" />
+    <ignored path="$PROJECT_DIR$/HeadNode/.gradle/" />
+    <ignored path="$PROJECT_DIR$/HeadNode/build/" />
+    <ignored path="$PROJECT_DIR$/HeadNode/out/" />
+    <ignored path="$PROJECT_DIR$/WorkerNode/.gradle/" />
+    <ignored path="$PROJECT_DIR$/WorkerNode/build/" />
+    <ignored path="$PROJECT_DIR$/Shared/.gradle/" />
+    <ignored path="$PROJECT_DIR$/Shared/build/" />
+    <ignored path="$PROJECT_DIR$/Shared/out/" />
+    <ignored path="$PROJECT_DIR$/Client/.gradle/" />
+    <ignored path="$PROJECT_DIR$/Client/build/" />
+    <ignored path="$PROJECT_DIR$/Client/out/" />
+    <ignored path="$PROJECT_DIR$/WorkerNode/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,108 +35,230 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
+  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/MainApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="63" column="32" selection-start-line="63" selection-start-column="32" selection-end-line="63" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HeadNode.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/HeadNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1890">
-              <caret line="131" column="38" selection-start-line="131" selection-start-column="38" selection-end-line="131" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WorkerNode.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/WorkerNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Policy.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Policy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Messages.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Messages.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="31" column="40" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientActor.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ClientActor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="82" column="1" selection-start-line="82" selection-start-column="1" selection-end-line="82" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Scheduler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HeadNodeState.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/HeadNodeState.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Job.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Job.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="30" column="10" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.41206285">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/WorkerNode/src/main/java/WorkerNode.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1692">
+                  <caret line="162" column="41" selection-start-line="162" selection-start-column="41" selection-end-line="162" selection-end-column="41" />
+                  <folding>
+                    <element signature="e#7269#7270#0" expanded="true" />
+                    <element signature="e#7317#7318#0" expanded="true" />
+                    <element signature="e#7550#7551#0" expanded="true" />
+                    <element signature="e#7592#7593#0" expanded="true" />
+                    <element signature="e#7840#7841#0" expanded="true" />
+                    <element signature="e#7882#7883#0" expanded="true" />
+                    <element signature="e#8136#8137#0" expanded="true" />
+                    <element signature="e#8184#8185#0" expanded="true" />
+                    <element signature="e#8421#8422#0" expanded="true" />
+                    <element signature="e#8459#8460#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Utils.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-73">
+                  <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Job.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="752">
+                  <caret line="76" column="140" selection-start-line="76" selection-start-column="140" selection-end-line="76" selection-end-column="140" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#1185#1186#0" expanded="true" />
+                    <element signature="e#1250#1251#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Shared/src/main/java/JobInterface.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret column="17" selection-start-column="17" selection-end-column="17" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Configuration.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="330">
+                  <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/WorkerNode/src/main/java/SpawnWorkers.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="180">
+                  <caret line="12" column="70" selection-start-line="12" selection-start-column="70" selection-end-line="12" selection-end-column="70" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/HeadNode/build.gradle">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="360">
+                  <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Shared/src/main/java/JobActor.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="728">
+                  <caret line="67" column="9" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/WorkerNode/build.gradle">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="300">
+                  <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Client/src/main/java/Client.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="285">
+                  <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar:///usr/lib/jvm/openjdk-11/lib/src.zip!/java.base/java/util/Arrays.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="384">
+                  <caret line="3686" column="26" selection-start-line="3686" selection-start-column="26" selection-end-line="3686" selection-end-column="26" />
+                  <folding>
+                    <element signature="e#201638#201639#0" expanded="true" />
+                    <element signature="e#201679#201680#0" expanded="true" />
+                    <element signature="e#201978#201979#0" expanded="true" />
+                    <element signature="e#202035#202036#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="424">
+                  <caret line="145" column="21" selection-start-line="145" selection-start-column="21" selection-end-line="145" selection-end-column="21" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Shared/src/main/java/JobHandler.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-375">
+                  <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/HeadNode/src/main/resources/application.conf">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="135">
+                  <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/DAS4/selector.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="360">
+                  <caret line="24" column="16" lean-forward="true" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/DAS4/scriptToSubmitToScheduler.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="180">
+                  <caret line="12" selection-start-line="12" selection-end-line="12" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/DAS4/spawn.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="315">
+                  <caret line="21" selection-start-line="21" selection-end-line="21" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/DAS4/submitAllJobs.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="418">
+                  <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -133,418 +271,105 @@
     <findStrings>
       <find>device</find>
       <find>requesttrackde</find>
-      <find>messages</find>
-      <find>doneHander</find>
-      <find>doneHandler</find>
-      <find>actorselection</find>
-      <find>sendRe</find>
-      <find>testingMessage</find>
-      <find>headNodes</find>
-      <find>registerWorker</find>
-      <find>pop</find>
-      <find>true</find>
-      <find>receiveWorkerResult</find>
-      <find>sendResult</find>
-      <find>executeJob</find>
-      <find>acceptWorker</find>
-      <find>avail</find>
-      <find>JobExecutionResult</find>
-      <find>removeWorker</find>
-      <find>workerAvailability</find>
-      <find>schedu</find>
-      <find>scheduler</find>
-      <find>GET</find>
-      <find>for</find>
-      <find>tell</find>
-      <find>setResult</find>
-      <find>result</find>
-      <find>assignJobToWorker</find>
-      <find>schedule</find>
+      <find>share</find>
+      <find>shared</find>
+      <find>client</find>
+      <find>&quot;result</find>
+      <find>utils</find>
+      <find>log</find>
+      <find>millis</find>
+      <find>some failure</find>
+      <find>1632497828</find>
+      <find>1940055334</find>
+      <find>has errors</find>
+      <find>1757317128</find>
+      <find>335107734</find>
+      <find>1558079303</find>
     </findStrings>
     <replaceStrings>
       <replace>JobHandler</replace>
-      <replace>receivedJob</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>D:\Luc\Documenten\GitHub\DistributedSystems2018</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GradleLocalSettings">
-    <option name="myGradleHomes">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="/usr/local/Cellar/gradle/4.10.2/libexec" />
-      </map>
-    </option>
-    <option name="myGradleVersions">
-      <map>
-        <entry key="$PROJECT_DIR$" value="4.10.2" />
-      </map>
-    </option>
-    <option name="availableProjects">
-      <map>
-        <entry>
-          <key>
-            <ExternalProjectPojo>
-              <option name="name" value="job_runner" />
-              <option name="path" value="$PROJECT_DIR$" />
-            </ExternalProjectPojo>
-          </key>
-          <value>
-            <list>
-              <ExternalProjectPojo>
-                <option name="name" value="job_runner" />
-                <option name="path" value="$PROJECT_DIR$" />
-              </ExternalProjectPojo>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="availableTasks">
-      <map>
-        <entry key="$PROJECT_DIR$">
-          <value>
-            <list>
-              <ExternalTaskPojo>
-                <option name="description" value="Displays the components produced by root project 'job_runner'. [incubating]" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="components" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles and tests this project and all projects that depend on it." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="buildDependents" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Displays the sub-projects of root project 'job_runner'." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="projects" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles main classes." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="classes" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Displays the dependent components of components in root project 'job_runner'. [incubating]" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="dependentComponents" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Displays all buildscript dependencies declared in root project 'job_runner'." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="buildEnvironment" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Runs this project as a JVM application" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="run" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Generates Gradle wrapper files." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="wrapper" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles test classes." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="testClasses" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Generates Javadoc API documentation for the main source code." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="javadoc" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Creates OS specific scripts to run the project as a JVM application." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="startScripts" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles a jar archive containing the main classes." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="jar" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Displays the configuration model of root project 'job_runner'. [incubating]" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="model" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Installs the project as a distribution as-is." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="installDist" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Processes main resources." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="processResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Displays the tasks runnable from root project 'job_runner'." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="tasks" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles the main distributions" />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="assembleDist" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Initializes a new Gradle build." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="init" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Runs the unit tests." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="test" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Compiles main Java source." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileJava" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Displays the insight into a specific dependency in root project 'job_runner'." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="dependencyInsight" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Runs all checks." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="check" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles the outputs of this project." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="assemble" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Deletes the build directory." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="clean" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Compiles test Java source." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="compileTestJava" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Displays all dependencies declared in root project 'job_runner'." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="dependencies" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Processes test resources." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="processTestResources" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Displays a help message." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="help" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles and tests this project." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="build" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Assembles and tests this project and all projects it depends on." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="buildNeeded" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Bundles the project as a distribution." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="distTar" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Bundles the project as a distribution." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="distZip" />
-              </ExternalTaskPojo>
-              <ExternalTaskPojo>
-                <option name="description" value="Displays the properties of root project 'job_runner'." />
-                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="properties" />
-              </ExternalTaskPojo>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="modificationStamps">
-      <map>
-        <entry key="$PROJECT_DIR$" value="4630696373000" />
-        <entry key="$PROJECT_DIR$/.gradle" value="0" />
-        <entry key="$PROJECT_DIR$/build.gradle" value="3846080114" />
-        <entry key="$PROJECT_DIR$/settings.gradle" value="2251632609" />
-      </map>
-    </option>
-    <option name="projectBuildClasspath">
-      <map>
-        <entry key="$PROJECT_DIR$">
-          <value>
-            <ExternalProjectBuildClasspathPojo>
-              <option name="modulesBuildClasspath">
-                <map>
-                  <entry key="$PROJECT_DIR$">
-                    <value>
-                      <ExternalModuleBuildClasspathPojo>
-                        <option name="path" value="$PROJECT_DIR$" />
-                      </ExternalModuleBuildClasspathPojo>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-              <option name="name" value="job_runner" />
-              <option name="projectBuildClasspath">
-                <list>
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-native-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-kotlin-dsl-1.0-rc-6.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-wrapper-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-docs-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-jvm-services-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-process-services-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/ant-1.9.11.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/groovy-all-2.4.15.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-build-cache-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-cli-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/ant-launcher-1.9.11.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-api-metadata-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-persistent-cache-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-kotlin-dsl-provider-plugins-1.0-rc-6.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-kotlin-dsl-tooling-models-1.0-rc-6.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-model-groovy-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-launcher-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-kotlin-dsl-tooling-builders-1.0-rc-6.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-runtime-api-info-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-base-services-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-resources-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-build-option-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-logging-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-core-api-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-tooling-api-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-core-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-messaging-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-installation-beacon-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-base-services-groovy-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/gradle-model-core-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-tooling-native-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-ide-play-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-plugins-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-platform-native-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-reporting-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-tooling-api-builders-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-testing-native-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-testing-jvm-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-ide-native-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-scala-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-ide-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-platform-play-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-language-scala-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-osgi-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-composite-builds-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-plugin-development-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-language-jvm-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-javascript-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-dependency-management-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-platform-jvm-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-test-kit-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-plugin-use-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-publish-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-build-init-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-resources-gcs-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-resources-http-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-language-native-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-resources-sftp-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-jacoco-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-testing-junit-platform-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-build-comparison-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-resources-s3-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-maven-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-platform-base-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-testing-base-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-build-cache-http-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-diagnostics-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-antlr-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-workers-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-ear-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-signing-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-language-groovy-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-version-control-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-ivy-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/ivy-2.2.0.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-code-quality-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-language-java-4.10.2.jar" />
-                  <option value="/usr/local/opt/gradle/libexec/lib/plugins/gradle-announce-4.10.2.jar" />
-                  <option value="$PROJECT_DIR$/buildSrc/src/main/java" />
-                  <option value="$PROJECT_DIR$/buildSrc/src/main/groovy" />
-                </list>
-              </option>
-            </ExternalProjectBuildClasspathPojo>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="projectSyncType">
-      <map>
-        <entry key="$USER_HOME$/Desktop/asynchrnous_job_runner" value="PREVIEW" />
-        <entry key="$USER_HOME$/Desktop/job_runner" value="PREVIEW" />
-        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
+        <entry key="$PROJECT_DIR$" value="luc_dev" />
       </map>
     </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/RequestProtocol.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Device.java" />
-        <option value="$PROJECT_DIR$/src/main/java/DeviceGroup.java" />
-        <option value="$PROJECT_DIR$/src/main/java/DeviceManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/JobHandler.java" />
-        <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/main/java/TaskScheduler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/JobWaiting.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Client.java" />
-        <option value="$PROJECT_DIR$/src/main/java/MainApplication.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Policy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/PolicyInterface.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Messages.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ByzantianChecker.java" />
-        <option value="$PROJECT_DIR$/src/main/java/WorkerNode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/HeadNodeState.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Scheduler.java" />
         <option value="$PROJECT_DIR$/src/main/java/HeadNode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Job.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ClientActor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/WorkerNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/TaskScheduler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MainApplication.java" />
+        <option value="$PROJECT_DIR$/WorkerEnvironment/src/main/resources/application.conf" />
+        <option value="$PROJECT_DIR$/WorkerEnvironment/src/main/java/WorkerNode.java" />
+        <option value="$PROJECT_DIR$/WorkerEnvironment/build.gradle" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/TaskScheduler.java" />
+        <option value="$PROJECT_DIR$/Client/build.gradle" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/MainApplication.java" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/HeadData.java" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/Messages.java" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/ClientActor.java" />
+        <option value="$PROJECT_DIR$/settings.gradle" />
+        <option value="$PROJECT_DIR$/Client/src/main/resources/application.conf" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/JobInterface.java" />
+        <option value="$PROJECT_DIR$/WorkerNode/src/main/java/SpawnWorkers.java" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/CustomSupervisorStrategyConfigurator.java" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/GracefulFailureException.java" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/SerializableConsumer.java" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/SerializableSupplier.java" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/WorkerData.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/Policy.java" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/Pair.java" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/PolicyInterface.java" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/Scheduler.java" />
+        <option value="$PROJECT_DIR$/WorkerNode/build.gradle" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/HeadNodeState.java" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/ByzantianChecker.java" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/SpawnHeadNodes.java" />
+        <option value="$PROJECT_DIR$/Shared/build.gradle" />
+        <option value="$PROJECT_DIR$/HeadNode/build.gradle" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/JobWaiting.java" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/Job.java" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/Utils.java" />
+        <option value="$PROJECT_DIR$/DAS4/scriptToSubmitToScheduler.sh" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/JobHandler.java" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/SameMachinePolicy.java" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/MaximizePolicy.java" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/LockStepPolicy.java" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/resources/application.conf" />
+        <option value="$PROJECT_DIR$/WorkerNode/src/main/java/WorkerNode.java" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/JobActor.java" />
+        <option value="$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java" />
+        <option value="$PROJECT_DIR$/WorkerNode/src/main/resources/application.conf" />
+        <option value="$PROJECT_DIR$/Client/src/main/java/Client.java" />
+        <option value="$PROJECT_DIR$/DAS4/submitAllJobs.sh" />
+        <option value="$PROJECT_DIR$/Shared/src/main/java/Configuration.java" />
+        <option value="$PROJECT_DIR$/DAS4/selector.sh" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="34" />
-    <option name="y" value="23" />
-    <option name="width" value="1280" />
-    <option name="height" value="721" />
+    <option name="x" value="3232" />
+    <option name="y" value="27" />
+    <option name="width" value="1270" />
+    <option name="height" value="713" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -555,20 +380,101 @@
             <path>
               <item name="job_runner" type="b2602c69:ProjectViewProjectNode" />
               <item name="DistributedSystems2018" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Client" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="job_runner" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistributedSystems2018" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Client" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="job_runner" type="b2602c69:ProjectViewProjectNode" />
               <item name="DistributedSystems2018" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Client" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
               <item name="job_runner" type="b2602c69:ProjectViewProjectNode" />
               <item name="DistributedSystems2018" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Client" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="job_runner" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistributedSystems2018" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Client" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="job_runner" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistributedSystems2018" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="DAS4" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="job_runner" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistributedSystems2018" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Shared" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="job_runner" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistributedSystems2018" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Shared" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="job_runner" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistributedSystems2018" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Shared" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="job_runner" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistributedSystems2018" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Shared" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="job_runner" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistributedSystems2018" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="WorkerNode" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="job_runner" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistributedSystems2018" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="WorkerNode" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="job_runner" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistributedSystems2018" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="WorkerNode" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="job_runner" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistributedSystems2018" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="WorkerNode" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="job_runner" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistributedSystems2018" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="WorkerNode" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="job_runner" type="b2602c69:ProjectViewProjectNode" />
@@ -578,17 +484,46 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="pop &#9;PSI&#9;JAVA://HeadNodeState#pop" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545255448471" />
+    <property name="last_opened_file_path" value="/usr/lib/jvm/openjdk-11/lib/src.zip!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.34158415" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Luc\Documenten\GitHub\DistributedSystems2018\Client\src\main\resources" />
+      <recent name="D:\Luc\Documenten\GitHub\DistributedSystems2018\HeadNode" />
+      <recent name="D:\Luc\Documenten\GitHub\DistributedSystems2018\WorkerEnvironment" />
+      <recent name="D:\Luc\Documenten\GitHub\DistributedSystems2018\WorkerEnvironment\src\main\resources" />
+      <recent name="D:\Luc\Documenten\GitHub\DistributedSystems2018\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Luc\Documenten\GitHub\DistributedSystems2018\WorkerEnvironment\src\main\java" />
+      <recent name="D:\Luc\Documenten\GitHub\DistributedSystems2018\Client" />
+      <recent name="D:\Luc\Documenten\GitHub\DistributedSystems2018\Shared\src\main\java" />
+      <recent name="D:\Luc\Documenten\GitHub\DistributedSystems2018\HeadNode" />
+      <recent name="D:\Luc\Documenten\GitHub\DistributedSystems2018\Shared" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="gradle buildDependents" />
+    </option>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -602,65 +537,140 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MainApplication" />
-      <module name="job_runner_main" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+  <component name="RunManager" selected="Application.Client">
+    <configuration name="Client" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Client" />
+      <module name="Client_main" />
+      <option name="PROGRAM_PARAMETERS" value="akka.tcp://root-node@127.0.0.1:2552/user/*" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RunHeadNode" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="SpawnHeadNodes" />
+      <module name="HeadNode_main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RunWorker" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="SpawnWorkers" />
+      <module name="WorkerNode_main" />
+      <option name="PROGRAM_PARAMETERS" value="akka.tcp://root-node@127.0.0.1:2552/user/*" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method>
+      <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="Setup-env" type="CompoundRunConfigurationType">
+      <toRun name="MainApplication" type="Application" />
+      <toRun name="RunWorker" type="Application" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="CompoundRunConfigurationType">
+      <toRun name="MainApplication" type="Application" />
+      <toRun name="RunWorker" type="Application" />
+      <method v="2" />
+    </configuration>
+    <configuration name="DistributedSystems2018 [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="buildDependents" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-      <method>
+      <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <module name="WorkerNode" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="OUTPUT_DIRECTORY" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <module name="WorkerNode" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <properties />
       <listeners />
-      <method>
+      <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.RunWorker" />
+      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.RunHeadNode" />
+      <item itemvalue="Compound.Setup-env" />
+      <item itemvalue="Gradle.DistributedSystems2018 [buildDependents]" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainApplication" />
+        <item itemvalue="Gradle.DistributedSystems2018 [buildDependents]" />
+        <item itemvalue="Gradle.DistributedSystems2018 [buildDependents]" />
+        <item itemvalue="Gradle.DistributedSystems2018 [buildDependents]" />
       </list>
     </recent_temporary>
   </component>
@@ -680,371 +690,822 @@
       <workItem from="1543485182040" duration="2139000" />
       <workItem from="1543585855401" duration="1298000" />
       <workItem from="1543692946307" duration="1631000" />
-      <workItem from="1543748790692" duration="1520000" />
-      <workItem from="1543759544190" duration="3844000" />
-      <workItem from="1543918385115" duration="31970000" />
-      <workItem from="1544018009376" duration="8457000" />
-      <workItem from="1544101497940" duration="27487000" />
-      <workItem from="1544187558747" duration="369000" />
+      <workItem from="1543748790692" duration="922000" />
+      <workItem from="1545076192125" duration="24957000" />
+      <workItem from="1545133320637" duration="4755000" />
+      <workItem from="1545217259336" duration="23834000" />
     </task>
+    <task id="LOCAL-00001" summary="Added many small changes and logging at the important steps.">
+      <created>1545108596886</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1545108596886</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added many small changes and logging at the important steps.">
+      <created>1545109333975</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1545109333975</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Change client workload">
+      <created>1545134106039</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1545134106039</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added serial version uid to JobHandler">
+      <created>1545159799696</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1545159799696</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added serial version uid to JobHandler">
+      <created>1545159879461</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1545159879461</updated>
+    </task>
+    <task id="LOCAL-00006" summary="changed client back to non queue">
+      <created>1545176035475</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1545176035475</updated>
+    </task>
+    <task id="LOCAL-00007" summary=".">
+      <created>1545177039881</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1545177039881</updated>
+    </task>
+    <task id="LOCAL-00008" summary="sbatch">
+      <created>1545177359145</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1545177359145</updated>
+    </task>
+    <task id="LOCAL-00009" summary="sbatch">
+      <created>1545177602163</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1545177602163</updated>
+    </task>
+    <task id="LOCAL-00010" summary="sleep cascade">
+      <created>1545178362903</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1545178362903</updated>
+    </task>
+    <task id="LOCAL-00011" summary="hostname changed">
+      <created>1545179014985</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1545179014985</updated>
+    </task>
+    <task id="LOCAL-00012" summary="hostname changed">
+      <created>1545179542634</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1545179542634</updated>
+    </task>
+    <task id="LOCAL-00013" summary="hostname changed in HeadNode">
+      <created>1545180005792</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1545180005792</updated>
+    </task>
+    <task id="LOCAL-00014" summary="selector changed">
+      <created>1545181250510</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1545181250510</updated>
+    </task>
+    <task id="LOCAL-00015" summary="selector changed">
+      <created>1545181647176</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1545181647176</updated>
+    </task>
+    <task id="LOCAL-00016" summary="prerun commit">
+      <created>1545217518857</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1545217518857</updated>
+    </task>
+    <task id="LOCAL-00017" summary="selector updated">
+      <created>1545218506667</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1545218506667</updated>
+    </task>
+    <task id="LOCAL-00018" summary="stop jobs">
+      <created>1545220803743</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1545220803743</updated>
+    </task>
+    <task id="LOCAL-00019" summary="stop jobs">
+      <created>1545222280331</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1545222280331</updated>
+    </task>
+    <task id="LOCAL-00020" summary="stop jobs">
+      <created>1545222561217</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1545222561217</updated>
+    </task>
+    <task id="LOCAL-00021" summary="stop jobs">
+      <created>1545222839219</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1545222839219</updated>
+    </task>
+    <task id="LOCAL-00022" summary="stop jobs">
+      <created>1545224345004</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1545224345004</updated>
+    </task>
+    <task id="LOCAL-00023" summary="stop jobs">
+      <created>1545224792926</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1545224792926</updated>
+    </task>
+    <task id="LOCAL-00024" summary="stop jobs">
+      <created>1545225166329</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1545225166329</updated>
+    </task>
+    <task id="LOCAL-00025" summary="stop jobs">
+      <created>1545226015808</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1545226015808</updated>
+    </task>
+    <task id="LOCAL-00026" summary="stop jobs">
+      <created>1545226445548</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1545226445548</updated>
+    </task>
+    <task id="LOCAL-00027" summary="stop jobs">
+      <created>1545227079577</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1545227079577</updated>
+    </task>
+    <task id="LOCAL-00028" summary="stop jobs">
+      <created>1545228930475</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1545228930475</updated>
+    </task>
+    <task id="LOCAL-00029" summary="stop jobs">
+      <created>1545229412832</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1545229412832</updated>
+    </task>
+    <task id="LOCAL-00030" summary="stop jobs">
+      <created>1545229489910</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1545229489910</updated>
+    </task>
+    <task id="LOCAL-00031" summary="stop jobs">
+      <created>1545229626867</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1545229626867</updated>
+    </task>
+    <task id="LOCAL-00032" summary="num jobs 3000">
+      <created>1545229668712</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1545229668712</updated>
+    </task>
+    <task id="LOCAL-00033" summary="num jobs 3000">
+      <created>1545230012358</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1545230012358</updated>
+    </task>
+    <task id="LOCAL-00034" summary="num jobs 3000">
+      <created>1545230998069</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1545230998069</updated>
+    </task>
+    <task id="LOCAL-00035" summary="num jobs 3000">
+      <created>1545231050060</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1545231050060</updated>
+    </task>
+    <task id="LOCAL-00036" summary="num jobs 3000">
+      <created>1545232182545</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1545232182545</updated>
+    </task>
+    <task id="LOCAL-00037" summary="num jobs 3000">
+      <created>1545232437044</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1545232437044</updated>
+    </task>
+    <task id="LOCAL-00038" summary="num jobs 3000">
+      <created>1545232591944</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1545232591944</updated>
+    </task>
+    <task id="LOCAL-00039" summary="num jobs 3000">
+      <created>1545232649910</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1545232649910</updated>
+    </task>
+    <task id="LOCAL-00040" summary="num jobs 3000">
+      <created>1545233551397</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1545233551397</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97438000" />
+    <option name="totallyTimeSpent" value="95380000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="721" extended-state="6" />
+    <frame x="2560" y="25" width="2560" height="1415" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info id="Image Layers" order="2" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.09090909" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.1854714" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3286385" />
-      <window_info id="Capture Tool" order="2" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.497479" visible="true" weight="0.15115353" />
+      <window_info id="Structure" order="1" sideWeight="0.50252104" side_tool="true" weight="0.1762132" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="Gradle" order="3" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3283582" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.32707354" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3283582" />
-    </layout>
-    <layout-to-restore>
-      <window_info anchor="bottom" id="Build" order="7" weight="0.32707354" />
-      <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Palette" order="3" />
       <window_info id="Image Layers" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.5023474" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3286385" />
       <window_info id="Capture Tool" order="6" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3283582" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3283582" />
+      <window_info id="Find" order="7" sideWeight="0.497479" weight="0.21519491" />
+      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49681783" weight="0.23924449" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39979014" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49761337" weight="0.32738718" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32843652" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5513126" side_tool="true" weight="0.32948583" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49733475" weight="0.32738718" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="12" visible="true" weight="0.09090909" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.44868734" weight="0.32948583" />
+      <window_info anchor="right" id="SciView" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="right" id="Maven Projects" order="5" />
       <window_info anchor="right" id="Gradle" order="6" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="right" id="Database" order="7" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="10" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.497479" visible="true" weight="0.15115353" />
+      <window_info id="Structure" order="1" sideWeight="0.50252104" side_tool="true" weight="0.1762132" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Find" order="7" sideWeight="0.497479" weight="0.1372315" />
+      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49681783" weight="0.23924449" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39979014" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49761337" weight="0.32738718" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32843652" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5513126" side_tool="true" visible="true" weight="0.32948583" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49733475" weight="0.32738718" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.44868734" visible="true" weight="0.32948583" />
+      <window_info anchor="right" id="SciView" order="0" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" id="Gradle" order="7" />
+      <window_info anchor="right" id="Database" order="8" />
+      <window_info anchor="right" id="Palette&#9;" order="9" />
+      <window_info anchor="right" id="Theme Preview" order="10" />
+      <window_info anchor="right" id="Maven" order="11" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="2" />
-    </breakpoint-manager>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added many small changes and logging at the important steps." />
+    <MESSAGE value="Change client workload" />
+    <MESSAGE value="Added serial version uid to JobHandler" />
+    <MESSAGE value="changed client back to non queue" />
+    <MESSAGE value="." />
+    <MESSAGE value="sbatch" />
+    <MESSAGE value="sleep cascade" />
+    <MESSAGE value="hostname changed" />
+    <MESSAGE value="hostname changed in HeadNode" />
+    <MESSAGE value="selector changed" />
+    <MESSAGE value="prerun commit" />
+    <MESSAGE value="selector updated" />
+    <MESSAGE value="stop jobs" />
+    <MESSAGE value="num jobs 3000" />
+    <option name="LAST_COMMIT_MESSAGE" value="num jobs 3000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/WorkerNode.java">
+    <entry file="jar://$PROJECT_DIR$/../Downloads/jdk-11.0.1_windows-x64_bin/jdk-11.0.1/lib/src.zip!/java.base/java/util/List.java" />
+    <entry file="jar://$PROJECT_DIR$/../Downloads/jdk-11.0.1_windows-x64_bin/jdk-11.0.1/lib/src.zip!/jdk.javadoc/jdk/javadoc/internal/doclets/toolkit/util/Utils.java" />
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Pair.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1065">
-          <caret line="71" column="23" lean-forward="true" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
+        <state relative-caret-position="85">
+          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Client.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/Configuration.java">
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/PolicyInterface.java" />
+    <entry file="file://$PROJECT_DIR$/.gradle/5.0/gc.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        <state relative-caret-position="323">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ByzantianChecker.java">
+    <entry file="jrt:///usr/lib/jvm/java-1.11.0-openjdk-amd64!/java.base/java/util/Random.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        <state relative-caret-position="323">
+          <caret line="199" column="40" lean-forward="true" selection-start-line="199" selection-start-column="40" selection-end-line="199" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/JobHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/HeadNode.java">
+    <entry file="jar:///usr/lib/jvm/openjdk-11/lib/src.zip!/java.base/java/util/Random.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="38" column="24" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
+        <state relative-caret-position="240">
+          <caret line="582" column="31" selection-start-line="582" selection-start-column="31" selection-end-line="582" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler.java">
+    <entry file="jar:///usr/lib/jvm/openjdk-11/lib/src.zip!/java.base/java/util/function/Function.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="33" lean-forward="true" selection-start-column="33" selection-end-column="33" />
+        <state relative-caret-position="308">
+          <caret line="48" column="6" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Policy.java">
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/Policy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="46" selection-start-column="31" selection-end-column="46" />
+        <state relative-caret-position="180">
+          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/HeadNodeState.java">
+    <entry file="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.typesafe.akka/akka-actor_2.12/2.5.18/2abcb7d04fdf58508241a7229f04d1c54f5a543d/akka-actor_2.12-2.5.18.jar!/akka/event/LoggingAdapter.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="-210">
+          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/DAS4/akka.job">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MainApplication.java">
+    <entry file="jar:///usr/lib/jvm/openjdk-11/lib/src.zip!/java.base/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+        <state relative-caret-position="218">
+          <caret line="165" column="11" selection-start-line="165" selection-start-column="11" selection-end-line="165" selection-end-column="11" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#7323#7324#0" expanded="true" />
+            <element signature="e#7391#7392#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/CreateActor.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/JobHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/HeadNode.java">
+    <entry file="file://$PROJECT_DIR$/DAS4/slurm-283658.out" />
+    <entry file="jar:///usr/lib/jvm/openjdk-11/lib/src.zip!/java.base/java/util/function/Consumer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="45" column="13" lean-forward="true" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+        <state relative-caret-position="270">
+          <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/CustomSupervisorStrategyConfigurator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="82" selection-start-line="17" selection-start-column="82" selection-end-line="17" selection-end-column="82" />
+        <state relative-caret-position="150">
+          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/WorkerNode.java">
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/ByzantianChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="21" column="56" selection-start-line="21" selection-start-column="56" selection-end-line="21" selection-end-column="56" />
+        <state relative-caret-position="390">
+          <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MainApplication.java">
+    <entry file="jar:///usr/lib/jvm/openjdk-11/lib/src.zip!/java.base/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21030">
+          <caret line="1467" column="19" selection-start-line="1467" selection-start-column="19" selection-end-line="1467" selection-end-column="19" />
+          <folding>
+            <element signature="e#59279#59280#0" expanded="true" />
+            <element signature="e#59323#59324#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="19" column="43" lean-forward="true" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/JobWaiting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12">
+          <caret line="27" column="7" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/WorkerNode.java">
+    <entry file="file://$PROJECT_DIR$/DAS4/slurm-285631.out" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorkerNode/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/MaximizePolicy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/SameMachinePolicy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/resources/application.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.typesafe.akka/akka-actor_2.12/2.5.18/2abcb7d04fdf58508241a7229f04d1c54f5a543d/akka-actor_2.12-2.5.18.jar!/akka/actor/ActorRef.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HeadNode/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/Scheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="26" column="19" lean-forward="true" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="22" />
+          <folding>
+            <element signature="e#1131#1132#0" expanded="true" />
+            <element signature="e#1187#1188#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/LockStepPolicy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="77" column="25" selection-start-line="77" selection-start-column="12" selection-end-line="77" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/HeadNodeState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="28" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorkerNode/src/main/java/SpawnWorkers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="70" selection-start-line="12" selection-start-column="70" selection-end-line="12" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DAS4/replacer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/SpawnHeadNodes.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+          <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/CreateActor.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/JobHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/HeadNode.java">
+    <entry file="jar:///usr/lib/jvm/openjdk-11/lib/src.zip!/java.base/java/util/Arrays.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="30" column="20" lean-forward="true" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="33" />
+        <state relative-caret-position="384">
+          <caret line="3686" column="26" selection-start-line="3686" selection-start-column="26" selection-end-line="3686" selection-end-column="26" />
+          <folding>
+            <element signature="e#201638#201639#0" expanded="true" />
+            <element signature="e#201679#201680#0" expanded="true" />
+            <element signature="e#201978#201979#0" expanded="true" />
+            <element signature="e#202035#202036#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/resources/application.conf">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="82" selection-start-line="17" selection-start-column="82" selection-end-line="17" selection-end-column="82" />
+        <state relative-caret-position="135">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MainApplication.java">
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/JobHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="-375">
+          <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/HeadNode/src/main/java/HeadNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="145" column="21" selection-start-line="145" selection-start-column="21" selection-end-line="145" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-73">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/JobInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="17" selection-start-column="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Job.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="76" column="140" selection-start-line="76" selection-start-column="140" selection-end-line="76" selection-end-column="140" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1185#1186#0" expanded="true" />
+            <element signature="e#1250#1251#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/JobActor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="728">
+          <caret line="67" column="9" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorkerNode/src/main/java/WorkerNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1692">
+          <caret line="162" column="41" selection-start-line="162" selection-start-column="41" selection-end-line="162" selection-end-column="41" />
+          <folding>
+            <element signature="e#7269#7270#0" expanded="true" />
+            <element signature="e#7317#7318#0" expanded="true" />
+            <element signature="e#7550#7551#0" expanded="true" />
+            <element signature="e#7592#7593#0" expanded="true" />
+            <element signature="e#7840#7841#0" expanded="true" />
+            <element signature="e#7882#7883#0" expanded="true" />
+            <element signature="e#8136#8137#0" expanded="true" />
+            <element signature="e#8184#8185#0" expanded="true" />
+            <element signature="e#8421#8422#0" expanded="true" />
+            <element signature="e#8459#8460#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WorkerNode/src/main/resources/application.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/src/main/java/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DAS4/scriptToSubmitToScheduler.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DAS4/spawn.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/RequestProtocol.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/DeviceGroup.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/Device.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/DeviceManager.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/CreateActor.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/Utils.java">
+    <entry file="file://$PROJECT_DIR$/DAS4/submitAllJobs.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="418">
+          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GracefulFailureException.java">
+    <entry file="file://$PROJECT_DIR$/Shared/src/main/java/Configuration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        <state relative-caret-position="330">
+          <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/CustomSupervisorStrategyConfigurator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application.conf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/TaskScheduler.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/JobInterface.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/Client.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/JobWaiting.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/Configuration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/JobHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/PolicyInterface.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/ByzantianChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Policy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/WorkerNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/HeadNodeState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/MainApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="63" column="32" selection-start-line="63" selection-start-column="32" selection-end-line="63" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Scheduler.java">
+    <entry file="file://$PROJECT_DIR$/DAS4/selector.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/HeadNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1890">
-          <caret line="131" column="38" selection-start-line="131" selection-start-column="38" selection-end-line="131" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Job.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="30" column="10" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Messages.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="31" column="40" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="24" column="16" lean-forward="true" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -1058,6 +1519,66 @@
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.34158415" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.34158415" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.34158415" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>10</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.34158415" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Shared_main|Shared</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>10</last-edited>
@@ -1065,6 +1586,18 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Gradle: com.typesafe.akka:akka-actor_2.12:2.5.18</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.34158415" />
               </list>
             </option>
           </splitter-proportions>

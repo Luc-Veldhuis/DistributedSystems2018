@@ -1,3 +1,6 @@
 rootProject.name = 'job_runner'
-include 'WorkerEnvironment'
+include 'Shared'
+include 'WorkerNode'
+include 'Client'
+include 'HeadNode'
 
