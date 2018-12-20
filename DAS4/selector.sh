@@ -1,5 +1,6 @@
 #!/bin/bash
-echo $6 $7
+
+echo $1 $2 $3 $4 $5 $6 $7
 if [ "$(hostname)" == "node$6" ]; then
     echo node$6
     echo headnode
